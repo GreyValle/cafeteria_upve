@@ -16,8 +16,9 @@ class CreateTipoSangresTable extends Migration
         Schema::create('tipo_sangres', function (Blueprint $table) {
             $table->increments('id');
             $table->string('tipo_sangre',100)->nullable();
-            $table->integer('user_id')->nullable();
+            $table->unsignedInteger('user_id');
             $table->timestamps();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

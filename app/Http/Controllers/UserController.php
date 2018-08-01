@@ -29,10 +29,13 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        $user=User::find($id);
+        
+        $user=User::join('escolaridads','escolaridads.id','=','users.escolaridad_id')
+            ->select('*')->get();
+        dd($user);
         // $escolaridad=DB::select('select * from escolaridads where id=?',[$user->id_escolaridad]);
              
-        return view('users.show', ['user'=>$user,'escolaridad'=>$escolaridad]);
+        return view('users.show', ['user'=>$user]);
     }
 
     /**

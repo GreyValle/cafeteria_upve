@@ -29,7 +29,7 @@
                             if ($escolaridad!=null):
                     @endphp
                         @can('escolaridad.show')
-                            <p><strong>Escolaridad: </strong><a href="">{{ $escolaridad->escolaridad }}</a></p>
+                            <p><strong>Escolaridad: </strong><a href="">{{ $user->escolaridad }}</a></p>
                         @endcan
                     @php
                             endif;

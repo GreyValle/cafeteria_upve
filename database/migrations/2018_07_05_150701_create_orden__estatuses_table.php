@@ -17,8 +17,9 @@ class CreateOrdenEstatusesTable extends Migration
             $table->increments('id');
             $table->string('estatus',100);
             $table->string('descripcion',200)->nullable();
-            $table->integer('user_id')->nullable();
+            $table->unsignedInteger('user_id');
             $table->timestamps();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

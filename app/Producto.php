@@ -8,6 +8,6 @@ class Producto extends Model
 {
     protected $fillable = [
         'nombre', 'descripcion','ingredientes',
-        'precio','id_empleado', 'estatus'
+        'precio','user_id', 'estatus'
     ]; 
 }

@@ -19,12 +19,17 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('password');
             $table->string('telefono',12)->default("Desconocido");
-            $table->integer('escolaridad_id')->unsigned()->nullable();
-            $table->integer('estatus_social_id')->unsigned()->nullable();
-            $table->integer('ocupacion_id')->unsigned()->nullable();
-            $table->integer('tipo_sangre_id')->unsigned()->nullable();
+            $table->unsignedInteger('escolaridad_id')->default(0);
+            $table->unsignedInteger('estatus_social_id')->default(0);
+            $table->unsignedInteger('ocupacion_id')->default(0);
+            $table->unsignedInteger('tipo_sangre_id')->default(0);;
             $table->rememberToken();
+ 
             $table->timestamps();
+            // $table->foreign('escolaridad_id')->references('id')->on('escolaridads');
+            // $table->foreign('estatus_social_id')->references('id')->on('estatus_social');
+            // $table->foreign('ocupacion_id')->references('id')->on('ocupacions');
+            // $table->foreign('tipo_sangre_id')->references('id')->on('tipo_sangres');
         });
     }
 

@@ -29,6 +29,7 @@ class User extends Authenticatable
     ];
 
     public function escolaridad(){
-        return $this->hasOne('App\Escolaridad');
+        return $this->belongsTo('App\Escolaridad');
     }
+
 }

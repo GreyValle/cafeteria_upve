@@ -15,15 +15,17 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id');
-            $table->integer('product_id');
             $table->decimal('total',12,2);
             // $table->timestamps('fecha_solicitud')->nullable();
             $table->date('fecha_entregar')->nullable();
             // $table->times('hora_entregar');
             // $table->timestamps('fecha_entregada')->nullable();
             $table->integer('orden_estatus_id')->nullable();
+            $table->unsignedInteger('product_id');
+            $table->unsignedInteger('user_id');
             $table->timestamps();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
         });
     }
 
