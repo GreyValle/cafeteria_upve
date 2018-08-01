@@ -1,9 +1,9 @@
 <template lang="html">
 	<!-- <div class="col-xs-12 col-sm-12 col-md-6"> -->
-	<div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+	<div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 ">
 		<div class="card card-default">
 			<div class="card-header">
-				<h2 class="card-title"><a :href="'/productos/'+product.id">{{ product.title }}</a></h2>
+				<h2 class="card-title"><a :href="'/products/'+product.id">{{ product.title }}</a></h2>
 			</div>
 			<div class="card-body">
 				<div class="row">	

@@ -41,7 +41,7 @@ class TiposSangreController extends Controller
 
         // dd($request);
         Tipo_sangre::create($request->all());
-        return redirect()->route('tipos-sangre  .create')
+        return redirect()->route('tipo_sangre.create')
         ->with('success','Tipo sangre: '.$request->rol.', ¡Creado satisfactoriamente!');
     }
 
@@ -82,7 +82,7 @@ class TiposSangreController extends Controller
         $this->validate($request,[ 'tipo_sangre'=>'required' ]);
  
         Tipo_sangre::find($id)->update($request->all());
-        return redirect()->route('tipos-sangre.index')
+        return redirect()->route('tipo_sangre.index')
         ->with('success','Tipo: '.$request->tipo_sangre.', ¡Actualizado satisfactoriamente!');
     }
 
@@ -94,6 +94,7 @@ class TiposSangreController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Tipo_sangre::find($id)->delete();
+        return back()->with('info','Eliminado correctamente');
     }
 }

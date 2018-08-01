@@ -9,4 +9,8 @@ class Escolaridad extends Model
      protected $fillable = [
         'escolaridad', 'descripcion',
     ];
+
+    public function user(){
+    	return $this->belongsTo('App\User');
+    }
 }

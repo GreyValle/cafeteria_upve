@@ -12,7 +12,7 @@ class PermissionsTableSeeder extends Seeder
      */
     public function run()
     {
-        //permisos
+        //users
         Permission::create([
         	'name' => 'Navegar usuarios',
         	'slug' => 'users.index',
@@ -60,6 +60,7 @@ class PermissionsTableSeeder extends Seeder
         	'slug' => 'roles.destroy',
         	'description' => 'Eliminar cualquier rol del sistema',
         ]);
+        
         //products
         Permission::create([
         	'name' => 'Navegar productos',
@@ -86,6 +87,7 @@ class PermissionsTableSeeder extends Seeder
         	'slug' => 'products.destroy',
         	'description' => 'Eliminar cualquier producto del sistema',
         ]);
+        
         //orders
         Permission::create([
         	'name' => 'Navegar ordenes',
@@ -93,9 +95,14 @@ class PermissionsTableSeeder extends Seeder
         	'description' => 'Lista y Navega todos los ordenes del sistema',
         ]);
         Permission::create([
-        	'name' => 'Ver detalle de orden',
-        	'slug' => 'orders.show',
-        	'description' => 'Ver en detalle cada orden del sistema',
+            'name' => 'Ver detalle de orden',
+            'slug' => 'orders.show',
+            'description' => 'Ver en detalle cada orden del sistema',
+        ]);
+        Permission::create([//aljskalllllllaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+            'name' => 'Guardar orden',
+            'slug' => 'orders.store',
+            'description' => 'Almacenar en bases de datos la orden',
         ]);
         Permission::create([
         	'name' => 'Creacion de ordenes',
@@ -112,11 +119,12 @@ class PermissionsTableSeeder extends Seeder
         	'slug' => 'orders.destroy',
         	'description' => 'Eliminar cualquier orden del sistema',
         ]);
-        //escolaridad
+       
+       //escolaridad
         Permission::create([
-        	'name' => 'Navegar escolaridades',
-        	'slug' => 'escolaridad.index',
-        	'description' => 'Lista y Navega todos los escolaridades del sistema',
+            'name' => 'Navegar escolaridades',
+            'slug' => 'escolaridad.index',
+            'description' => 'Lista y Navega todos las escolaridades del sistema',
         ]);
         Permission::create([
         	'name' => 'Ver detalle de escolaridad',
@@ -138,6 +146,7 @@ class PermissionsTableSeeder extends Seeder
         	'slug' => 'escolaridad.destroy',
         	'description' => 'Eliminar cualquier escolaridad del sistema',
         ]);
+          
           //Orden_estatus
         Permission::create([
         	'name' => 'Navegar Orden_estatus',
@@ -164,31 +173,86 @@ class PermissionsTableSeeder extends Seeder
         	'slug' => 'orden_estatus.destroy',
         	'description' => 'Eliminar cualquier Orden_estatus del sistema',
         ]);
+       
         //ocupaciones
         Permission::create([
-        	'name' => 'Navegar ocupaciones',
-        	'slug' => 'ocupaciones.index',
-        	'description' => 'Lista y Navega todos los ocupaciones del sistema',
+            'name' => 'Navegar ocupaciones',
+            'slug' => 'ocupaciones.index',
+            'description' => 'Lista y Navega todos los ocupaciones del sistema',
         ]);
         Permission::create([
-        	'name' => 'Ver detalle de ocupación',
-        	'slug' => 'ocupaciones.show',
-        	'description' => 'Ver en detalle cada ocupación del sistema',
+            'name' => 'Ver detalle de ocupación',
+            'slug' => 'ocupaciones.show',
+            'description' => 'Ver en detalle cada ocupación del sistema',
         ]);
         Permission::create([
-        	'name' => 'Creacion de ocupaciones',
-        	'slug' => 'ocupaciones.create',
-        	'description' => 'Editar cualquier dato de una ocupación del sistema',
+            'name' => 'Creacion de ocupaciones',
+            'slug' => 'ocupaciones.create',
+            'description' => 'Editar cualquier dato de una ocupación del sistema',
         ]);
         Permission::create([
-        	'name' => 'Edicion de ocupaciones',
-        	'slug' => 'ocupaciones.edit',
-        	'description' => 'Editar cualquier dato de una ocupación del sistema',
+            'name' => 'Edicion de ocupaciones',
+            'slug' => 'ocupaciones.edit',
+            'description' => 'Editar cualquier dato de una ocupación del sistema',
         ]);
         Permission::create([
-        	'name' => 'Eliminar ocupación',
-        	'slug' => 'ocupaciones.destroy',
-        	'description' => 'Eliminar cualquier ocupación del sistema',
+            'name' => 'Eliminar ocupación',
+            'slug' => 'ocupaciones.destroy',
+            'description' => 'Eliminar cualquier ocupación del sistema',
+        ]);
+
+            //estatus_social
+        Permission::create([
+            'name' => 'Navegar estatus social',
+            'slug' => 'estatus_social.index',
+            'description' => 'Lista y Navega todos los estatus social del sistema',
+        ]);
+        Permission::create([
+            'name' => 'Ver detalle de estatus social',
+            'slug' => 'estatus_social.show',
+            'description' => 'Ver en detalle cada estatus social del sistema',
+        ]);
+        Permission::create([
+            'name' => 'Creacion de estatus social',
+            'slug' => 'estatus_social.create',
+            'description' => 'Editar cualquier dato de un estatus social del sistema',
+        ]);
+        Permission::create([
+            'name' => 'Edicion de estatus social',
+            'slug' => 'estatus_social.edit',
+            'description' => 'Editar cualquier dato de un estatus social del sistema',
+        ]);
+        Permission::create([
+            'name' => 'Eliminar estatus social',
+            'slug' => 'estatus_social.destroy',
+            'description' => 'Eliminar cualquier estatus social del sistema',
+        ]);
+
+        //tipo_sangre
+        Permission::create([
+        	'name' => 'Navegar tipos de sangre',
+        	'slug' => 'tipo_sangre.index',
+        	'description' => 'Lista y Navega todos los tipos de sangre del sistema',
+        ]);
+        Permission::create([
+        	'name' => 'Ver detalle de tipo de sangre',
+        	'slug' => 'tipo_sangre.show',
+        	'description' => 'Ver en detalle cada tipo de sangre del sistema',
+        ]);
+        Permission::create([
+        	'name' => 'Creacion de tipo de sangre',
+        	'slug' => 'tipo_sangre.create',
+        	'description' => 'Editar cualquier dato de un tipo de sangre del sistema',
+        ]);
+        Permission::create([
+        	'name' => 'Edicion de tipo de sangre',
+        	'slug' => 'tipo_sangre.edit',
+        	'description' => 'Editar cualquier dato de un tipo de sangre del sistema',
+        ]);
+        Permission::create([
+        	'name' => 'Eliminar tipo de sangre',
+        	'slug' => 'tipo_sangre.destroy',
+        	'description' => 'Eliminar cualquier tipo de sangre del sistema',
         ]);
 
 

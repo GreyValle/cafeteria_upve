@@ -5,14 +5,17 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Role</div>
-
+                <div class="card-header"><strong>Editando Rol</strong>
+                    @can('roles.index')
+                        <a href="{{ route('roles.index') }}" class="btn btn-sm btn-primary float-right">Volver</a>
+                    @endcan
+                </div>
+                
                 <div class="card-body">
-                {!! Form::model($role, ['route' => ['roles.update', $role->id],
-                'method' => 'PUT' ]) !!}
-                  @include('roles.partials.form')
-                {!! Form::close() !!}
-               
+                    {!! Form::model($role, ['route' => ['roles.update', $role->id],
+                    'method' => 'PUT' ]) !!}
+                      @include('roles.partials.form')
+                    {!! Form::close() !!}
                 </div>
             </div>
         </div>

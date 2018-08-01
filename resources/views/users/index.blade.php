@@ -6,10 +6,8 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">
-                  Usuarios
-                  @can('users.create')
-                    <a href="{{ route('users.index') }}" class="btn btn-sm btn-primary float-right">Crear</a>
-                  @endcan
+                  <STRONG>Usuarios</STRONG>
+                  <a href="{{ route('users.index') }}" class="btn btn-sm btn-primary float-right">Refrescar</a>
                 </div>
 
                 <div class="card-body">

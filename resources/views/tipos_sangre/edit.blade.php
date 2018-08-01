@@ -5,13 +5,13 @@
 	<div class="col-md-8">
 		<div class="card">
 	        <div class="card-header">
-	          <h2> Editando tipo sangre <a href="{{ route('tipos-sangre.index') }}" class="btn btn-primary float-right" data-toggle="tooltip" title="¡Desde aquí puedes volver a la lista tipos sangre!" data-placement="right">Atrás</a>
+	          <h2> Editando tipo sangre <a href="{{ route('tipo_sangre.index') }}" class="btn btn-primary float-right" data-toggle="tooltip" title="¡Desde aquí puedes volver a la lista tipos sangre!" data-placement="right">Atrás</a>
 	          </h2>
 	        </div>
 				{{-- @include('Cliente.frangment.error') --}}
 		   		{{-- @include('Cliente.frangment.info') --}}
 	        <div class="card-body">					
-	        	<form method="POST" action="{{ route('tipos-sangre.update', $dato->id) }}"  role="form">
+	        	<form method="POST" action="{{ route('tipo_sangre.update', $dato->id) }}"  role="form">
 					{{ csrf_field() }}
 					<input name="_method" type="hidden" value="PATCH">				
 					<div class="form-group">

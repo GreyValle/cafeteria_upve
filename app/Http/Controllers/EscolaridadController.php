@@ -41,8 +41,13 @@ class EscolaridadController extends Controller
         $this->validate($request,[ 'escolaridad'=>'required', 'descripcion'=>'required']);
 
         // dd($request);
-        Escolaridad::create($request->all());
-        return redirect()->route('escolaridad.create')
+        $escolaridad=new Escolaridad;
+        $escolaridad->escolaridad=$request->escolaridad;
+        $escolaridad->descripcion=$request->descripcion;
+        $escolaridad->user_id=\Auth::user()->id;
+        $escolaridad->save();
+   
+        return redirect()->route('escolaridad.index')
         ->with('success','Escolaridad: '.$request->nombre.', ¡Creada satisfactoriamente!');
     }
 
@@ -54,8 +59,9 @@ class EscolaridadController extends Controller
      */
     public function show($id)
     {
-         $dato=Escolaridad::find($id);
-        return  view('escolaridad.show',compact('dato'));
+        $escolaridad=Escolaridad::find($id);
+        // dd($escolaridad->user);
+        return  view('escolaridad.show',compact('escolaridad'));
     }
 
     /**
@@ -66,7 +72,6 @@ class EscolaridadController extends Controller
      */
     public function edit(Request $request, $id)
     {
-        // $request->user()->authorizeRoles(['admin','user']);
         $escolaridad=Escolaridad::find($id);
         return view('escolaridad.edit',compact('escolaridad'));
     }
@@ -80,10 +85,13 @@ class EscolaridadController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // $request->user()->authorizeRoles(['admin','user']);
         $this->validate($request,[ 'escolaridad'=>'required', 'descripcion'=>'required', ]);
- 
-        Escolaridad::find($id)->update($request->all());
+
+        $escolaridad=Escolaridad::find($id);
+        $escolaridad->escolaridad=$request->escolaridad;
+        $escolaridad->descripcion=$request->descripcion;
+        $escolaridad->save();
+        
         return redirect()->route('escolaridad.index')
         ->with('success','Escolaridad: '.$request->escolaridad.', ¡Actualizada satisfactoriamente!');
     }
@@ -96,8 +104,9 @@ class EscolaridadController extends Controller
      */
     public function destroy($id)
     {
-        $escolaridad=Escolaridad::findOrFail($id);
-        $escolaridad->delete();
-        return view('escolaridad.index');
+  
+        Escolaridad::find($id)->delete();
+        return redirect()->route('escolaridad.index')
+        ->with('success','Escolaridad eliminada satisfactoriamente!');
     }
 }

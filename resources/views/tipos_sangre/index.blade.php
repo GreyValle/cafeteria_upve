@@ -10,7 +10,7 @@
           		<h2 class="float-left"> Tipos de sangre</h2>   			
 	        </div>
 	        <div class="col-sm-6">         	
-	         <a href="{{ route('tipos-sangre.create') }}" class="btn btn-primary float-right" data-toggle="tooltip" title="¡Desde aquí puedes añadir un nuevo tipo!" data-placement="left">Añadir tipo</a> 
+	         <a href="{{ route('tipo_sangre.create') }}" class="btn btn-primary float-right" data-toggle="tooltip" title="¡Desde aquí puedes añadir un nuevo tipo!" data-placement="left">Añadir tipo</a> 
 	        </div>
           </div>
         </div>

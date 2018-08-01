@@ -10,7 +10,7 @@
           		<h2 class="float-left"> Estatus orden</h2>   			
 	        </div>
 	        <div class="col-sm-6">         	
-	         <a href="{{ route('orden-estatus.create') }}" class="btn btn-primary float-right" data-toggle="tooltip" title="¡Desde aquí puedes añadir una nuevo estatus!" data-placement="left">Añadir estatus</a> 
+	         <a href="{{ route('orden_estatus.create') }}" class="btn btn-primary float-right" data-toggle="tooltip" title="¡Desde aquí puedes añadir una nuevo estatus!" data-placement="left">Añadir estatus</a> 
 	        </div>
           </div>
         </div>

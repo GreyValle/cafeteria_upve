@@ -12,7 +12,7 @@
 			return{
 				name: 'Component GREY',
 				products: [],
-				endpoint: "/productos"
+				endpoint: "/products"
 			}
 		},
 		

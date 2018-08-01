@@ -80,26 +80,164 @@ Route::middleware(['auth'])->group(function(){
 	Route::get('users/{user}/edit', 'UserController@edit')->name('users.edit')
 			->middleware('permission:users.edit');
 
+			//escolaridad
+	Route::post('escolaridad/store', 'EscolaridadController@store')->name('escolaridad.store')
+			->middleware('permission:escolaridad.create');
+
+	Route::get('escolaridad', 'EscolaridadController@index')->name('escolaridad.index')
+			->middleware('permission:escolaridad.index');
+
+	Route::put('escolaridad/{user}', 'EscolaridadController@update')->name('escolaridad.update')
+			->middleware('permission:escolaridad.update');
+
+	Route::get('escolaridad/create', 'EscolaridadController@create')->name('escolaridad.create')
+			->middleware('permission:escolaridad.create');
+
+	Route::get('escolaridad/{user}', 'EscolaridadController@show')->name('escolaridad.show')
+			->middleware('permission:escolaridad.show');
+
+	Route::delete('escolaridad/{user}', 'EscolaridadController@destroy')->name('escolaridad.destroy')
+			->middleware('permission:escolaridad.destroy');
+
+	Route::get('escolaridad/{user}/edit', 'EscolaridadController@edit')->name('escolaridad.edit')
+			->middleware('permission:escolaridad.edit');
+
+			//estatus_social
+	Route::get('estatus_social', 'EstatusSocialController@index')->name('estatus_social.index')
+			->middleware('permission:estatus_social.index');
+
+	Route::post('estatus_social/store', 'EstatusSocialController@store')->name('estatus_social.store')
+			->middleware('permission:estatus_social.create');
+
+	Route::put('estatus_social/{user}', 'EstatusSocialController@update')->name('estatus_social.update')
+			->middleware('permission:estatus_social.edit');
+	
+	Route::put('estatus_social/create', 'EstatusSocialController@create')->name('estatus_social.create')
+			->middleware('permission:estatus_social.create');
+
+	Route::get('estatus_social/{user}', 'EstatusSocialController@show')->name('estatus_social.show')
+			->middleware('permission:estatus_social.show');
+
+	Route::delete('estatus_social/{user}', 'EstatusSocialController@destroy')->name('estatus_social.destroy')
+			->middleware('permission:estatus_social.destroy');
+
+	Route::get('estatus_social/{user}/edit', 'EstatusSocialController@edit')->name('estatus_social.edit')
+			->middleware('permission:estatus_social.edit');
+
+			//ocupacion
+	Route::post('ocupacion/store', 'OcupacionesController@store')->name('estatus_social.store')
+			->middleware('permission:ocupacion.create');
+
+	Route::get('ocupacion', 'OcupacionesController@index')->name('ocupacion.index')
+			->middleware('permission:ocupacion.index');
+
+	Route::put('ocupacion/{user}', 'OcupacionesController@update')->name('ocupacion.update')
+			->middleware('permission:ocupacion.edit');
+	
+	Route::put('ocupacion/create', 'OcupacionesController@create')->name('ocupacion.create')
+			->middleware('permission:ocupacion.create');
+
+	Route::get('ocupacion/{user}', 'OcupacionesController@show')->name('ocupacion.show')
+			->middleware('permission:ocupacion.show');
+
+	Route::delete('ocupacion/{user}', 'OcupacionesController@destroy')->name('ocupacion.destroy')
+			->middleware('permission:ocupacion.destroy');
+
+	Route::get('ocupacion/{user}/edit', 'OcupacionesController@edit')->name('ocupacion.edit')
+			->middleware('permission:ocupacion.edit');
+			
+			//orden_estatus
+	Route::post('orden_estatus/store', 'OrdenEstatusController@store')->name('orden_estatus.store')
+			->middleware('permission:orden_estatus.create');
+
+	Route::get('orden_estatus', 'OrdenEstatusController@index')->name('orden_estatus.index')
+			->middleware('permission:orden_estatus.index');
+
+	Route::put('orden_estatus/{user}', 'OrdenEstatusController@update')->name('orden_estatus.update')
+			->middleware('permission:orden_estatus.edit');
+
+	Route::put('orden_estatus/create', 'OrdenEstatusController@create')->name('orden_estatus.create')
+			->middleware('permission:orden_estatus.create');
+
+	Route::get('orden_estatus/{user}', 'OrdenEstatusController@show')->name('orden_estatus.show')
+			->middleware('permission:orden_estatus.show');
+
+	Route::delete('orden_estatus/{user}', 'OrdenEstatusController@destroy')->name('orden_estatus.destroy')
+			->middleware('permission:orden_estatus.destroy');
+
+	Route::get('orden_estatus/{user}/edit', 'OrdenEstatusController@edit')->name('orden_estatus.edit')
+			->middleware('permission:orden_estatus.edit');			
+			
+			//orders
+	Route::post('orders/store', 'OrdersController@store')->name('orders.store')
+			->middleware('permission:orders.create');
+
+	Route::get('orders', 'OrdersController@index')->name('orders.index')
+			->middleware('permission:orders.index');
+
+	Route::put('orders/{user}', 'OrdersController@update')->name('orders.update')
+			->middleware('permission:orders.edit');
+
+	Route::put('orders/create', 'OrdersController@create')->name('orders.create')
+			->middleware('permission:orders.create');
+
+	Route::get('orders/{user}', 'OrdersController@show')->name('orders.show')
+			->middleware('permission:orders.show');
+
+	Route::delete('orders/{user}', 'OrdersController@destroy')->name('orders.destroy')
+			->middleware('permission:orders.destroy');
+
+	Route::get('orders/{user}/edit', 'OrdersController@edit')->name('orders.edit')
+			->middleware('permission:orders.edit');
+
+			//tipo_sangre
+	Route::post('tipo_sangre/store', 'TiposSangreController@store')->name('tipo_sangre.store')
+			->middleware('permission:tipo_sangre.create');
+			
+	Route::get('tipo_sangre', 'TiposSangreController@index')->name('tipo_sangre.index')
+			->middleware('permission:tipo_sangre.index');
+
+	Route::put('tipo_sangre/{user}', 'TiposSangreController@update')->name('tipo_sangre.update')
+			->middleware('permission:tipo_sangre.edit');
+
+	Route::put('tipo_sangre/create', 'TiposSangreController@create')->name('tipo_sangre.create')
+			->middleware('permission:tipo_sangre.create');
+
+	Route::get('tipo_sangre/{user}', 'TiposSangreController@show')->name('tipo_sangre.show')
+			->middleware('permission:tipo_sangre.show');
+
+	Route::delete('tipo_sangre/{user}', 'TiposSangreController@destroy')->name('tipo_sangre.destroy')
+			->middleware('permission:tipo_sangre.destroy');
+
+	Route::get('tipo_sangre/{user}/edit', 'TiposSangreController@edit')->name('tipo_sangre.edit')
+			->middleware('permission:tipo_sangre.edit');
+
+
+
 
 });
 
-Route::resource('/clientes', 'ClientesController');
+// Route::resource('/clientes', 'ClientesController');
 
-Route::resource('/escolaridad', 'EscolaridadController');
+// Route::resource('/escolaridad', 'EscolaridadController');
 
-Route::resource('/productos', 'ProductsController');
+Route::resource('/productos', 'ProductsController', [
+"only"=>["update"]
+]);
+Route::resource('escolaridad', 'EscolaridadController', [
+"only"=>["update"]
+]);
+// Route::resource('/estatus-social', 'EstatusSocialController');
 
-Route::resource('/estatus-social', 'EstatusSocialController');
+// Route::resource('/ocupaciones', 'OcupacionesController');
 
-Route::resource('/ocupaciones', 'OcupacionesController');
-
-Route::resource('/orden-estatus', 'OrdenEstatusController');
+// Route::resource('/orden-estatus', 'OrdenEstatusController');
 
 // Route::resource('/roles', 'RolesController');
 
-Route::resource('/tipos-sangre', 'TiposSangreController');
+// Route::resource('/tipos-sangre', 'TiposSangreController');
 
-Route::resource('orders', 'OrdersController');
+// Route::resource('orders', 'OrdersController');
 
 Route::apiResource('/roles-vue','RolesvueController', [
 "only"=>["index","store","update","destroy"]

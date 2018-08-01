@@ -22,14 +22,14 @@ class CreateEmpleadosTable extends Migration
             $table->date('fecha_nac');
             $table->string('telefono',12)->nullable();
             $table->string('sexo',10);
-            $table->integer('id_escolaridad');
-            $table->integer('id_estatus_social');
+            $table->integer('escolaridad_id');
+            $table->integer('estatus_social_id');
             $table->integer('hijos')->nullable();
 
             $table->string('puesto',30)->nullable();
             $table->decimal('sueldo',12,2)->nullable();
             $table->string('nss',11);
-            $table->integer('id_tipo_sangre')->nullable();
+            $table->integer('tipo_sangre_id')->nullable();
             $table->boolean('estatus')->default(true);
 
 

@@ -51,6 +51,42 @@
                                 <a class="nav-link" href="{{ route('users.index') }}">Usuarios</a>
                             </li>
                         @endcan
+
+                        @can('escolaridad.index')
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('escolaridad.index') }}">Escolaridad</a>
+                            </li>
+                        @endcan
+
+                        @can('estatus_social.index')
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('estatus_social.index') }}">Estatus Soc</a>
+                            </li>
+                        @endcan
+
+                        @can('ocupacion.index')
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('ocupacion.index') }}">Ocupación</a>
+                            </li>
+                        @endcan
+                        
+                        @can('orden_estatus.index')
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('orden_estatus.index') }}">Orden Est</a>
+                            </li>
+                        @endcan
+                        
+                        @can('orders.index')
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('orders.index') }}">Orden</a>
+                            </li>
+                        @endcan
+
+                        @can('tipo_sangre.index')
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('tipo_sangre.index') }}">Sangre</a>
+                            </li>
+                        @endcan
                     </ul>
 
                     <!-- Right Side Of Navbar -->

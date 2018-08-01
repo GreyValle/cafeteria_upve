@@ -8,6 +8,8 @@ use Caffeinated\Shinobi\Models\Role;
 
 use Caffeinated\Shinobi\Models\Permission;
 
+use App\User;
+use Auth;
 class RoleController extends Controller
 {
     /**
@@ -40,10 +42,17 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-        $role=Role::create($request->all()); 
+        // $user=Auth::user()->id;
+        // dd( $user);
+        $role=new Role;
+        $role->name=$request->name;
+        $role->description=$request->description;
+        $role->id_user=Auth::user()->id;
+        $role->save();
+        // $role=Role::create($request->all()); 
 
         $role->permissions()->sync($request->get('permissions')); 
-        return redirect()->route('roles.edit', $role->id)
+        return redirect()->route('roles.index')
         ->with('info','Role actualizado con éxito');
       
     }
@@ -56,9 +65,13 @@ class RoleController extends Controller
      */
     public function show($id)
     {
-        $role=Role::find($id); 
-        // dd($role);        
-        return view('roles.show', compact('role'));
+       
+        $role=Role::find($id)->user; 
+        dd($role);
+        $user=User::where('id',$role->id_user)->get(); 
+       
+
+        return view('roles.show', compact('role','user'));
     }
 
     /**
@@ -87,7 +100,7 @@ class RoleController extends Controller
         $role->update($request->all());
 
         $role->permissions()->sync($request->get('permissions')); 
-        return redirect()->route('roles.edit', $role->id)
+        return redirect()->route('roles.index')
         ->with('info','Role actualizado con éxito');
     }
 

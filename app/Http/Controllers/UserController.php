@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\User;
 use Caffeinated\Shinobi\Models\Role;
+use App\User;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -28,8 +29,13 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        $user=User::find($id);         
-        return view('users.show', compact('user'));
+        $user=User::find($id);
+        $escolaridad=DB::select('select * from escolaridads where id=?',[$user->id_escolaridad]);
+        // $re=$user->escolaridad()->where('user_id',$user->id); 
+        // dd($re);
+        // dd($escolaridad);
+        // dd($user->escolaridads);       
+        return view('users.show', ['user'=>$user,'escolaridad'=>$escolaridad]);
     }
 
     /**
@@ -58,7 +64,7 @@ class UserController extends Controller
         $user->update($request->all());
 
         $user->roles()->sync($request->get('roles')); 
-        return redirect()->route('users.edit', $user->id)
+        return redirect()->route('users.index')
         ->with('info','Usuario actualizado con éxito');
     }
 

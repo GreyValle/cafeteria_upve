@@ -1,15 +1,16 @@
 <div class="form-group">
 	{{ Form::label('name','Nombre') }}
-	{{ Form::text('name', null, ['class' => 'form-control']) }}
+	{{ Form::text('name', null, ['class' => 'form-control', 'required']) }}
 </div>
-<div class="form-group">
+{{-- <div class="form-group">
 	{{ Form::label('slug','URL Amigable') }}
 	{{ Form::text('slug', null, ['class' => 'form-control']) }}
-</div>
+</div> --}}
 <div class="form-group">
-	{{ Form::label('description','Descripción') }}
-	{{ Form::textarea('description', null, ['class' => 'form-control']) }}
+	{!! Form::label('description','Descripción') !!}
+	{!! Form::textarea('description', null, ['class'=>'form-control','placeholder'=>'Descripción breve del producto','rows'=>'2']) !!}
 </div>
+
 <hr>
 <h3>Permiso especial</h3>
 <div class="form-group">
@@ -24,7 +25,7 @@
 			<li>
 				<label>
 					{{ Form::checkbox('permissions[]', $permission->id, null) }}					
-					{{ $permission->name }}
+					{{ $permission->name ?: 'Desconocido' }}
 					<em>({{ $permission->description ?: 'Sin descripción' }})</em>
 				</label>
 			</li>

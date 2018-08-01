@@ -14,6 +14,7 @@ class RolesController extends Controller
      */
     public function index()
     {
+     
         $roles=Roles::all();
         // $roles=Roles::paginate(7);
         return view('roles.index', compact('roles'));

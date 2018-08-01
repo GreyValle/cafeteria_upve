@@ -5,13 +5,13 @@
 	<div class="col-md-10">
 		<div class="card">
 	        <div class="card-header">
-	          <h2> Nuevo estatus orden <a href="{{ route('orden-estatus.index') }}" class="btn btn-primary float-right" data-toggle="tooltip" title="¡Desde aquí puedes volver a la lista de estatus!" data-placement="right">Atrás</a>
+	          <h2> Nuevo estatus orden <a href="{{ route('orden_estatus.index') }}" class="btn btn-primary float-right" data-toggle="tooltip" title="¡Desde aquí puedes volver a la lista de estatus!" data-placement="right">Atrás</a>
 	          </h2>
 	        </div>
 				{{-- @include('Cliente.frangment.error') --}}
 		   		{{-- @include('Cliente.frangment.info') --}}
 	        <div class="card-body">					
-	        	<form method="POST" action="{{ route('orden-estatus.store') }}"  role="form">
+	        	<form method="POST" action="{{ route('orden_estatus.store') }}"  role="form">
 					{{ csrf_field() }}
 							
 					<div class="form-group">

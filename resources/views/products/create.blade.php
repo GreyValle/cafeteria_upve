@@ -5,21 +5,21 @@
 	<div class="col-md-10">
 		<div class="card">
 	        <div class="card-header">
-	          <h2>Nuevo producto <a href="{{ route('productos.index') }}" class="btn btn-primary float-right" data-toggle="tooltip" title="¡Desde aquí puedes volver a la lista de escolaridad!" data-placement="right">Atrás</a>
+	          <h2>Nuevo producto <a href="{{ route('products.index') }}" class="btn btn-primary float-right" data-toggle="tooltip" title="¡Desde aquí puedes volver a la lista de escolaridad!" data-placement="right">Atrás</a>
 	          </h2>
 	        </div>
 				{{-- @include('Cliente.frangment.error') --}}
 		   		{{-- @include('Cliente.frangment.info') --}}
 	        <div class="card-body">					
 	        	{{-- <form method="POST" action="{{ route('productos.store') }}"  role="form"> --}}
-	        	<form method="POST" action="{{ route('productos.store') }}" accept-charset="UTF-8" enctype="multipart/form-data">
+	        	<form method="POST" action="{{ route('products.store') }}" accept-charset="UTF-8" enctype="multipart/form-data">
 					{{ csrf_field() }}
 
 					<div class="form-group">
 						<label for="image">Imagen:</label>
 						<div class="img-thumbnail ">
 							<img src="" id="profile-img-tag" width="100px" class="img-fluid ">
-							<input type="file" name="image" id="image">
+							<input type="file" name="image" id="image" required="">
 						</div>
 					</div>
 			
@@ -31,7 +31,7 @@
 	
 					<div class="form-group">
 						<label for="descripcion">Descripción:</label>
-						<textarea name="descripcion" id="descripcion" class="form-control input-sm" placeholder="Describe la escolaridad" required=""></textarea>
+						<textarea name="descripcion" id="descripcion" class="form-control input-sm" placeholder="Describe la escolaridad"></textarea>
 					</div>
 
 					<div class="form-group">

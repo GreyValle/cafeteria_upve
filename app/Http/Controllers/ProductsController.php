@@ -46,7 +46,7 @@ class ProductsController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request,[ 'nombre'=>'required', 'precio'=>'required']);
+        // $this->validate($request,[ 'nombre'=>'required', 'precio'=>'required']);
         $hasFile=$request->hasFile('image') && $request->image->isValid();
         $product=new Product;
         $product->nombre=$request->nombre;
@@ -54,17 +54,17 @@ class ProductsController extends Controller
         $product->ingredientes=$request->ingredientes;
         $product->precio=$request->precio;
         $product->estatus=$request->estatus;
-        // dd($product);
+        // dd($product->estatus);
        if ($hasFile) {
             $extension=$request->image->extension(); 
-            $name='Cafeteria_'.time().'.'.$extension;
+            $name='Cafeteria_'.$product->nombre.'_'.time().'.'.$extension;
             $product->imagen=$name; 
        }
         if ($product->save()) {
           if ($hasFile) {
               $request->image->storeAs('images', $name );
           }
-            return redirect()->route('productos.index')->with('success','Producto: '.$request->nombre.', ¡Creado satisfactoriamente!');
+            return redirect()->route('products.index')->with('success','Producto: '.$request->nombre.', ¡Creado satisfactoriamente!');
         }
       
     }
@@ -89,7 +89,6 @@ class ProductsController extends Controller
      */
     public function edit(Request $request, $id)
     {
-        // $request->user()->authorizeRoles(['admin','user']);
         $producto=Product::find($id);
         return view('products.edit',compact('producto'));
     }
@@ -103,7 +102,7 @@ class ProductsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // $request->user()->authorizeRoles(['admin','user']);
+        // dd($request);
         $this->validate($request,[ 'nombre'=>'required', 'precio'=>'required', ]);
         $product=Product::find($id);
         $product->nombre=$request->nombre;
@@ -111,12 +110,26 @@ class ProductsController extends Controller
         $product->ingredientes=$request->ingredientes;
         $product->precio=$request->precio;
         $product->estatus=$request->estatus;
-        if ($product->save()) {
-            return redirect()->route('productos.index')->with('success','Producto: '.$request->nombre.', ¡Actualizado satisfactoriamente!');
-        }else{
-            return view('productos.edit',['product'=>$product]);
+        $hasFile=$request->hasFile('image') && $request->image->isValid();
+        
+        if ($hasFile) {
+            $extension=$request->image->extension(); 
+            $name='Cafeteria_'.$product->nombre.'_'.time().'.'.$extension;
+            $product->imagen=$name; 
         }
+        
+        if ($product->save()) {
+            if ($hasFile) {
+              $request->image->storeAs('images', $name );
+            }
+            return redirect()->route('products.index')->with('success','Producto: '.$request->nombre.', ¡Actualizado satisfactoriamente!');
+        }else{
+            return view('products.edit',['product'=>$product]);
+        }
+
+
         // Product::find($id)->update($request->all());
+        // return redirect()->route('productos.index')->with('success','Producto: '.$request->nombre.', ¡Actualizado satisfactoriamente!');
         
     }
 
@@ -128,6 +141,9 @@ class ProductsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        // dd($id);
+        Product::find($id)->delete();
+        return redirect()->route('products.index')
+        ->with('success','Producto eliminado satisfactoriamente!');
     }
 }

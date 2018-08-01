@@ -10,4 +10,11 @@ class Roles extends Model
     	'rol','descripcion','created_at','updated_at'
     ];
 
+    public function users()
+{
+    return $this
+        ->belongsToMany('App\User')
+        ->withTimestamps();
+}
+
 }
