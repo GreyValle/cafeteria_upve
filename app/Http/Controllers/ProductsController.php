@@ -54,6 +54,7 @@ class ProductsController extends Controller
         $product->ingredientes=$request->ingredientes;
         $product->precio=$request->precio;
         $product->estatus=$request->estatus;
+        $product->user_id=\Auth::user()->id;
         // dd($product->estatus);
        if ($hasFile) {
             $extension=$request->image->extension(); 

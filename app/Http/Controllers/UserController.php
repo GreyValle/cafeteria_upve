@@ -4,8 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Caffeinated\Shinobi\Models\Role;
-use App\User;
 use Illuminate\Support\Facades\DB;
+use App\User;
+use App\Escolaridad;
+use App\Estatus_social;
+use App\Ocupacion;
+use App\Tipo_sangre;
 
 class UserController extends Controller
 {
@@ -29,13 +33,14 @@ class UserController extends Controller
      */
     public function show($id)
     {
+        $user=User::find($id);
+      // dd($user);
+        $escolaridades=Escolaridad::orderBy('id','ASC')->pluck('escolaridad','id');         
+        $estatus=Estatus_social::orderBy('estatus','ASC')->pluck('estatus','id'); 
+        $ocupaciones=Ocupacion::orderBy('ocupacion','ASC')->pluck('ocupacion','id'); 
+        $sangres=Tipo_sangre::orderBy('tipo_sangre','ASC')->pluck('tipo_sangre','id');        
         
-        $user=User::join('escolaridads','escolaridads.id','=','users.escolaridad_id')
-            ->select('*')->get();
-        dd($user);
-        // $escolaridad=DB::select('select * from escolaridads where id=?',[$user->id_escolaridad]);
-             
-        return view('users.show', ['user'=>$user]);
+        return view('users.show', compact('user','escolaridades','estatus','ocupaciones','sangres'));
     }
 
     /**
@@ -47,8 +52,13 @@ class UserController extends Controller
     public function edit($id)
     {
         $user=User::find($id);
-        $roles=Role::get();         
-        return view('users.edit', compact('user','roles'));
+        $roles=Role::get();  
+        $escolaridades=Escolaridad::orderBy('id','ASC')->pluck('escolaridad','id');         
+        $estatus=Estatus_social::orderBy('estatus','ASC')->pluck('estatus','id'); 
+        $ocupaciones=Ocupacion::orderBy('ocupacion','ASC')->pluck('ocupacion','id'); 
+        $sangres=Tipo_sangre::orderBy('tipo_sangre','ASC')->pluck('tipo_sangre','id');        
+        
+        return view('users.edit', compact('user','roles','escolaridades','estatus','ocupaciones','sangres'));
     }
 
     /**
@@ -60,9 +70,8 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $user=User::find($id); 
+        $user=User::find($id);
         $user->update($request->all());
-
         $user->roles()->sync($request->get('roles')); 
         return redirect()->route('users.index')
         ->with('info','Usuario actualizado con éxito');
@@ -78,7 +87,6 @@ class UserController extends Controller
     {
         $user=User::find($id);
         $user->delete();
-        //holarra
-        return back()->with('info','Eliminado correctamente ok');
+        return back()->with('info','Eliminado correctamente');
     }
 }

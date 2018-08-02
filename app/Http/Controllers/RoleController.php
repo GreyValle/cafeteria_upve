@@ -66,12 +66,12 @@ class RoleController extends Controller
     public function show($id)
     {
        
-        $role=Role::find($id)->user; 
-        dd($role);
-        $user=User::where('id',$role->id_user)->get(); 
-       
+        $role=Role::find($id);
+
+        $user=User::orderBy('name','ASC')->pluck('name','id'); 
 
         return view('roles.show', compact('role','user'));
+
     }
 
     /**

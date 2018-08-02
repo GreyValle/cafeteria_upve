@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-8 col-lg-10">
             <div class="card">
                 <div class="card-header">
                   <STRONG>Usuarios</STRONG>
@@ -30,36 +30,34 @@
                               <td>{{$user->name}}</td>
                               <td>{{$user->email}}</td>                     
                               {{-- <td>{{$user->password}}</td>                      --}}
-                              <td width="10px">
-                                @can('users.show')
-                                    <a href="{{ route('users.show', $user->id) }}" class="btn btn-sm btn-default">
-                                      Ver
-                                    </a>
-                                @endcan
-                              </td>
-                              <td width="10px">
-                                @can('users.edit')
-                                    <a href="{{ route('users.edit', $user->id) }}" class="btn btn-sm btn-primary">
-                                      Editar
-                                    </a>
-                                @endcan
-                              </td>
-                              <td width="10px">
-                                @can('users.destroy')
+                              @can('users.show')
+                                <td width="10px">
+                                  <a class="btn btn-outline-secondary btn-sm" href="{{ route('users.show', $user->id) }}">Ver</a>
+                                </td>
+                              @endcan
+                              @can('users.edit')
+                                <td width="10px">
+                                  <a class="btn btn-outline-primary btn-sm" href="{{ route('users.edit', $user->id) }}">Editar</a>
+                                </td>
+                              @endcan
+                              @can('users.destroy')
+                                <td width="10px">
                                 {!! Form::open([
                                   'route' => ['users.destroy', $user->id], 
                                   'method' => 'DELETE']) !!}
-                                  <button type="" class="btn btn-sm btn-danger">
+                                  {{csrf_field()}}
+                                  <input name="_method" type="hidden" value="DELETE">
+                                  <button type="" class="btn btn-outline-danger btn-sm">
                                     Eliminar
                                   </button>
                                 {!! Form::close() !!}
-                                @endcan
-                              </td>
+                                </td>
+                              @endcan
                             </tr>
                            @endforeach 
                         @else
                           <tr>
-                            <td colspan="8">No hay registro !!</td>
+                            <td colspan="8">!! No hay registro !!</td>
                           </tr>
                         @endif
                       </tbody>

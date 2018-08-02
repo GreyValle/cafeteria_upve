@@ -20,12 +20,15 @@ class CreateOrdersTable extends Migration
             $table->date('fecha_entregar')->nullable();
             // $table->times('hora_entregar');
             // $table->timestamps('fecha_entregada')->nullable();
-            $table->integer('orden_estatus_id')->nullable();
+            $table->unsignedInteger('orden_estatus_id')->index();
             $table->unsignedInteger('product_id');
             $table->unsignedInteger('user_id');
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
+
+            // $table->foreign('orden__estatuses_id')->references('id')->on('orden__estatuses')->onDelete('cascade');
         });
     }
 

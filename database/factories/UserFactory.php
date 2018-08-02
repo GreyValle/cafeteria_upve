@@ -18,6 +18,11 @@ $factory->define(App\User::class, function (Faker $faker) {
         'name' => $faker->name,
         'email' => $faker->unique()->safeEmail,
         'password' => '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm', // secret
+        'escolaridad_id' =>4,
+        'estatus_social_id' =>3,
+        'ocupacion_id' =>2,
+        'tipo_sangre_id' =>1,
         'remember_token' => str_random(10),
+
     ];
 });
