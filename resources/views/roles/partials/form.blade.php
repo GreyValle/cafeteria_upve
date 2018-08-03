@@ -1,6 +1,6 @@
 <div class="form-group">
 	{{ Form::label('name','Nombre') }}
-	{{ Form::text('name', null, ['class' => 'form-control', 'required']) }}
+	{{ Form::text('name', null, ['class' => 'form-control', 'placeholder'=>'Nombre del role','required']) }}
 </div>
 {{-- <div class="form-group">
 	{{ Form::label('slug','URL Amigable') }}
@@ -8,7 +8,7 @@
 </div> --}}
 <div class="form-group">
 	{!! Form::label('description','Descripción') !!}
-	{!! Form::textarea('description', null, ['class'=>'form-control','placeholder'=>'Descripción breve del producto','rows'=>'2']) !!}
+	{!! Form::textarea('description', null, ['class'=>'form-control','placeholder'=>'Descripción sobre los permisos del rol', 'required','rows'=>'2']) !!}
 </div>
 
 <hr>
