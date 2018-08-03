@@ -36,11 +36,9 @@ class OcupacionesController extends Controller
      */
     public function store(Request $request)
     {
-         $this->validate($request,[ 'ocupacion'=>'required', 'descripcion'=>'required']);
 
-        // dd($request);
         Ocupacion::create($request->all());
-        return redirect()->route('ocupaciones.create')
+        return redirect()->route('ocupacion.index')
         ->with('success','Ocupación: '.$request->ocupacion.', ¡Creado satisfactoriamente!');
     }
 
@@ -52,8 +50,8 @@ class OcupacionesController extends Controller
      */
     public function show($id)
     {
-       $dato=Ocupacion::find($id);
-        return  view('ocupaciones.show',compact('dato'));
+        $ocupacion=Ocupacion::find($id);
+        return  view('ocupaciones.show',compact('ocupacion'));
     }
 
     /**
@@ -64,9 +62,8 @@ class OcupacionesController extends Controller
      */
     public function edit($id)
     {
-       // $request->user()->authorizeRoles(['admin','user']);
-        $dato_ocupacion=Ocupacion::find($id);
-        return view('ocupaciones.edit',compact('dato_ocupacion'));
+        $ocupacion=Ocupacion::find($id);
+        return view('ocupaciones.edit',compact('ocupacion'));
     }
 
     /**
@@ -79,11 +76,8 @@ class OcupacionesController extends Controller
     public function update(Request $request, $id)
     {
 
-        // $request->user()->authorizeRoles(['admin','user']);
-        $this->validate($request,[ 'ocupacion'=>'required', 'descripcion'=>'required', ]);
- 
         Ocupacion::find($id)->update($request->all());
-        return redirect()->route('ocupaciones.index')
+        return redirect()->route('ocupacion.index')
         ->with('success','Ocupación: '.$request->ocupacion.', ¡Actualizada satisfactoriamente!');
     }
 
@@ -95,6 +89,8 @@ class OcupacionesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Ocupacion::find($id)->delete();
+        return redirect()->route('ocupacion.index')
+        ->with('success','Ocupación eliminada satisfactoriamente!');
     }
 }

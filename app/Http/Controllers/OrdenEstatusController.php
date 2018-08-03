@@ -36,12 +36,14 @@ class OrdenEstatusController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request,[ 'estatus'=>'required', 'descripcion'=>'required']);
+        $estatus=new Orden_estatus;
+        $estatus->estatus=$request->estatus;
+        $estatus->descripcion=$request->descripcion;
+        $estatus->user_id=\Auth::user()->id;
+        $estatus->save();
 
-        // dd($request);
-        Orden_estatus::create($request->all());
-        return redirect()->route('orden-estatus.create')
-        ->with('success','Estatus: '.$request->ocupacion.', ¡Creado satisfactoriamente!');
+        return redirect()->route('orden_estatus.index')
+        ->with('success','Estatus: '.$request->estatus.', ¡Creado satisfactoriamente!');
     }
 
     /**
@@ -51,9 +53,9 @@ class OrdenEstatusController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {
-        $dato=Orden_estatus::find($id);
-        return  view('orden_estatus.show',compact('dato'));
+    {   
+        $estatus=Orden_estatus::find($id);
+        return  view('orden_estatus.show',compact('estatus'));
     }
 
     /**
@@ -64,8 +66,8 @@ class OrdenEstatusController extends Controller
      */
     public function edit($id)
     {
-        $dato=Orden_estatus::find($id);
-        return view('orden_estatus.edit',compact('dato'));
+        $estatus=Orden_estatus::find($id);
+        return view('orden_estatus.edit',compact('estatus'));
     }
 
     /**
@@ -77,11 +79,8 @@ class OrdenEstatusController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // $request->user()->authorizeRoles(['admin','user']);
-        $this->validate($request,[ 'estatus'=>'required', 'descripcion'=>'required', ]);
- 
         Orden_estatus::find($id)->update($request->all());
-        return redirect()->route('orden-estatus.index')
+        return redirect()->route('orden_estatus.index')
         ->with('success','Estatus: '.$request->estatus.', ¡Actualizado satisfactoriamente!');
     }
 
@@ -93,6 +92,8 @@ class OrdenEstatusController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Orden_estatus::find($id)->delete();
+        return redirect()->route('orden_estatus.index')
+        ->with('success','Estatus eliminad satisfactoriamente!');
     }
 }

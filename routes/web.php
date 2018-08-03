@@ -81,51 +81,50 @@ Route::middleware(['auth'])->group(function(){
 			->middleware('permission:users.edit');
 
 			//escolaridad
+
+
 	Route::post('escolaridad/store', 'EscolaridadController@store')->name('escolaridad.store')
 			->middleware('permission:escolaridad.create');
 
 	Route::get('escolaridad', 'EscolaridadController@index')->name('escolaridad.index')
 			->middleware('permission:escolaridad.index');
 
-	Route::put('escolaridad/{user}', 'EscolaridadController@update')->name('escolaridad.update')
-			->middleware('permission:escolaridad.update');
-
 	Route::get('escolaridad/create', 'EscolaridadController@create')->name('escolaridad.create')
 			->middleware('permission:escolaridad.create');
 
-	Route::get('escolaridad/{user}', 'EscolaridadController@show')->name('escolaridad.show')
+	Route::get('escolaridad/{escolaridad}', 'EscolaridadController@show')->name('escolaridad.show')
 			->middleware('permission:escolaridad.show');
 
-	Route::delete('escolaridad/{user}', 'EscolaridadController@destroy')->name('escolaridad.destroy')
+	Route::delete('escolaridad/{escolaridad}', 'EscolaridadController@destroy')->name('escolaridad.destroy')
 			->middleware('permission:escolaridad.destroy');
 
-	Route::get('escolaridad/{user}/edit', 'EscolaridadController@edit')->name('escolaridad.edit')
+	Route::get('escolaridad/{escolaridad}/edit', 'EscolaridadController@edit')->name('escolaridad.edit')
 			->middleware('permission:escolaridad.edit');
 
 			//estatus_social
-	Route::get('estatus_social', 'EstatusSocialController@index')->name('estatus_social.index')
-			->middleware('permission:estatus_social.index');
 
 	Route::post('estatus_social/store', 'EstatusSocialController@store')->name('estatus_social.store')
 			->middleware('permission:estatus_social.create');
-
-	Route::put('estatus_social/{user}', 'EstatusSocialController@update')->name('estatus_social.update')
-			->middleware('permission:estatus_social.edit');
 	
-	Route::put('estatus_social/create', 'EstatusSocialController@create')->name('estatus_social.create')
+	Route::get('estatus_social', 'EstatusSocialController@index')->name('estatus_social.index')
+			->middleware('permission:estatus_social.index');
+
+	Route::get('estatus_social/create', 'EstatusSocialController@create')->name('estatus_social.create')
 			->middleware('permission:estatus_social.create');
 
-	Route::get('estatus_social/{user}', 'EstatusSocialController@show')->name('estatus_social.show')
-			->middleware('permission:estatus_social.show');
-
-	Route::delete('estatus_social/{user}', 'EstatusSocialController@destroy')->name('estatus_social.destroy')
-			->middleware('permission:estatus_social.destroy');
-
-	Route::get('estatus_social/{user}/edit', 'EstatusSocialController@edit')->name('estatus_social.edit')
+	Route::put('estatus_social/{estatus_social}', 'EstatusSocialController@update')->name('estatus_social.update')
 			->middleware('permission:estatus_social.edit');
 
+	Route::get('estatus_social/{estatus_social}', 'EstatusSocialController@show')->name('estatus_social.show')
+			->middleware('permission:estatus_social.show');
+
+	Route::delete('estatus_social/{estatus_social}', 'EstatusSocialController@destroy')->name('estatus_social.destroy')->middleware('permission:estatus_social.destroy');
+
+	Route::get('estatus_social/{estatus_social}/edit', 'EstatusSocialController@edit')->name('estatus_social.edit')->middleware('permission:estatus_social.edit');
+
+	
 			//ocupacion
-	Route::post('ocupacion/store', 'OcupacionesController@store')->name('estatus_social.store')
+	Route::post('ocupacion/store', 'OcupacionesController@store')->name('ocupacion.store')
 			->middleware('permission:ocupacion.create');
 
 	Route::get('ocupacion', 'OcupacionesController@index')->name('ocupacion.index')
@@ -134,7 +133,7 @@ Route::middleware(['auth'])->group(function(){
 	Route::put('ocupacion/{user}', 'OcupacionesController@update')->name('ocupacion.update')
 			->middleware('permission:ocupacion.edit');
 	
-	Route::put('ocupacion/create', 'OcupacionesController@create')->name('ocupacion.create')
+	Route::get('ocupacion/create', 'OcupacionesController@create')->name('ocupacion.create')
 			->middleware('permission:ocupacion.create');
 
 	Route::get('ocupacion/{user}', 'OcupacionesController@show')->name('ocupacion.show')
@@ -156,7 +155,7 @@ Route::middleware(['auth'])->group(function(){
 	Route::put('orden_estatus/{user}', 'OrdenEstatusController@update')->name('orden_estatus.update')
 			->middleware('permission:orden_estatus.edit');
 
-	Route::put('orden_estatus/create', 'OrdenEstatusController@create')->name('orden_estatus.create')
+	Route::get('orden_estatus/create', 'OrdenEstatusController@create')->name('orden_estatus.create')
 			->middleware('permission:orden_estatus.create');
 
 	Route::get('orden_estatus/{user}', 'OrdenEstatusController@show')->name('orden_estatus.show')
@@ -178,7 +177,7 @@ Route::middleware(['auth'])->group(function(){
 	Route::put('orders/{user}', 'OrdersController@update')->name('orders.update')
 			->middleware('permission:orders.edit');
 
-	Route::put('orders/create', 'OrdersController@create')->name('orders.create')
+	Route::get('orders/create', 'OrdersController@create')->name('orders.create')
 			->middleware('permission:orders.create');
 
 	Route::get('orders/{user}', 'OrdersController@show')->name('orders.show')
@@ -200,7 +199,7 @@ Route::middleware(['auth'])->group(function(){
 	Route::put('tipo_sangre/{user}', 'TiposSangreController@update')->name('tipo_sangre.update')
 			->middleware('permission:tipo_sangre.edit');
 
-	Route::put('tipo_sangre/create', 'TiposSangreController@create')->name('tipo_sangre.create')
+	Route::get('tipo_sangre/create', 'TiposSangreController@create')->name('tipo_sangre.create')
 			->middleware('permission:tipo_sangre.create');
 
 	Route::get('tipo_sangre/{user}', 'TiposSangreController@show')->name('tipo_sangre.show')
@@ -227,6 +226,19 @@ Route::resource('/productos', 'ProductsController', [
 Route::resource('escolaridad', 'EscolaridadController', [
 "only"=>["update"]
 ]);
+Route::resource('estatus_social', 'EstatusSocialController', [
+"only"=>["update"]
+]);
+Route::resource('ocupacion', 'OcupacionesController', [
+"only"=>["update"]
+]);
+Route::resource('orden_estatus', 'OrdenEstatusController', [
+"only"=>["update"]
+]);
+Route::resource('tipo_sangre', 'TiposSangreController', [
+"only"=>["update"]
+]);
+
 // Route::resource('/estatus-social', 'EstatusSocialController');
 
 // Route::resource('/ocupaciones', 'OcupacionesController');

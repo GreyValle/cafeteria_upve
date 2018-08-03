@@ -37,12 +37,13 @@ class TiposSangreController extends Controller
      */
     public function store(Request $request)
     {
-         $this->validate($request,[ 'tipo_sangre'=>'required']);
+        $sangre=new Tipo_sangre;
+        $sangre->tipo_sangre=$request->tipo_sangre;
+        $sangre->user_id=\Auth::user()->id;
+        $sangre->save();
 
-        // dd($request);
-        Tipo_sangre::create($request->all());
-        return redirect()->route('tipo_sangre.create')
-        ->with('success','Tipo sangre: '.$request->rol.', ¡Creado satisfactoriamente!');
+        return redirect()->route('tipo_sangre.index')
+        ->with('success','Tipo sangre: '.$request->tipo_sangre.', ¡Creado satisfactoriamente!');
     }
 
     /**
@@ -53,8 +54,8 @@ class TiposSangreController extends Controller
      */
     public function show($id)
     {
-        $dato=Tipo_sangre::find($id);
-        return  view('tipos_sangre.show',compact('dato'));
+        $sangre=Tipo_sangre::find($id);
+        return  view('tipos_sangre.show',compact('sangre'));
     }
 
     /**
@@ -65,8 +66,8 @@ class TiposSangreController extends Controller
      */
     public function edit($id)
     {
-        $dato=Tipo_sangre::find($id);
-        return view('tipos_sangre.edit',compact('dato'));
+        $sangre=Tipo_sangre::find($id);
+        return view('tipos_sangre.edit',compact('sangre'));
     }
 
     /**
@@ -78,9 +79,7 @@ class TiposSangreController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // $request->user()->authorizeRoles(['admin','user']);
-        $this->validate($request,[ 'tipo_sangre'=>'required' ]);
- 
+
         Tipo_sangre::find($id)->update($request->all());
         return redirect()->route('tipo_sangre.index')
         ->with('success','Tipo: '.$request->tipo_sangre.', ¡Actualizado satisfactoriamente!');
@@ -95,6 +94,7 @@ class TiposSangreController extends Controller
     public function destroy($id)
     {
         Tipo_sangre::find($id)->delete();
-        return back()->with('info','Eliminado correctamente');
+        return redirect()->route('tipo_sangre.index')
+        ->with('info','Eliminado correctamente');
     }
 }

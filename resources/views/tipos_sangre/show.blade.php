@@ -1,13 +1,30 @@
 @extends('layouts.app')
+
 @section('content')
-	<div class="row justify-content-sm-center">
-		<div class="col-xs-12 col-sm-10 col-md-7 col-lg-6">
-			<div class="card">
-				<header  class="padding text-center bg-primary">
-					<h1 class="card-title">{{ $dato->tipo_sangre }}</h1>
-				</header><!-- /header -->				
-			
-			</div>	
-		</div>
-	</div>
+<div class="container">
+    <div class="row justify-content-center" style="font-size: large;">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header"><strong>Tipo de sangre</strong>
+                    @can('tipo_sangre.index')
+                        <a href="{{ route('tipo_sangre.index') }}" class="btn btn-sm btn-primary float-right">Volver</a>
+                    @endcan
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p><strong>Tipo: </strong>{{ $sangre->tipo_sangre }}</p>
+                          
+                            <p><strong>Autor: </strong><a href="/users/{{$sangre->user->id}}">{{ $sangre->user->name }}</a></p>
+                        </div>
+                        <div class="col-md-6">
+                            <p><strong>Creado: </strong>{{ $sangre->created_at ?:"Desconocido" }}</p>
+                        	<p><strong>Actualizado: </strong>{{ $sangre->updated_at ?:"Desconocido" }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 @endsection

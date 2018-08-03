@@ -67,7 +67,6 @@ class RoleController extends Controller
     {
        
         $role=Role::find($id);
-
         $user=User::orderBy('name','ASC')->pluck('name','id'); 
 
         return view('roles.show', compact('role','user'));

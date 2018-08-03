@@ -1,17 +1,15 @@
 @extends('layouts.app')
+
 @section('content')
+<div class="container">
   <div class="row justify-content-center">
-    <div class="col-md-10">{{-- <div class="col-xs-12 col-sm-12"> --}}
+    <div class="col-md-10 ">
       <div class="card">
-        <div class="card-header text-center">
-          <div class="row">
-	      	<div class="col-sm-6">
-          		<h2 class="float-left"> Estatus social </h2>   			
-	        </div>
-	        <div class="col-sm-6">         	
-	         <a href="{{ route('estatus-social.create') }}" class="btn btn-primary float-right" data-toggle="tooltip" title="¡Desde aquí puedes añadir un nuevo estatus!" data-placement="left">Añadir estatus</a> 
-	        </div>
-          </div>
+        <div class="card-header">
+          <STRONG>Estatus social</STRONG>
+          @can('estatus_social.create')
+            <a href="{{ route('estatus_social.create') }}" class="btn btn-sm btn-primary float-right">Crear</a>
+          @endcan
         </div>
         <div class="card-body ">
           <div class="table-responsive">
@@ -22,7 +20,7 @@
                   <th>ID</th>
                   <th>Estatus</th>
                   <th>Descripción</th>
-                  <th colspan="3">Acciones</th>   
+                  <th colspan="3">&nbsp;</th>   
                 </tr>
               </thead>
               <tbody>
@@ -32,32 +30,34 @@
                       <td>{{$estatu->id}}</td>
                       <td>{{$estatu->estatus}}</td>
                       <td>{{$estatu->descripcion}}</td>                      
-                      <td><a class="btn btn-outline-secondary btn-xs" href="{{action('EstatusSocialController@show', $estatu->id)}}" ><i class="fa fa-eye" aria-hidden="true"></i></a></td>
-
-                      <td><a class="btn btn-outline-primary btn-xs" href="{{action('EstatusSocialController@edit', $estatu->id)}}" ><i class="fa fa-edit"></i></span></a></td>
-                      <td>
-                         {{-- @if(Auth::user()->hasRole('admin')) --}}
-                        <form action="{{action('EstatusSocialController@destroy', $estatu->id)}}" method="POST">
-                           {{csrf_field()}}
-                           <input name="_method" type="hidden" value="DELETE">
-         
-                           <button class="btn btn-outline-danger btn-xs" type="submit"><i class="fa fa-trash"></i></button>
-                        </form>
-                        {{-- @endif   --}}
-                      </td>
+                      @can('estatus_social.show')
+                        <td width="10px"><a class="btn btn-outline-secondary btn-sm" href="{{action('EstatusSocialController@show', $estatu->id)}}" >Ver</a></td>
+                      @endcan
+                      @can('estatus_social.edit')
+                        <td width="10px"><a class="btn btn-outline-primary btn-sm" href="{{action('EstatusSocialController@edit', $estatu->id)}}">Editar</a></td>
+                      @endcan
+                      @can('estatus_social.destroy')
+                        <td width="10px">
+                          <form action="{{action('EstatusSocialController@destroy', $estatu->id)}}" method="POST">
+                            {{csrf_field()}}
+                            <input name="_method" type="hidden" value="DELETE">
+                     
+                            <button class="btn btn-outline-danger btn-sm" type="submit">Eliminar</button>
+                          </form>
+                        </td>
+                      @endcan
                     </tr>
                    @endforeach 
                 @else
                   <tr>
-                    <td colspan="8">No hay registro !!</td>
+                    <td colspan="8"> ¡No hay registros!</td>
                   </tr>
                 @endif
               </tbody>
             </table>
-          </div> <br>            
-          <div class="row">
-            <div class="col-sm-6 align-items-center">{{ $estatus->links() }}</div>        
-            <div class="col-sm-6" style="text-align: right;"><a href="#" title="Eliminar" data-toggle="popover" data-placement="left" data-content="Para eliminar solo click en boton rojo">Ayuda</a> </div>
+          </div>
+           <br>            
+          <div class="align-items-center">{{ $estatus->links() }}
           </div>      
         </div>      
       </div>

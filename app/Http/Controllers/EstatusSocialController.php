@@ -36,12 +36,16 @@ class EstatusSocialController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request,[ 'estatus'=>'required', 'descripcion'=>'required']);
 
         // dd($request);
-        Estatus_social::create($request->all());
-        return redirect()->route('estatus-social.create')
-        ->with('success','Estatus social: '.$request->nombre.', ¡Creado satisfactoriamente!');
+        $estatus_social=new Estatus_social;
+        $estatus_social->estatus=$request->estatus;
+        $estatus_social->descripcion=$request->descripcion;
+        $estatus_social->user_id=\Auth::user()->id;
+        $estatus_social->save();
+
+        return redirect()->route('estatus_social.index')
+        ->with('success','Estatus social: '.$request->estatus.', ¡Creado satisfactoriamente!');
     }
 
     /**
@@ -52,8 +56,8 @@ class EstatusSocialController extends Controller
      */
     public function show($id)
     {
-        $dato=Estatus_social::find($id);
-        return  view('estatus_social.show',compact('dato'));
+        $estatus=Estatus_social::find($id);
+        return  view('estatus_social.show',compact('estatus'));
     }
 
     /**
@@ -62,10 +66,11 @@ class EstatusSocialController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request, $id)
     {
-        $estatus=Estatus_social::find($id);
-        return view('estatus_social.edit',compact('estatus'));
+        $estatus_social=Estatus_social::find($id);
+        // dd($estatus_social);
+        return view('estatus_social.edit',compact('estatus_social'));
     }
 
     /**
@@ -77,12 +82,14 @@ class EstatusSocialController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // $request->user()->authorizeRoles(['admin','user']);
         $this->validate($request,[ 'estatus'=>'required', 'descripcion'=>'required', ]);
- 
-        Estatus_social::find($id)->update($request->all());
-        return redirect()->route('estatus-social.index')
-        ->with('success','Estatus: '.$request->escolaridad.', ¡Actualizado satisfactoriamente!');
+        $estatus_social=Estatus_social::find($id);
+        $estatus_social->estatus=$request->estatus;
+        $estatus_social->descripcion=$request->descripcion;
+        $estatus_social->save();
+
+        return redirect()->route('estatus_social.index')
+        ->with('success','Estatus: '.$request->estatus.', ¡Actualizado satisfactoriamente!');
     }
 
     /**
@@ -93,6 +100,8 @@ class EstatusSocialController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Estatus_social::find($id)->delete();
+        return redirect()->route('estatus_social.index')
+        ->with('success','Estatus eliminada satisfactoriamente!');
     }
 }

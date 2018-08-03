@@ -1,37 +1,24 @@
 @extends('layouts.app')
+
 @section('content')
 <div class="container">
-  <div class="row justify-content-center">
-	<div class="col-md-10">
-		<div class="card">
-	        <div class="card-header">
-	          <h2> Nueva ocupación <a href="{{ route('ocupaciones.index') }}" class="btn btn-primary float-right" data-toggle="tooltip" title="¡Desde aquí puedes volver a la lista de ocupaciones!" data-placement="right">Atrás</a>
-	          </h2>
-	        </div>
-				{{-- @include('Cliente.frangment.error') --}}
-		   		{{-- @include('Cliente.frangment.info') --}}
-	        <div class="card-body">					
-	        	<form method="POST" action="{{ route('ocupaciones.store') }}"  role="form">
-					{{ csrf_field() }}
-							
-					<div class="form-group">
-						<label for="ocupacion">Ocupación:</label>
-						<input type="text" name="ocupacion" id="ocupacion" class="form-control input-sm" placeholder="Ingresa ocupación" required="">
-					</div>
-	
-					<div class="form-group">
-						<label for="descripcion">Descripción:</label>
-						<textarea name="descripcion" id="descripcion" class="form-control input-sm" placeholder="Describe la ocupación" required=""></textarea>
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header"><strong>Creando ocupación</strong>
+                    @can('ocupacion.index')
+                        <a href="{{ route('ocupacion.index') }}" class="btn btn-sm btn-primary float-right">Volver</a>
+                    @endcan
+                </div>
 
-					</div>
-					
-					
-					<input type="submit"  value="Guardar" class="btn btn-success float-right" data-toggle="tooltip" title="¡Este boton en para guardar la ocupación!" data-placement="left">
-										
-				</form>
-			</div>
-		</div>{{-- card end --}}
-	</div>
-  </div>
+                <div class="card-body">
+                	{!! Form::open(['route'=>'ocupacion.store']) !!}
+						{{ csrf_field() }}
+						@include('ocupaciones.partials.form')
+                	{!! Form::close() !!}
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 @endsection

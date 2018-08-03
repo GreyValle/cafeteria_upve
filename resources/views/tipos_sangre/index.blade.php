@@ -1,28 +1,24 @@
 @extends('layouts.app')
-@section('content')
 
+@section('content')
+<div class="container">
   <div class="row justify-content-center">
-    <div class="col-md-10">{{-- <div class="col-xs-12 col-sm-12"> --}}
+    <div class="col-md-8">
       <div class="card">
-        <div class="card-header text-center">
-          <div class="row">
-	      	<div class="col-sm-6">
-          		<h2 class="float-left"> Tipos de sangre</h2>   			
-	        </div>
-	        <div class="col-sm-6">         	
-	         <a href="{{ route('tipo_sangre.create') }}" class="btn btn-primary float-right" data-toggle="tooltip" title="¡Desde aquí puedes añadir un nuevo tipo!" data-placement="left">Añadir tipo</a> 
-	        </div>
-          </div>
+        <div class="card-header">
+          <STRONG>Tipos de sangre</STRONG>
+          @can('tipo_sangre.create')
+            <a href="{{ route('tipo_sangre.create') }}" class="btn btn-sm btn-primary float-right">Crear</a>
+          @endcan
         </div>
         <div class="card-body ">
           <div class="table-responsive">
-          {{-- @include('Proveedor.frangment.info') --}}
             <table id="mytable" class="table table-hover table-sm">
               <thead class="thead-light">
                 <tr>
                   <th>ID</th>
                   <th>Tipo</th>
-                  <th colspan="3">Acciones</th>   
+                  <th colspan="3">&nbsp;</th>   
                 </tr>
               </thead>
               <tbody>
@@ -30,33 +26,35 @@
                   @foreach($sangres as $sangre)  
                     <tr>
                       <td>{{$sangre->id}}</td>
-                      <td>{{$sangre->tipo_sangre}}</td>                     
-                      <td><a class="btn btn-outline-secondary btn-xs" href="{{action('TiposSangreController@show', $sangre->id)}}" ><i class="fa fa-eye" aria-hidden="true"></i></a></td>
-
-                      <td><a class="btn btn-outline-primary btn-xs" href="{{action('TiposSangreController@edit', $sangre->id)}}" ><i class="fa fa-edit"></i></span></a></td>
-                      <td>
-                         {{-- @if(Auth::user()->hasRole('admin')) --}}
-                        <form action="{{action('TiposSangreController@destroy', $sangre->id)}}" method="POST">
-                           {{csrf_field()}}
-                           <input name="_method" type="hidden" value="DELETE">
-         
-                           <button class="btn btn-outline-danger btn-xs" type="submit"><i class="fa fa-trash"></i></button>
-                        </form>
-                        {{-- @endif   --}}
-                      </td>
+                      <td>{{$sangre->tipo_sangre}}</td>
+                      @can('tipo_sangre.show')
+                        <td width="10px"><a class="btn btn-outline-secondary btn-sm" href="{{action('TiposSangreController@show', $sangre->id)}}" >Ver</a></td>
+                      @endcan
+                      @can('tipo_sangre.edit')
+                        <td width="10px"><a class="btn btn-outline-primary btn-sm" href="{{action('TiposSangreController@edit', $sangre->id)}}">Editar</a></td>
+                      @endcan
+                      @can('tipo_sangre.destroy')
+                        <td width="10px">
+                          <form action="{{action('TiposSangreController@destroy', $sangre->id)}}" method="POST">
+                            {{csrf_field()}}
+                            <input name="_method" type="hidden" value="DELETE">
+                     
+                            <button class="btn btn-outline-danger btn-sm" type="submit">Eliminar</button>
+                          </form>
+                        </td>
+                      @endcan
                     </tr>
                    @endforeach 
                 @else
                   <tr>
-                    <td colspan="8">No hay registro !!</td>
+                    <td colspan="8"> ¡No hay registros!</td>
                   </tr>
                 @endif
               </tbody>
             </table>
-          </div> <br>            
-          <div class="row">
-            <div class="col-sm-6 align-items-center">{{ $sangres->links() }}</div>        
-            <div class="col-sm-6" style="text-align: right;"><a href="#" title="Eliminar" data-toggle="popover" data-placement="left" data-content="Para eliminar solo click en boton rojo">Ayuda</a> </div>
+          </div>
+           <br>            
+          <div class="align-items-center">{{ $sangres->links() }}
           </div>      
         </div>      
       </div>
