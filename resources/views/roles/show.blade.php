@@ -18,11 +18,17 @@
                             <p><strong>Descripción: </strong>{{ $role->description ?:"Desconocido" }}</p>
                         </div>
                         <div class="col-md-6">
-                            <p><strong>Autor: </strong><a href="/users/{{$role->id_user}}">{{ $role->id_user }}</a></p>
+                            @if ($role->id_user)
+                                <p><strong>Autor: </strong><a href="/users/{{$role->id_user}}">{{ $role->id_user}}</a></p>
+                            @else
+                                <p><strong>Autor:</strong> Desconocido</p>
+                            @endif
                             <p><strong>Creado: </strong>{{ $role->created_at ?:"Desconocido" }}</p>
-                        	<p><strong>Actualizado: </strong>{{ $role->updated_at ?:"Desconocido" }}</p>
                         </div>
                     </div>
+                </div>
+                <div class="card-footer text-center" style="font-size: small">
+                    <p>Última actualización: {{ $role->updated_at ?:"Desconocido" }}</p>
                 </div>
             </div>
         </div>

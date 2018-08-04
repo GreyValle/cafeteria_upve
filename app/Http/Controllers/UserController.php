@@ -34,12 +34,11 @@ class UserController extends Controller
     public function show($id)
     {
         $user=User::find($id);
-      // dd($user);
-        $escolaridades=Escolaridad::orderBy('id','ASC')->pluck('escolaridad','id');         
+        $escolaridades=Escolaridad::orderBy('id','ASC')->pluck('escolaridad','id');  
         $estatus=Estatus_social::orderBy('estatus','ASC')->pluck('estatus','id'); 
         $ocupaciones=Ocupacion::orderBy('ocupacion','ASC')->pluck('ocupacion','id'); 
-        $sangres=Tipo_sangre::orderBy('tipo_sangre','ASC')->pluck('tipo_sangre','id');        
-        
+        $sangres=Tipo_sangre::orderBy('tipo_sangre','ASC')->pluck('tipo_sangre','id');
+
         return view('users.show', compact('user','escolaridades','estatus','ocupaciones','sangres'));
     }
 
@@ -53,11 +52,11 @@ class UserController extends Controller
     {
         $user=User::find($id);
         $roles=Role::get();  
-        $escolaridades=Escolaridad::orderBy('id','ASC')->pluck('escolaridad','id');         
+        $escolaridades=Escolaridad::orderBy('id','ASC')->pluck('escolaridad','id');
         $estatus=Estatus_social::orderBy('estatus','ASC')->pluck('estatus','id'); 
         $ocupaciones=Ocupacion::orderBy('ocupacion','ASC')->pluck('ocupacion','id'); 
-        $sangres=Tipo_sangre::orderBy('tipo_sangre','ASC')->pluck('tipo_sangre','id');        
-        
+        $sangres=Tipo_sangre::orderBy('tipo_sangre','ASC')->pluck('tipo_sangre','id');
+
         return view('users.edit', compact('user','roles','escolaridades','estatus','ocupaciones','sangres'));
     }
 
@@ -73,6 +72,7 @@ class UserController extends Controller
         $user=User::find($id);
         $user->update($request->all());
         $user->roles()->sync($request->get('roles')); 
+        
         return redirect()->route('users.index')
         ->with('info','Usuario actualizado con éxito');
     }

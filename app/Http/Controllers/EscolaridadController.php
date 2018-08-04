@@ -38,9 +38,7 @@ class EscolaridadController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request,[ 'escolaridad'=>'required', 'descripcion'=>'required']);
 
-        // dd($request);
         $escolaridad=new Escolaridad;
         $escolaridad->escolaridad=$request->escolaridad;
         $escolaridad->descripcion=$request->descripcion;

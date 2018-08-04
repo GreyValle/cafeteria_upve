@@ -19,9 +19,11 @@
                         </div>
                         <div class="col-md-6">
                             <p><strong>Creado: </strong>{{ $sangre->created_at ?:"Desconocido" }}</p>
-                        	<p><strong>Actualizado: </strong>{{ $sangre->updated_at ?:"Desconocido" }}</p>
                         </div>
                     </div>
+                </div>
+                <div class="card-footer text-center" style="font-size: small">
+                    <p>Última actualización: {{ $sangre->updated_at ?:"Desconocido" }}</p>
                 </div>
             </div>
         </div>

@@ -19,6 +19,7 @@ class CreateOcupacionsTable extends Migration
             $table->string('descripcion',200)->nullable();
             $table->unsignedInteger('user_id')->nullable();
             $table->timestamps();
+            
             // $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 
         });

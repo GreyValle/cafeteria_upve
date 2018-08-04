@@ -12,8 +12,8 @@
 					</div>
 					<div class="col-6">
 						<h4 class="card-subtitle"><strong>Precio: </strong>{{ product.price }}</h4>
-						<!-- <p class="card-text">Descripción: {{ product.description }}</p> -->
-						<p class="card-text"><strong>Ingredientes: </strong>{{ product.ingredients }}</p>
+						<p class="card-text"><strong> Descripción: </strong>{{ product.description }}</p>
+						<!-- <p class="card-text"><strong>Ingredientes: </strong>{{ product.ingredients }}</p> -->
 					</div>
 				</div>
 			</div>

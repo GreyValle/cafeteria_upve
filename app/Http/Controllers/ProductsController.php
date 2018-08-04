@@ -46,7 +46,6 @@ class ProductsController extends Controller
      */
     public function store(Request $request)
     {
-        // $this->validate($request,[ 'nombre'=>'required', 'precio'=>'required']);
         $hasFile=$request->hasFile('image') && $request->image->isValid();
         $product=new Product;
         $product->nombre=$request->nombre;
@@ -56,18 +55,20 @@ class ProductsController extends Controller
         $product->estatus=$request->estatus;
         $product->user_id=\Auth::user()->id;
         // dd($product->estatus);
-       if ($hasFile) {
+        if ($hasFile) {
             $extension=$request->image->extension(); 
             $name='Cafeteria_'.$product->nombre.'_'.time().'.'.$extension;
             $product->imagen=$name; 
-       }
+        }
+        
         if ($product->save()) {
+          
           if ($hasFile) {
               $request->image->storeAs('images', $name );
           }
-            return redirect()->route('products.index')->with('success','Producto: '.$request->nombre.', ¡Creado satisfactoriamente!');
+        
+        return redirect()->route('products.index')->with('success','Producto: '.$request->nombre.', ¡Creado satisfactoriamente!');
         }
-      
     }
 
     /**
@@ -78,8 +79,8 @@ class ProductsController extends Controller
      */
     public function show($id)
     {
-        $dato=Product::find($id);
-        return  view('products.show',compact('dato'));
+        $producto=Product::find($id);
+        return  view('products.show',compact('producto'));
     }
 
     /**
@@ -127,10 +128,6 @@ class ProductsController extends Controller
         }else{
             return view('products.edit',['product'=>$product]);
         }
-
-
-        // Product::find($id)->update($request->all());
-        // return redirect()->route('productos.index')->with('success','Producto: '.$request->nombre.', ¡Actualizado satisfactoriamente!');
         
     }
 
@@ -142,7 +139,6 @@ class ProductsController extends Controller
      */
     public function destroy($id)
     {
-        // dd($id);
         Product::find($id)->delete();
         return redirect()->route('products.index')
         ->with('success','Producto eliminado satisfactoriamente!');

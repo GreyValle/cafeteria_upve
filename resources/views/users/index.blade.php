@@ -62,8 +62,12 @@
                         @endif
                       </tbody>
                     </table>
-                    {{ $users->render() }}
+                    <hr>
                   </div> 
+                    
+                    <div class="row justify-content-center">
+                      {{ $users->render() }}
+                    </div>
 
                 </div>
             </div>

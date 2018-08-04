@@ -24,20 +24,20 @@
               </thead>
               <tbody>
                 @if($estatus->count())  
-                  @foreach($estatus as $estatus)  
+                  @foreach($estatus as $estatu)  
                     <tr>
-                      <td>{{$estatus->id}}</td>
-                      <td>{{$estatus->estatus}}</td>
-                      <td>{{$estatus->descripcion}}</td>                      
+                      <td>{{$estatu->id}}</td>
+                      <td>{{$estatu->estatus}}</td>
+                      <td>{{$estatu->descripcion}}</td>                      
                       @can('estatus_social.show')
-                        <td width="10px"><a class="btn btn-outline-secondary btn-sm" href="{{action('OrdenEstatusController@show', $estatus->id)}}" >Ver</a></td>
+                        <td width="10px"><a class="btn btn-outline-secondary btn-sm" href="{{action('OrdenEstatusController@show', $estatu->id)}}" >Ver</a></td>
                       @endcan
                       @can('estatus_social.edit')
-                        <td width="10px"><a class="btn btn-outline-primary btn-sm" href="{{action('OrdenEstatusController@edit', $estatus->id)}}">Editar</a></td>
+                        <td width="10px"><a class="btn btn-outline-primary btn-sm" href="{{action('OrdenEstatusController@edit', $estatu->id)}}">Editar</a></td>
                       @endcan
                       @can('estatus_social.destroy')
                         <td width="10px">
-                          <form action="{{action('OrdenEstatusController@destroy', $estatus->id)}}" method="POST">
+                          <form action="{{action('OrdenEstatusController@destroy', $estatu->id)}}" method="POST">
                             {{csrf_field()}}
                             <input name="_method" type="hidden" value="DELETE">
                      
@@ -54,12 +54,12 @@
                 @endif
               </tbody>
             </table>
+            <hr>  
           </div>
-           <br>            
-    
         </div>      
-      </div>
+      </div>{{-- card end --}}
     </div>
   </div>
+</div>
 
 @endsection

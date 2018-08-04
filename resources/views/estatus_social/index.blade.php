@@ -55,9 +55,11 @@
                 @endif
               </tbody>
             </table>
+            <hr> 
           </div>
-           <br>            
-          <div class="align-items-center">{{ $estatus->links() }}
+                      
+          <div class="row justify-content-center">
+            {{ $estatus->links() }}
           </div>      
         </div>      
       </div>

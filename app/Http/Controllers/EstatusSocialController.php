@@ -36,8 +36,7 @@ class EstatusSocialController extends Controller
      */
     public function store(Request $request)
     {
-
-        // dd($request);
+ 
         $estatus_social=new Estatus_social;
         $estatus_social->estatus=$request->estatus;
         $estatus_social->descripcion=$request->descripcion;

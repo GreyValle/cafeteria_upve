@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
   <div class="row justify-content-center">
-    <div class="col-md-8">
+    <div class="col-md-8 col-lg-10">
       <div class="card">
         <div class="card-header">
           <STRONG>Tipos de sangre</STRONG>
@@ -52,13 +52,14 @@
                 @endif
               </tbody>
             </table>
+           <hr>            
           </div>
-           <br>            
-          <div class="align-items-center">{{ $sangres->links() }}
+          <div class="row justify-content-center">
+            {{ $sangres->links() }}
           </div>      
-        </div>      
-      </div>
-    </div>
-  </div>
-
+        </div>{{-- card-body end     --}}
+      </div>{{-- card end     --}}
+    </div>{{-- col-md-8 col-lg-10 end--}}
+  </div>{{-- row justify-content-center end--}}
+</div>{{-- container end--}}
 @endsection

@@ -54,9 +54,10 @@
                 @endif
               </tbody>
             </table>
+            <hr>
           </div>
-           <br>            
-          <div class="align-items-center">{{ $ocupaciones->links() }}
+          <div class="row justify-content-center">
+            {{ $ocupaciones->links() }}
           </div>      
         </div>      
       </div>

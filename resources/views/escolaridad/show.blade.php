@@ -28,9 +28,11 @@
 
                         <div class="col-md-6">
                             <p><strong>Creada: </strong>{{ $escolaridad->created_at }}</p>
-                            <p><strong>Actualizada: </strong>{{ $escolaridad->updated_at }}</p>
                         </div>
                     </div>
+                </div>
+                <div class="card-footer text-center" style="font-size: small">
+                    <p>Última actualización: {{ $escolaridad->updated_at ?:"Desconocido" }}</p>
                 </div>
             </div>
         </div>

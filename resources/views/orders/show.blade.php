@@ -1,37 +1,48 @@
 @extends('layouts.app')
+
 @section('content')
-	<div class="row justify-content-sm-center">
-		<div class="col-xs-12 col-sm-12 col-md-10 col-lg-10">
-			<div class="card" style="margin: 3px">
-				<div class="card-header">
-	                <div class="row">
-	                    <div class="col-lg-4 col-sm-8 col-xs-12">
-	                        <h1 class="card-title">{{ $dato->nombre }}</h1>
-	                    </div>
-	                    <div class="col-lg-4 col-sm-4 col-xs-12">
-	                    	<button type="" class="btn btn-success float-right">Ordenar</button>
-	                	</div>
-	            	</div>          
-	            </div>
-		        <div class="card-body">
-					<div class="row">	
-						<div class="col-xs-12 col-sm-5 col-md-5 col-lg-6">
-							@if ($dato->imagen)
-								<img  class="card-img-left img-fluid" src="{{ url("/productos/imagenes/$dato->imagen") }}" alt="Imagen">
-							@else
-								<img  class="card-img-left img-fluid" src="{{ url('ejemplo.jpg') }}" alt="Imagen">
-							@endif
-						</div>
-						<div class="col-xs-12 col-sm-7 col-md-7 col-lg-6" style="font-size: large;">
-							<br>
-							<h4 class="card-subtitle"><strong>Precio: </strong>${{ $dato->precio }}</h4> 
-							<br>
-							<p class="card-text"><strong>Descripción: </strong>{{ $dato->descripcion }}</p>
-							<p class="card-text"><strong>Ingredientes: </strong>{{ $dato->ingredientes }}</p>
-						</div>
-					</div>
-				</div>			
-			</div>	
-		</div>
-	</div>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header" style="font-size: large;"><strong>Orden: {{ $orden->id }}</strong>
+                    @can('orders.index')
+                        <a href="{{ route('orders.index') }}" class="btn btn-sm btn-primary float-right">Volver</a>
+                    @endcan
+                </div>
+                <div class="card-body" style="font-size: large;">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p><strong>Cliente: </strong><a href="/users/{{ $orden->user->id}}">{{ $orden->user->name }}</a></p>
+                           
+                            <p><strong>Menú: </strong><a href="/products/{{ $orden->product->id}}">{{ $orden->product->nombre }}</a></p>
+
+                            <p><strong>Total: </strong>$ {{ $orden->total }}</p>
+
+                            <p><strong>Entegar: </strong>{{ $orden->fecha_entregar}} <strong> a las </strong>{{ $orden->hora_entregar }} hrs</p>
+
+                            
+                        </div>
+                        <div class="col-md-6">
+                            <p><strong>Estatus: </strong><a href="/orden_estatus/{{ $orden->orden_estatus->id}}">{{ $orden->orden_estatus->estatus }}</a></p>
+			                 @include('orders.partials.form_estatus_update')
+                 
+                            {{-- <p><strong>Creado: </strong>{{ $orden->created_at ?:"Desconocido" }}</p> --}}
+                        	{{-- <p><strong>Actualizado: </strong>{{ $orden->updated_at ?:"Desconocido" }}</p> --}}
+                        </div>
+                    </div><hr>
+                    <div class="row">
+
+                        <div class="card-body">
+                            <img class="card-img-center img-fluid" src="/productos/imagenes/{{ $orden->product->imagen}}" >
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer text-center" style="font-size: small">
+                	 <p>Última actualización: {{ $orden->updated_at ?:"Desconocido" }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 @endsection

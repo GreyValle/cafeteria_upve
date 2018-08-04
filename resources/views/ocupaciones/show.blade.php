@@ -15,13 +15,21 @@
                         <div class="col-md-6">
                             <p><strong>Ocupación: </strong>{{ $ocupacion->ocupacion }}</p>
                             <p><strong>Descripción: </strong>{{ $ocupacion->descripcion ?:"Desconocido" }}</p>
-                            <p><strong>Autor: </strong><a href="/users/{{$ocupacion->user->id}}">{{ $ocupacion->user->name }}</a></p>
+                            @if ($ocupacion->user_id)
+                                {{-- expr --}}
+                                <p><strong>Autor: </strong><a href="/users/{{$ocupacion->user->id}}">{{ $ocupacion->user->name }}</a></p>
+                            @else
+                                <p><strong>Autor: </strong>Desconocido</p>
+
+                            @endif
                         </div>
                         <div class="col-md-6">
                             <p><strong>Creado: </strong>{{ $ocupacion->created_at ?:"Desconocido" }}</p>
-                        	<p><strong>Actualizado: </strong>{{ $ocupacion->updated_at ?:"Desconocido" }}</p>
                         </div>
                     </div>
+                </div>
+                <div class="card-footer text-center" style="font-size: small">
+                    <p>Última actualización: {{ $ocupacion->updated_at ?:"Desconocido" }}</p>
                 </div>
             </div>
         </div>

@@ -131,27 +131,27 @@ class UsersTableSeeder extends Seeder
           'user_id' => 1,
         ]);
 
-// Orden_Estatus
-        // Orden_Estatus::create([
-        //   'estatus' => 'Solicitada',
-        //   'descripcion' => 'se hizo la petición',
-        //   'user_id' => 1,
-        // ]);
-        // Orden_Estatus::create([
-        //   'estatus' => 'Preparada',
-        //   'descripcion' => 'ya fue preparada, puede pasar a recoger',
-        //   'user_id' => 1,
-        // ]);
-        // Orden_Estatus::create([
-        //   'estatus' => 'Entregada',
-        //   'descripcion' => 'Ya se entregó al cliente',
-        //   'user_id' => 1,
-        // ]);
-        // Orden_Estatus::create([
-        //   'estatus' => 'Cancelada',
-        //   'descripcion' => 'Se canceló la orden',
-        //   'user_id' => 1,
-        // ]);
+// // Orden_Estatus
+//         Orden_Estatus::create([
+//           'estatus' => 'Solicitada',
+//           'descripcion' => 'se hizo la petición',
+//           'user_id' => 1,
+//         ]);
+//         Orden_Estatus::create([
+//           'estatus' => 'Preparada',
+//           'descripcion' => 'ya fue preparada, puede pasar a recoger',
+//           'user_id' => 1,
+//         ]);
+//         Orden_Estatus::create([
+//           'estatus' => 'Entregada',
+//           'descripcion' => 'Ya se entregó al cliente',
+//           'user_id' => 1,
+//         ]);
+//         Orden_Estatus::create([
+//           'estatus' => 'Cancelada',
+//           'descripcion' => 'Se canceló la orden',
+//           'user_id' => 1,
+//         ]);
         
 // Tipo_sangre 
         Tipo_sangre::create([
@@ -223,5 +223,27 @@ class UsersTableSeeder extends Seeder
         $user['desabilitado']->roles()->attach($sinAcceso);
 
     	factory(App\User::class,20)->create();
+
+      // Orden_Estatus
+        Orden_Estatus::create([
+          'estatus' => 'Solicitada',
+          'descripcion' => 'se hizo la petición',
+          'user_id' => 1,
+        ]);
+        Orden_Estatus::create([
+          'estatus' => 'Preparada',
+          'descripcion' => 'ya fue preparada, puede pasar a recoger',
+          'user_id' => 1,
+        ]);
+        Orden_Estatus::create([
+          'estatus' => 'Entregada',
+          'descripcion' => 'Ya se entregó al cliente',
+          'user_id' => 1,
+        ]);
+        Orden_Estatus::create([
+          'estatus' => 'Cancelada',
+          'descripcion' => 'Se canceló la orden',
+          'user_id' => 1,
+        ]);
     }
 }

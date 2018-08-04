@@ -27,6 +27,17 @@ class CreateUsersTable extends Migration
             $table->string('estatus')->default("Desactivado");
             $table->rememberToken();
             $table->timestamps();
+
+            $table->foreign('escolaridad_id')->references('id')->on('escolaridads')->onDelete('cascade');
+            
+            $table->foreign('estatus_social_id')->references('id')->on('estatus_socials')->onDelete('cascade');
+            
+            $table->foreign('ocupacion_id')->references('id')->on('ocupacions')->onDelete('cascade');
+            
+            $table->foreign('tipo_sangre_id')->references('id')->on('tipo_sangres')->onDelete('cascade');
+
+
+
         });
     }
 

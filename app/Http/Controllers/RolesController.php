@@ -14,7 +14,6 @@ class RolesController extends Controller
      */
     public function index()
     {
-     
         $roles=Roles::all();
         // $roles=Roles::paginate(7);
         return view('roles.index', compact('roles'));
@@ -38,9 +37,6 @@ class RolesController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request,[ 'rol'=>'required', 'descripcion'=>'required']);
-
-        // dd($request);
         Roles::create($request->all());
         return redirect()->route('roles.create')
         ->with('success','Rol: '.$request->rol.', ¡Creado satisfactoriamente!');

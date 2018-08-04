@@ -15,20 +15,19 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->increments('id');
+            $table->unsignedInteger('product_id')->index();
+            $table->unsignedInteger('user_id')->index();
             $table->decimal('total',12,2);
-            // $table->timestamps('fecha_solicitud')->nullable();
-            $table->date('fecha_entregar')->nullable();
-            // $table->times('hora_entregar');
-            // $table->timestamps('fecha_entregada')->nullable();
-            $table->unsignedInteger('orden_estatus_id')->index();
-            $table->unsignedInteger('product_id');
-            $table->unsignedInteger('user_id');
+            $table->date('fecha_entregar');
+            $table->time('hora_entregar');
+            $table->unsignedInteger('orden_estatus_id')->index()->default(1);
             $table->timestamps();
+            
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
 
-            // $table->foreign('orden__estatuses_id')->references('id')->on('orden__estatuses')->onDelete('cascade');
+            $table->foreign('orden_estatus_id')->references('id')->on('orden__estatuses')->onDelete('cascade');
         });
     }
 

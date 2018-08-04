@@ -37,7 +37,12 @@ class OcupacionesController extends Controller
     public function store(Request $request)
     {
 
-        Ocupacion::create($request->all());
+        $ocupacion=new Ocupacion;
+        $ocupacion->ocupacion=$request->ocupacion;
+        $ocupacion->descripcion=$request->descripcion;
+        $ocupacion->user_id=\Auth::user()->id;
+        $ocupacion->save();
+        
         return redirect()->route('ocupacion.index')
         ->with('success','Ocupación: '.$request->ocupacion.', ¡Creado satisfactoriamente!');
     }

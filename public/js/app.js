@@ -48187,8 +48187,8 @@ var render = function() {
             ]),
             _vm._v(" "),
             _c("p", { staticClass: "card-text" }, [
-              _c("strong", [_vm._v("Ingredientes: ")]),
-              _vm._v(_vm._s(_vm.product.ingredients))
+              _c("strong", [_vm._v(" Descripción: ")]),
+              _vm._v(_vm._s(_vm.product.description))
             ])
           ])
         ])

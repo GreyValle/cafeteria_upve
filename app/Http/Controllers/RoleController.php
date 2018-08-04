@@ -19,7 +19,7 @@ class RoleController extends Controller
      */
     public function index()
     {
-        $roles= Role::paginate(10);
+        $roles= Role::paginate(7);
 
         return view('roles.index',compact('roles'));
     }
@@ -42,15 +42,12 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-        // $user=Auth::user()->id;
-        // dd( $user);
         $role=new Role;
         $role->name=$request->name;
         $role->description=$request->description;
         $role->id_user=Auth::user()->id;
         $role->save();
-        // $role=Role::create($request->all()); 
-
+   
         $role->permissions()->sync($request->get('permissions')); 
         return redirect()->route('roles.index')
         ->with('info','Role actualizado con éxito');

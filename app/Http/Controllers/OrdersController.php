@@ -14,8 +14,11 @@ class OrdersController extends Controller
      */
     public function index()
     {
-        $ordenes=Order::all();
-        return view('orders.index',compact('ordenes'));
+        $orders=Order::paginate(7);
+    
+        $estatus=\App\Orden_estatus::orderBy('estatus','ASC')->pluck('estatus','id');
+
+        return view('orders.index',compact('orders','estatus'));
     }
 
     /**
@@ -26,7 +29,7 @@ class OrdersController extends Controller
     public function create()
     {
  
-        return view('orders.create');
+    //
  
     }
 
@@ -38,12 +41,15 @@ class OrdersController extends Controller
      */
     public function store(Request $request)
     {
-        // $this->validate($request,[ 'nombre'=>'required', 'precio'=>'required']);
-        // dd(Auth::user()->id);
+        $orden=new Order;
+        $orden->product_id=$request->product_id;
+        $orden->user_id=\Auth::user()->id;
+        $orden->total=$request->total;
+        $orden->fecha_entregar=$request->fecha_entregar;
+        $orden->hora_entregar=$request->hora_entregar;
+        $orden->save();
 
-        Order::create($request->all());
-     
-        return redirect()->route('orders.index')->with('success','¡Orden creada satisfactoriamente!');
+        return redirect()->route('products.index')->with('success','¡Orden creada satisfactoriamente!');
        
     }
 
@@ -54,8 +60,10 @@ class OrdersController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {
-          return 'show orders';
+    { 
+        $orden=Order::find($id);
+        $estatus=\App\Orden_estatus::orderBy('estatus','ASC')->pluck('estatus','id');
+        return  view('orders.show',compact('orden','estatus'));
     }
 
     /**
@@ -66,7 +74,11 @@ class OrdersController extends Controller
      */
     public function edit($id)
     {
-        //
+        $orden=Order::find($id);
+        $estatus=\App\Orden_estatus::orderBy('estatus','ASC')->pluck('estatus','id'); 
+        $productos=\App\Product::orderBy('nombre','ASC')->pluck('nombre','id'); 
+        $users=\App\User::orderBy('name','ASC')->pluck('name','id'); 
+        return view('orders.edit', compact('orden','estatus','productos','users'));
     }
 
     /**
@@ -78,7 +90,11 @@ class OrdersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $orden=Order::find($id);
+        $orden->update($request->all());
+
+        return redirect()->route('orders.show',$id)
+        ->with('info','Orden actualizada con éxito');
     }
 
     /**
@@ -89,6 +105,8 @@ class OrdersController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $orden=Order::find($id);
+        $orden->delete();
+        return back()->with('info','Eliminado correctamente');
     }
 }

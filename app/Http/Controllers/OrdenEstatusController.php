@@ -14,7 +14,6 @@ class OrdenEstatusController extends Controller
     public function index()
     {
         $estatus=Orden_estatus::all();
-        $estatus=Orden_estatus::paginate(7);
         return view('orden_estatus.index', compact('estatus'));
     }
 
@@ -66,7 +65,7 @@ class OrdenEstatusController extends Controller
      */
     public function edit($id)
     {
-        $estatus=Orden_estatus::find($id);
+        $estatus=Orden_estatus::paginate(5);
         return view('orden_estatus.edit',compact('estatus'));
     }
 
