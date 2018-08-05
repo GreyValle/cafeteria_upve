@@ -6,9 +6,16 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header"><strong>Usuario</strong>
-                    @can('users.index')
-                        <a href="{{ route('users.index') }}" class="btn btn-sm btn-primary float-right">Volver</a>
-                    @endcan
+                    <div class="btn-toolbar float-right">
+                      <div class="btn-group">
+                        @can('users.edit')
+                            <a href="{{ route('users.edit',$user->id) }}" class="btn btn-sm btn-outline-secondary">Editar</a>
+                        @endcan
+                        @can('users.index')
+                            <a href="{{ route('users.index') }}" class="btn btn-sm btn-outline-secondary ">Usuarios</a>
+                        @endcan
+                      </div>
+                    </div>
                 </div>
                 <div class="card-body">
                 	<div class="row">
@@ -43,7 +50,12 @@
                             <p><strong>Tipo sangre: </strong>Desconocido</p>
                         @endif
                         {{-- <p><strong>Estatus: </strong>{{ $user->estatus }} </p> --}}
-                        <p><strong>Registro: </strong>{{ $user->created_at }}</p>
+                       
+                        @can('users.update_saldo')
+                            @include('users.partials.form_saldo_update')
+                        @else
+                            <p><strong>Registro: </strong>{{ $user->created_at }}</p>
+                        @endcan
                     </div>
                     
                     </div>

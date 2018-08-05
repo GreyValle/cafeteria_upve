@@ -6,11 +6,17 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header"><strong>Editando Escolaridad</strong>
-                    @can('escolaridad.index')
-                        <a href="{{ route('escolaridad.index') }}" class="btn btn-sm btn-primary float-right">Volver</a>
-                    @endcan
+                    <div class="btn-toolbar float-right">
+                      <div class="btn-group">
+                        @can('escolaridad.show')
+                            <a href="{{ route('escolaridad.show',$escolaridad->id) }}" class="btn btn-sm btn-outline-secondary">Ver</a>
+                        @endcan
+                        @can('escolaridad.index')
+                            <a href="{{ route('escolaridad.index') }}" class="btn btn-sm btn-outline-secondary">Escolaridades</a>
+                        @endcan
+                      </div>
+                    </div>
                 </div>
-                
                 <div class="card-body">
                     {!! Form::model($escolaridad, ['route' => ['escolaridad.update', $escolaridad->id],
                     'method' => 'PUT' ]) !!}

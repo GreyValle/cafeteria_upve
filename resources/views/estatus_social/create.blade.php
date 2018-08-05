@@ -7,7 +7,7 @@
             <div class="card">
                 <div class="card-header"><strong>Creando estatus social</strong>
                     @can('estatus_social.index')
-                        <a href="{{ route('estatus_social.index') }}" class="btn btn-sm btn-primary float-right">Volver</a>
+                        <a href="{{ route('estatus_social.index') }}" class="btn btn-sm btn-outline-secondary float-right">Volver</a>
                     @endcan
                 </div>
 

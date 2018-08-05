@@ -64,12 +64,15 @@ Route::middleware(['auth'])->group(function(){
 	Route::get('products/{product}/edit', 'ProductsController@edit')->name('products.edit')
 			->middleware('permission:products.edit');
 
-	//users
+	//users users.update_saldo
 	Route::get('users', 'UserController@index')->name('users.index')
 			->middleware('permission:users.index');
 
 	Route::put('users/{user}', 'UserController@update')->name('users.update')
 			->middleware('permission:users.edit');
+
+	Route::put('users/saldo-update/{user}', 'SaldoController@update')->name('users.update_saldo')
+			->middleware('permission:users.update_saldo');
 
 	Route::get('users/{user}', 'UserController@show')->name('users.show')
 			->middleware('permission:users.show');
@@ -152,19 +155,19 @@ Route::middleware(['auth'])->group(function(){
 	Route::get('orden_estatus', 'OrdenEstatusController@index')->name('orden_estatus.index')
 			->middleware('permission:orden_estatus.index');
 
-	Route::put('orden_estatus/{user}', 'OrdenEstatusController@update')->name('orden_estatus.update')
+	Route::put('orden_estatus/{estatus}', 'OrdenEstatusController@update')->name('orden_estatus.update')
 			->middleware('permission:orden_estatus.edit');
 
 	Route::get('orden_estatus/create', 'OrdenEstatusController@create')->name('orden_estatus.create')
 			->middleware('permission:orden_estatus.create');
 
-	Route::get('orden_estatus/{user}', 'OrdenEstatusController@show')->name('orden_estatus.show')
+	Route::get('orden_estatus/{estatus}', 'OrdenEstatusController@show')->name('orden_estatus.show')
 			->middleware('permission:orden_estatus.show');
 
-	Route::delete('orden_estatus/{user}', 'OrdenEstatusController@destroy')->name('orden_estatus.destroy')
+	Route::delete('orden_estatus/{estatus}', 'OrdenEstatusController@destroy')->name('orden_estatus.destroy')
 			->middleware('permission:orden_estatus.destroy');
 
-	Route::get('orden_estatus/{user}/edit', 'OrdenEstatusController@edit')->name('orden_estatus.edit')
+	Route::get('orden_estatus/{estatus}/edit', 'OrdenEstatusController@edit')->name('orden_estatus.edit')
 			->middleware('permission:orden_estatus.edit');			
 			
 			//orders
@@ -238,18 +241,6 @@ Route::resource('orden_estatus', 'OrdenEstatusController', [
 Route::resource('tipo_sangre', 'TiposSangreController', [
 "only"=>["update"]
 ]);
-
-// Route::resource('/estatus-social', 'EstatusSocialController');
-
-// Route::resource('/ocupaciones', 'OcupacionesController');
-
-// Route::resource('/orden-estatus', 'OrdenEstatusController');
-
-// Route::resource('/roles', 'RolesController');
-
-// Route::resource('/tipos-sangre', 'TiposSangreController');
-
-// Route::resource('orders', 'OrdersController');
 
 Route::apiResource('/roles-vue','RolesvueController', [
 "only"=>["index","store","update","destroy"]

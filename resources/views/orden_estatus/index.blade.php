@@ -8,7 +8,7 @@
         <div class="card-header">
           <STRONG>Estatus de Ordenes</STRONG>
           @can('orden_estatus.create')
-            <a href="{{ route('orden_estatus.create') }}" class="btn btn-sm btn-primary float-right">Crear</a>
+            <a href="{{ route('orden_estatus.create') }}" class="btn btn-sm btn-outline-secondary float-right">Crear</a>
           @endcan
         </div>
         <div class="card-body ">
@@ -30,10 +30,10 @@
                       <td>{{$estatu->estatus}}</td>
                       <td>{{$estatu->descripcion}}</td>                      
                       @can('estatus_social.show')
-                        <td width="10px"><a class="btn btn-outline-secondary btn-sm" href="{{action('OrdenEstatusController@show', $estatu->id)}}" >Ver</a></td>
+                        <td width="10px"><a class="btn btn-sm btn-outline-secondary" href="{{action('OrdenEstatusController@show', $estatu->id)}}" >Ver</a></td>
                       @endcan
                       @can('estatus_social.edit')
-                        <td width="10px"><a class="btn btn-outline-primary btn-sm" href="{{action('OrdenEstatusController@edit', $estatu->id)}}">Editar</a></td>
+                        <td width="10px"><a class="btn btn-sm btn-outline-secondary" href="{{action('OrdenEstatusController@edit', $estatu->id)}}">Editar</a></td>
                       @endcan
                       @can('estatus_social.destroy')
                         <td width="10px">
@@ -41,7 +41,7 @@
                             {{csrf_field()}}
                             <input name="_method" type="hidden" value="DELETE">
                      
-                            <button class="btn btn-outline-danger btn-sm" type="submit">Eliminar</button>
+                            <button class="btn btn-sm btn-outline-secondary" type="submit">Eliminar</button>
                           </form>
                         </td>
                       @endcan

@@ -33,5 +33,5 @@
 	</ul>
 </div>
 <div>
-	{{ Form::submit('Guardar', ['class' => 'btn btn-sm btn-primary'])  }}
+	{{ Form::submit('Guardar', ['class' => 'btn btn-sm btn-outline-secondary float-right'])  }}
 </div>

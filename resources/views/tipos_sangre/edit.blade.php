@@ -6,9 +6,17 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header"><strong>Editando tipo sangre</strong>
-                    @can('tipo_sangre.index')
-                        <a href="{{ route('tipo_sangre.index') }}" class="btn btn-sm btn-primary float-right">Volver</a>
-                    @endcan
+                    <div class="btn-toolbar float-right">
+                      <div class="btn-group">
+                        @can('tipo_sangre.show')
+                            <a href="{{ route('tipo_sangre.show',$sangre->id) }}" class="btn btn-sm btn-outline-secondary">Ver</a>
+                        @endcan
+                        @can('tipo_sangre.index')
+                            <a href="{{ route('tipo_sangre.index') }}" class="btn btn-sm btn-outline-secondary">Sangres</a>
+                        @endcan
+                      </div>
+                    </div>
+                   
                 </div>
                 
                 <div class="card-body">

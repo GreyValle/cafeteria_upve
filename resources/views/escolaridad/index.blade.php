@@ -8,7 +8,7 @@
         <div class="card-header">
           <STRONG>Escolaridad</STRONG>
           @can('escolaridad.create')
-            <a href="{{ route('escolaridad.create') }}" class="btn btn-sm btn-primary float-right">Crear</a>
+            <a href="{{ route('escolaridad.create') }}" class="btn btn-sm btn-outline-secondary float-right">Crear</a>
           @endcan
         </div>
         <div class="card-body ">
@@ -31,18 +31,18 @@
                   <td>{{$escolaridad->descripcion}}</td>                      
                   @can('escolaridad.show')
                     <td width="10px">
-                      <a class="btn btn-outline-secondary btn-sm" href="{{action('EscolaridadController@show', $escolaridad->id)}}" >Ver</a>
+                      <a class="btn btn-sm btn-outline-secondary" href="{{action('EscolaridadController@show', $escolaridad->id)}}" >Ver</a>
                     </td>
                   @endcan
                   @can('escolaridad.edit')
-                    <td width="10px"><a class="btn btn-outline-primary btn-sm" href="{{action('EscolaridadController@edit', $escolaridad->id)}}">Editar</a></td>
+                    <td width="10px"><a class="btn btn-sm btn-outline-secondary" href="{{action('EscolaridadController@edit', $escolaridad->id)}}">Editar</a></td>
                   @endcan
                   @can('escolaridad.destroy')
                     <td width="10px">
                     <form action="{{action('EscolaridadController@destroy', $escolaridad->id)}}" method="POST">
                       {{csrf_field()}}
                       <input name="_method" type="hidden" value="DELETE">
-                      <button class="btn btn-outline-danger btn-sm" type="submit">Eliminar</button>
+                      <button class="btn btn-sm btn-outline-secondary" type="submit">Eliminar</button>
                     </form>
                     </td>
                     @endcan

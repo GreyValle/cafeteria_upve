@@ -9,6 +9,7 @@
                     @can('products.index')
                         <a href="{{ route('products.index') }}" class="btn btn-sm btn-primary float-right">Volver</a>
                     @endcan
+                    
                 </div>
                 <div class="card-body" style="font-size: large;">
                 	<div class="row">
@@ -20,6 +21,7 @@
 	                    	<div class="form-group">								
 								<p class="card-subtitle"><strong>Precio: </strong>${{ $producto->precio }}</p> 
 							</div>
+
 							<div class="form-group">
 								<p class="card-text"><strong>Descripción: </strong>{{ $producto->descripcion }}</p>
 							</div>
@@ -38,7 +40,11 @@
 									<input type="date" name="fecha_entregar" class="form-control" required="">
 									<input type="time" name="hora_entregar" class="form-control input-sm" required="" >
 								</div>
-								<button style="width: 100%;" type="submit" class="btn btn-outline-success btn-sm" >Ordenar</button>
+								@if ($producto->precio <= \Auth::user()->saldo)
+									<button style="width: 100%;" type="submit" class="btn btn-outline-success btn-sm" >Ordenar</button>
+								@else
+									<div style="width: 100%;"  class="btn btn-danger btn-sm" >Saldo insuficiente</div>
+								@endif
 							</form>	
 							@endcan
 							@can('products.edit')

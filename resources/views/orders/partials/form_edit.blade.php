@@ -37,5 +37,5 @@
 </div>
 <hr>
 <div>
-	{{ Form::submit('Actualizar', ['class' => 'btn btn-sm btn-primary float-right'])  }}
+	{{ Form::submit('Actualizar', ['class' => 'btn btn-sm btn-outline-secondary float-right'])  }}
 </div>

@@ -12,11 +12,21 @@ class PermissionsTableSeeder extends Seeder
      */
     public function run()
     {
-        //users
+        //users users.update_asignar_roles
         Permission::create([
-        	'name' => 'Navegar usuarios',
-        	'slug' => 'users.index',
-        	'description' => 'Lista y Navega todos los usuarios del sistema',
+            'name' => 'Actualizar saldo',
+            'slug' => 'users.update_saldo',
+            'description' => 'Puede actualizar el saldo a los usuarios',
+        ]); 
+        Permission::create([
+            'name' => 'Asignar roles',
+            'slug' => 'users.asignar_roles',
+            'description' => 'Puede asignar roles a los usuarios',
+        ]);
+        Permission::create([
+            'name' => 'Navegar usuarios',
+            'slug' => 'users.index',
+            'description' => 'Lista y Navega todos los usuarios del sistema',
         ]);
         Permission::create([
         	'name' => 'Ver detalle de usuario',

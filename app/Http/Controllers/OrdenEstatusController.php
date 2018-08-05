@@ -65,8 +65,8 @@ class OrdenEstatusController extends Controller
      */
     public function edit($id)
     {
-        $estatus=Orden_estatus::paginate(5);
-        return view('orden_estatus.edit',compact('estatus'));
+        $estatu=Orden_estatus::find(5);
+        return view('orden_estatus.edit',compact('estatu'));
     }
 
     /**

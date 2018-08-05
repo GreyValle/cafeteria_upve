@@ -8,7 +8,7 @@
         <div class="card-header">
           <STRONG>Ordenes</STRONG>
           @can('orders.index')
-            <a href="{{ route('orders.index') }}" class="btn btn-sm btn-primary float-right">Refrescar</a>
+            <a href="{{ route('orders.index') }}" class="btn btn-sm btn-outline-secondary float-right">Refrescar</a>
           @endcan
         </div>
         <div class="card-body ">
@@ -53,7 +53,7 @@
                         <td width="10px"><a class="btn btn-outline-secondary btn-sm" href="{{action('OrdersController@show', $orden->id)}}" >Ver</a></td>
                       @endcan
                       @can('orders.edit')
-                        <td width="10px"><a class="btn btn-outline-primary btn-sm" href="{{action('OrdersController@edit', $orden->id)}}">Editar</a></td>
+                        <td width="10px"><a class="btn btn-sm btn-outline-secondary" href="{{action('OrdersController@edit', $orden->id)}}">Editar</a></td>
                       @endcan
                       @can('orders.destroy')
                         <td width="10px">
@@ -61,7 +61,7 @@
                             {{csrf_field()}}
                             <input name="_method" type="hidden" value="DELETE">
                      
-                            <button class="btn btn-outline-danger btn-sm" type="submit">Eliminar</button>
+                            <button class="btn btn-sm btn-outline-secondary" type="submit">Eliminar</button>
                           </form>
                         </td>
                       @endcan

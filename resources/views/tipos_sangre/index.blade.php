@@ -8,7 +8,7 @@
         <div class="card-header">
           <STRONG>Tipos de sangre</STRONG>
           @can('tipo_sangre.create')
-            <a href="{{ route('tipo_sangre.create') }}" class="btn btn-sm btn-primary float-right">Crear</a>
+            <a href="{{ route('tipo_sangre.create') }}" class="btn btn-sm btn-outline-secondary float-right">Crear</a>
           @endcan
         </div>
         <div class="card-body ">
@@ -28,10 +28,10 @@
                       <td>{{$sangre->id}}</td>
                       <td>{{$sangre->tipo_sangre}}</td>
                       @can('tipo_sangre.show')
-                        <td width="10px"><a class="btn btn-outline-secondary btn-sm" href="{{action('TiposSangreController@show', $sangre->id)}}" >Ver</a></td>
+                        <td width="10px"><a class="btn btn-sm btn-outline-secondary" href="{{action('TiposSangreController@show', $sangre->id)}}" >Ver</a></td>
                       @endcan
                       @can('tipo_sangre.edit')
-                        <td width="10px"><a class="btn btn-outline-primary btn-sm" href="{{action('TiposSangreController@edit', $sangre->id)}}">Editar</a></td>
+                        <td width="10px"><a class="btn btn-sm btn-outline-secondary" href="{{action('TiposSangreController@edit', $sangre->id)}}">Editar</a></td>
                       @endcan
                       @can('tipo_sangre.destroy')
                         <td width="10px">
@@ -39,7 +39,7 @@
                             {{csrf_field()}}
                             <input name="_method" type="hidden" value="DELETE">
                      
-                            <button class="btn btn-outline-danger btn-sm" type="submit">Eliminar</button>
+                            <button class="btn btn-sm btn-outline-secondary" type="submit">Eliminar</button>
                           </form>
                         </td>
                       @endcan

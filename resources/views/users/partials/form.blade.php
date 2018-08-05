@@ -9,8 +9,8 @@
 			{{ Form::email('email', null, ['class' => 'form-control', 'required']) }}
 		</div>
 		<div class="form-group">
-			{{ Form::label('saldo','Saldo:') }}
-			{{ Form::number('saldo', null, ['class' => 'form-control', 'step'=>'0.01', 'min'=>'0', 'required']) }}
+				{{ Form::label('saldo','Saldo:') }}
+				{{ Form::number('saldo', null, ['class' => 'form-control', 'step'=>'0.01', 'min'=>'0', 'required', 'disabled']) }}
 		</div>
 		<div class="form-group">
 			{{ Form::label('telefono','Teléfono:') }}
@@ -45,20 +45,22 @@
 	</div>			
 </div>
 <hr>
-<h3>Lista de roles</h3>
-<div class="form-group">
-	<ul class="list-unstyled">
-		@foreach ($roles as $role)
-			<li>
-				<label>
-					{{ Form::checkbox('roles[]', $role->id, null) }}					
-					{{ $role->name }}
-					<em>({{ $role->description ?: 'Sin descripción' }})</em>
-				</label>
-			</li>
-		@endforeach
-	</ul>
-</div>
+@can('users.asignar_roles')
+	<h3>Lista de roles</h3>
+	<div class="form-group">
+		<ul class="list-unstyled">
+			@foreach ($roles as $role)
+				<li>
+					<label>
+						{{ Form::checkbox('roles[]', $role->id, null) }}					
+						{{ $role->name }}
+						<em>({{ $role->description ?: 'Sin descripción' }})</em>
+					</label>
+				</li>
+			@endforeach
+		</ul>
+	</div>
+@endcan
 <div>
-	{{ Form::submit('Guardar', ['class' => 'btn btn-sm btn-primary'])  }}
+	{{ Form::submit('Actualizar', ['class' => 'btn btn-sm btn-outline-secondary float-right'])  }}
 </div>

@@ -48,6 +48,10 @@ class OrdersController extends Controller
         $orden->fecha_entregar=$request->fecha_entregar;
         $orden->hora_entregar=$request->hora_entregar;
         $orden->save();
+        $user=\App\User::find(\Auth::user()->id);
+        $saldo=$user->saldo-$request->total;
+        $user->saldo=$saldo;
+        $user->update($request->all());
 
         return redirect()->route('products.index')->with('success','¡Orden creada satisfactoriamente!');
        

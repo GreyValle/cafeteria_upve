@@ -7,7 +7,7 @@
             <div class="card">
                 <div class="card-header"><strong>Creando Escolaridad</strong>
                     @can('escolaridad.index')
-                        <a href="{{ route('escolaridad.index') }}" class="btn btn-sm btn-primary float-right">Volver</a>
+                        <a href="{{ route('escolaridad.index') }}" class="btn btn-sm btn-outline-secondary float-right">Volver</a>
                     @endcan
                 </div>
 

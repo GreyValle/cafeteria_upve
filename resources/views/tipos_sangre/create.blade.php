@@ -7,7 +7,7 @@
             <div class="card">
                 <div class="card-header"><strong>Creando tipo sangre</strong>
                     @can('tipo_sangre.index')
-                        <a href="{{ route('tipo_sangre.index') }}" class="btn btn-sm btn-primary float-right">Volver</a>
+                        <a href="{{ route('tipo_sangre.index') }}" class="btn btn-sm btn-outline-secondary float-right">Volver</a>
                     @endcan
                 </div>
 

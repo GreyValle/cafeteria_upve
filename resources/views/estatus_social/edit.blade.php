@@ -6,9 +6,16 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header"><strong>Editando estatus social</strong>
-                    @can('estatus_social.index')
-                        <a href="{{ route('estatus_social.index') }}" class="btn btn-sm btn-primary float-right">Volver</a>
-                    @endcan
+                    <div class="btn-toolbar float-right">
+                      <div class="btn-group">
+                        @can('estatus_social.show')
+                            <a href="{{ route('estatus_social.show',$estatus_social->id) }}" class="btn btn-sm btn-outline-secondary">Ver</a>
+                        @endcan
+                        @can('estatus_social.index')
+                            <a href="{{ route('estatus_social.index') }}" class="btn btn-sm btn-outline-secondary">Estatus</a>
+                        @endcan
+                      </div>
+                    </div>
                 </div>
                 
                 <div class="card-body">

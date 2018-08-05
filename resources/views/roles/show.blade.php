@@ -6,9 +6,16 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header"><strong>Role</strong>
-                    @can('roles.index')
-                        <a href="{{ route('roles.index') }}" class="btn btn-sm btn-primary float-right">Volver</a>
-                    @endcan
+                    <div class="btn-toolbar float-right">
+                      <div class="btn-group">
+                        @can('roles.edit')
+                            <a href="{{ route('roles.edit',$role->id) }}" class="btn btn-sm btn-outline-secondary">Editar</a>
+                        @endcan
+                        @can('roles.index')
+                            <a href="{{ route('roles.index') }}" class="btn btn-sm btn-outline-secondary">Roles</a>
+                        @endcan
+                      </div>
+                    </div>
                 </div>
                 <div class="card-body">
                     <div class="row">

@@ -11,5 +11,5 @@
 <hr>
 
 <div>
-	{{ Form::submit('Guardar', ['class' => 'btn btn-sm btn-success float-right', 'title'=>'¡Este boton en para actualizar el estatus social!'])  }}
+	{{ Form::submit('Guardar', ['class' => 'btn btn-sm btn-outline-secondary float-right', 'title'=>'¡Este boton en para actualizar el estatus social!'])  }}
 </div>

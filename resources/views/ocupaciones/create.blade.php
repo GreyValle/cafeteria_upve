@@ -7,7 +7,7 @@
             <div class="card">
                 <div class="card-header"><strong>Creando ocupación</strong>
                     @can('ocupacion.index')
-                        <a href="{{ route('ocupacion.index') }}" class="btn btn-sm btn-primary float-right">Volver</a>
+                        <a href="{{ route('ocupacion.index') }}" class="btn btn-sm btn-outline-secondary float-right">Volver</a>
                     @endcan
                 </div>
 

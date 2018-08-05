@@ -80,6 +80,7 @@ class ProductsController extends Controller
     public function show($id)
     {
         $producto=Product::find($id);
+        
         return  view('products.show',compact('producto'));
     }
 
@@ -104,8 +105,6 @@ class ProductsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // dd($request);
-        $this->validate($request,[ 'nombre'=>'required', 'precio'=>'required', ]);
         $product=Product::find($id);
         $product->nombre=$request->nombre;
         $product->descripcion=$request->descripcion;

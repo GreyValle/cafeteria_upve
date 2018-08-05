@@ -5,6 +5,6 @@
 	</div>
 	<hr>
 	<div>
-		{{ Form::submit('Actualizar', ['class' => 'btn btn-sm btn-success float-right'])  }}
+		{{ Form::submit('Actualizar', ['class' => 'btn btn-sm btn-outline-secondary float-right'])  }}
 	</div>
 {!! Form::close() !!}
