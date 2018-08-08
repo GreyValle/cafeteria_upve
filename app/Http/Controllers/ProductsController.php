@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Product;
 use App\Http\Resources\ProductsCollection;
-
+use Alert;
 
 class ProductsController extends Controller
 {
@@ -67,7 +67,8 @@ class ProductsController extends Controller
               $request->image->storeAs('images', $name );
           }
         
-        return redirect()->route('products.index')->with('success','Producto: '.$request->nombre.', ¡Creado satisfactoriamente!');
+        Alert::success('Menú: '.$product->nombre,'¡Creado satisfactoriamente!');
+        return redirect()->route('products.index');
         }
     }
 
@@ -123,6 +124,7 @@ class ProductsController extends Controller
             if ($hasFile) {
               $request->image->storeAs('images', $name );
             }
+            Alert::success('Menú: '.$product->nombre,'¡Actualizado satisfactoriamente!');
             return redirect()->route('products.index')->with('success','Producto: '.$request->nombre.', ¡Actualizado satisfactoriamente!');
         }else{
             return view('products.edit',['product'=>$product]);
@@ -139,7 +141,7 @@ class ProductsController extends Controller
     public function destroy($id)
     {
         Product::find($id)->delete();
-        return redirect()->route('products.index')
-        ->with('success','Producto eliminado satisfactoriamente!');
+        Alert::success('¡Eliminado satisfactoriamente!');
+        return redirect()->route('products.index');
     }
 }

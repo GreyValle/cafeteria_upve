@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Escolaridad;
+use Alert;
+
 class EscolaridadController extends Controller
 {
     /**
@@ -13,8 +15,6 @@ class EscolaridadController extends Controller
      */
     public function index(Request $request)
     {
-        // $request->user()->authorizeRoles(['admin','user']);
-
         $escolaridades=Escolaridad::all();
         $escolaridades=Escolaridad::paginate(7);
         return view('escolaridad.index',compact('escolaridades')); 
@@ -44,9 +44,8 @@ class EscolaridadController extends Controller
         $escolaridad->descripcion=$request->descripcion;
         $escolaridad->user_id=\Auth::user()->id;
         $escolaridad->save();
-   
-        return redirect()->route('escolaridad.index')
-        ->with('success','Escolaridad: '.$request->nombre.', ¡Creada satisfactoriamente!');
+        Alert::success('Escolaridad: '.$request->escolaridad, '¡Creada satisfactoriamente!');
+        return redirect()->route('escolaridad.index');
     }
 
     /**
@@ -58,7 +57,6 @@ class EscolaridadController extends Controller
     public function show($id)
     {
         $escolaridad=Escolaridad::find($id);
-        // dd($escolaridad->user);
         return  view('escolaridad.show',compact('escolaridad'));
     }
 
@@ -89,9 +87,8 @@ class EscolaridadController extends Controller
         $escolaridad->escolaridad=$request->escolaridad;
         $escolaridad->descripcion=$request->descripcion;
         $escolaridad->save();
-        
-        return redirect()->route('escolaridad.index')
-        ->with('success','Escolaridad: '.$request->escolaridad.', ¡Actualizada satisfactoriamente!');
+        Alert::success('Escolaridad: '.$request->escolaridad, '¡Actualizada satisfactoriamente!');
+        return redirect()->route('escolaridad.index');
     }
 
     /**
@@ -102,9 +99,8 @@ class EscolaridadController extends Controller
      */
     public function destroy($id)
     {
-  
         Escolaridad::find($id)->delete();
-        return redirect()->route('escolaridad.index')
-        ->with('success','Escolaridad eliminada satisfactoriamente!');
+        Alert::success('¡Escolaridad eliminada satisfactoriamente!');
+        return redirect()->route('escolaridad.index');
     }
 }

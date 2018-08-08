@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Estatus_social;
+use Alert;
+
 class EstatusSocialController extends Controller
 {
     /**
@@ -42,9 +44,9 @@ class EstatusSocialController extends Controller
         $estatus_social->descripcion=$request->descripcion;
         $estatus_social->user_id=\Auth::user()->id;
         $estatus_social->save();
-
-        return redirect()->route('estatus_social.index')
-        ->with('success','Estatus social: '.$request->estatus.', ¡Creado satisfactoriamente!');
+        
+        Alert::success('Estatus: '.$estatus_social->estatus, ' ¡Creado satisfactoriamente!');
+        return redirect()->route('estatus_social.index');
     }
 
     /**
@@ -87,8 +89,8 @@ class EstatusSocialController extends Controller
         $estatus_social->descripcion=$request->descripcion;
         $estatus_social->save();
 
-        return redirect()->route('estatus_social.index')
-        ->with('success','Estatus: '.$request->estatus.', ¡Actualizado satisfactoriamente!');
+        Alert::success('Estatus social: '.$request->estatus,'¡Actualizado satisfactoriamente!');
+        return redirect()->route('estatus_social.index');
     }
 
     /**
@@ -100,7 +102,8 @@ class EstatusSocialController extends Controller
     public function destroy($id)
     {
         Estatus_social::find($id)->delete();
-        return redirect()->route('estatus_social.index')
-        ->with('success','Estatus eliminada satisfactoriamente!');
+       
+        Alert::success('¡Eliminado satisfactoriamente!');
+        return redirect()->route('estatus_social.index');
     }
 }

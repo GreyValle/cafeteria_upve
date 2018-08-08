@@ -10,6 +10,7 @@ use App\Escolaridad;
 use App\Estatus_social;
 use App\Ocupacion;
 use App\Tipo_sangre;
+use Alert;
 
 class UserController extends Controller
 {
@@ -73,8 +74,8 @@ class UserController extends Controller
         $user->update($request->all());
         $user->roles()->sync($request->get('roles')); 
         
-        return redirect()->route('users.index')
-        ->with('info','Usuario actualizado con éxito');
+        Alert::success('Usuario: '.$user->name,'Usuario actualizado con éxito');
+        return redirect()->route('users.index');
     }
 
     /**
@@ -87,6 +88,7 @@ class UserController extends Controller
     {
         $user=User::find($id);
         $user->delete();
-        return back()->with('info','Eliminado correctamente');
+        Alert::success('Eliminado correctamente');
+        return back();
     }
 }

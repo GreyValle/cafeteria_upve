@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Tipo_sangre;
-
+use Alert;
 class TiposSangreController extends Controller
 {
     /**
@@ -41,9 +41,8 @@ class TiposSangreController extends Controller
         $sangre->tipo_sangre=$request->tipo_sangre;
         $sangre->user_id=\Auth::user()->id;
         $sangre->save();
-
-        return redirect()->route('tipo_sangre.index')
-        ->with('success','Tipo sangre: '.$request->tipo_sangre.', ¡Creado satisfactoriamente!');
+        Alert::success('Tipo sangre: '.$sangre->tipo_sangre,'¡Creado satisfactoriamente!');
+        return redirect()->route('tipo_sangre.index');
     }
 
     /**
@@ -81,8 +80,8 @@ class TiposSangreController extends Controller
     {
 
         Tipo_sangre::find($id)->update($request->all());
-        return redirect()->route('tipo_sangre.index')
-        ->with('success','Tipo: '.$request->tipo_sangre.', ¡Actualizado satisfactoriamente!');
+        Alert::success('Tipo sangre: '.$request->tipo_sangre,'¡Actualizado satisfactoriamente!');
+        return redirect()->route('tipo_sangre.index');
     }
 
     /**
@@ -94,7 +93,7 @@ class TiposSangreController extends Controller
     public function destroy($id)
     {
         Tipo_sangre::find($id)->delete();
-        return redirect()->route('tipo_sangre.index')
-        ->with('info','Eliminado correctamente');
+        Alert::success('Eliminado correctamente');
+        return redirect()->route('tipo_sangre.index');
     }
 }

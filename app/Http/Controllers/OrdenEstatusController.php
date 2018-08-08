@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 Use App\Orden_estatus;
+use Alert;
 class OrdenEstatusController extends Controller
 {
     /**
@@ -40,9 +41,8 @@ class OrdenEstatusController extends Controller
         $estatus->descripcion=$request->descripcion;
         $estatus->user_id=\Auth::user()->id;
         $estatus->save();
-
-        return redirect()->route('orden_estatus.index')
-        ->with('success','Estatus: '.$request->estatus.', ¡Creado satisfactoriamente!');
+        Alert::success('Estatus: '.$request->estatus, '¡Creada satisfactoriamente!');
+        return redirect()->route('orden_estatus.index');
     }
 
     /**
@@ -65,7 +65,7 @@ class OrdenEstatusController extends Controller
      */
     public function edit($id)
     {
-        $estatu=Orden_estatus::find(5);
+        $estatu=Orden_estatus::find($id);
         return view('orden_estatus.edit',compact('estatu'));
     }
 
@@ -79,8 +79,8 @@ class OrdenEstatusController extends Controller
     public function update(Request $request, $id)
     {
         Orden_estatus::find($id)->update($request->all());
-        return redirect()->route('orden_estatus.index')
-        ->with('success','Estatus: '.$request->estatus.', ¡Actualizado satisfactoriamente!');
+        Alert::success('Estatus: '.$request->estatus, '¡Actualizado satisfactoriamente!');
+        return redirect()->route('orden_estatus.index');
     }
 
     /**
@@ -92,7 +92,7 @@ class OrdenEstatusController extends Controller
     public function destroy($id)
     {
         Orden_estatus::find($id)->delete();
-        return redirect()->route('orden_estatus.index')
-        ->with('success','Estatus eliminad satisfactoriamente!');
+        Alert::success('¡Estatus eliminado satisfactoriamente!');
+        return redirect()->route('orden_estatus.index');
     }
 }

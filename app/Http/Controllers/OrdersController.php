@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Order;
-
+use Alert;
 class OrdersController extends Controller
 {
     /**
@@ -52,8 +52,10 @@ class OrdersController extends Controller
         $saldo=$user->saldo-$request->total;
         $user->saldo=$saldo;
         $user->update($request->all());
+        
+        Alert::success('Se le notificará cuando su orden esté lista','¡Orden creada satisfactoriamente!')->persistent("Cerrar");
 
-        return redirect()->route('products.index')->with('success','¡Orden creada satisfactoriamente!');
+        return redirect()->route('products.index');
        
     }
 
@@ -96,9 +98,9 @@ class OrdersController extends Controller
     {
         $orden=Order::find($id);
         $orden->update($request->all());
-
-        return redirect()->route('orders.show',$id)
-        ->with('info','Orden actualizada con éxito');
+        
+        Alert::success('Orden: '.$orden->id,'¡Orden actualizada con éxito!');
+        return redirect()->route('orders.show',$id);
     }
 
     /**
@@ -111,6 +113,7 @@ class OrdersController extends Controller
     {
         $orden=Order::find($id);
         $orden->delete();
-        return back()->with('info','Eliminado correctamente');
+         Alert::success('¡Orden eliminada con éxito!');
+        return back();
     }
 }

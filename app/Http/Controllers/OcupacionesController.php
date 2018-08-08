@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Ocupacion;
+Use Alert;
 class OcupacionesController extends Controller
 {
     /**
@@ -42,9 +43,9 @@ class OcupacionesController extends Controller
         $ocupacion->descripcion=$request->descripcion;
         $ocupacion->user_id=\Auth::user()->id;
         $ocupacion->save();
+        Alert::success('Ocupación: '.$ocupacion->ocupacion, '¡Creado satisfactoriamente!');
+        return redirect()->route('ocupacion.index');
         
-        return redirect()->route('ocupacion.index')
-        ->with('success','Ocupación: '.$request->ocupacion.', ¡Creado satisfactoriamente!');
     }
 
     /**
@@ -82,8 +83,8 @@ class OcupacionesController extends Controller
     {
 
         Ocupacion::find($id)->update($request->all());
-        return redirect()->route('ocupacion.index')
-        ->with('success','Ocupación: '.$request->ocupacion.', ¡Actualizada satisfactoriamente!');
+        Alert::success('Ocupación: '.$request->ocupacion, '¡Actualizada satisfactoriamente!');
+        return redirect()->route('ocupacion.index');
     }
 
     /**
@@ -95,7 +96,7 @@ class OcupacionesController extends Controller
     public function destroy($id)
     {
         Ocupacion::find($id)->delete();
-        return redirect()->route('ocupacion.index')
-        ->with('success','Ocupación eliminada satisfactoriamente!');
+        Alert::success('Ocupación eliminada satisfactoriamente');
+        return redirect()->route('ocupacion.index');
     }
 }

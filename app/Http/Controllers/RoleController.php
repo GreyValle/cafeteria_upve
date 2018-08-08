@@ -10,6 +10,8 @@ use Caffeinated\Shinobi\Models\Permission;
 
 use App\User;
 use Auth;
+use Alert;
+
 class RoleController extends Controller
 {
     /**
@@ -47,10 +49,10 @@ class RoleController extends Controller
         $role->description=$request->description;
         $role->id_user=Auth::user()->id;
         $role->save();
-   
         $role->permissions()->sync($request->get('permissions')); 
-        return redirect()->route('roles.index')
-        ->with('info','Role actualizado con éxito');
+        
+        Alert::success('Rol: '.$role->name,'¡Creado satisfactoriamente!');
+        return redirect()->route('roles.index');
       
     }
     
@@ -96,6 +98,8 @@ class RoleController extends Controller
         $role->update($request->all());
 
         $role->permissions()->sync($request->get('permissions')); 
+
+        Alert::success('¡Actualizado satisfactoriamente!');
         return redirect()->route('roles.index')
         ->with('info','Role actualizado con éxito');
     }
@@ -110,6 +114,7 @@ class RoleController extends Controller
     {
         $role=Role::find($id);
         $role->delete();
+        Alert::success('Eliminado correctamente');
         return back()->with('info','Eliminado correctamente');
     }
 }
