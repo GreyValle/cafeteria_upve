@@ -17,18 +17,25 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
 
-
-
-
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <style>
+        .box-shadow { 
+            box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .1);
+        }
+
+   /*     .bg-nav { background-color: #A285F4; }
+        .bg-tablas { background-color: #DFF; }*/
+        /*B49DF6*/
+    </style>
 </head>
 <body>
     <div id="app">
+
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
@@ -43,57 +50,50 @@
                     <ul class="navbar-nav mr-auto">
                         @can('products.index')
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('products.index') }}">Productos</a>
+                                <a class="nav-link" href="{{ route('products.index') }}">Menú</a>
                             </li>
                         @endcan
-                       
-                        @can('roles.index')
+                        @can('orders.index')
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('roles.index') }}">Roles</a>
+                                <a class="nav-link" href="{{ route('orders.index') }}">Ordenes</a>
                             </li>
-                        @endcan
-                       
+                        @endcan     
                         @can('users.index')
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('users.index') }}">Usuarios</a>
                             </li>
                         @endcan
+                        @can('roles.index')
+                            <li class="nav-item">
+                                 <a class="nav-link" href="{{ route('roles.index') }}">Roles</a>
+                            </li>
+                        @endcan
+                        <li class="nav-item dropdown">
+                          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Catálagos</a>
+                          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            @can('tipo_sangre.index')
+                                <a class="dropdown-item" href="{{ route('tipo_sangre.index') }}">Sangre</a>
+                            @endcan
+                            
 
-                        @can('escolaridad.index')
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('escolaridad.index') }}">Escolaridad</a>
-                            </li>
-                        @endcan
+                            @can('escolaridad.index')
+                                <a class="dropdown-item" href="{{ route('escolaridad.index') }}">Escolaridad</a>
+                            @endcan
 
-                        @can('estatus_social.index')
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('estatus_social.index') }}">Estatus Soc</a>
-                            </li>
-                        @endcan
+                            @can('estatus_social.index')
+                                <a class="dropdown-item" href="{{ route('estatus_social.index') }}">Estatus Social</a>
+                            @endcan
 
-                        @can('ocupacion.index')
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('ocupacion.index') }}">Ocupación</a>
-                            </li>
-                        @endcan
-                        
-                        @can('orden_estatus.index')
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('orden_estatus.index') }}">Orden Est</a>
-                            </li>
-                        @endcan
-                        
-                        @can('orders.index')
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('orders.index') }}">Orden</a>
-                            </li>
-                        @endcan
+                            @can('ocupacion.index')
+                                <a class="dropdown-item" href="{{ route('ocupacion.index') }}">Ocupación</a>
+                            @endcan
+                            
+                            @can('orden_estatus.index')
+                                <a class="dropdown-item" href="{{ route('orden_estatus.index') }}">Estatus Orden</a>
+                            @endcan
 
-                        @can('tipo_sangre.index')
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('tipo_sangre.index') }}">Sangre</a>
-                            </li>
-                        @endcan
+                          </div>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->

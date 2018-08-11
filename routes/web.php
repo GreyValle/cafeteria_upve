@@ -15,6 +15,18 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/mail', function () {
+    $data= array(
+    	'name'=> 'Cafeteria UPVE',
+    );
+    Mail::send('emails.prueba',$data,function($message){
+    		$message->from('greygarcia14.gg@gmail.com', 'Aplicacion de cafeteria');
+    		$message->to('150050120@upve.edu.mx')->subject('pRUEBA DE EMAIL DESDE LARAVEL');
+    });
+
+    return "Tu mensaje se envio correctamente ajajjaa";
+});
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card">
+            <div class="card box-shadow">
                 <div class="card-header"><strong>Creando tipo sangre</strong>
                     @can('tipo_sangre.index')
                         <a href="{{ route('tipo_sangre.index') }}" class="btn btn-sm btn-outline-secondary float-right">Volver</a>

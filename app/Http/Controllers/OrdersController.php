@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Order;
 use Alert;
+use Mail;
+use DB;
 class OrdersController extends Controller
 {
     /**
@@ -47,16 +49,38 @@ class OrdersController extends Controller
         $orden->total=$request->total;
         $orden->fecha_entregar=$request->fecha_entregar;
         $orden->hora_entregar=$request->hora_entregar;
+        $orden->orden_estatus_id=1;
         $orden->save();
+        
+        $producto=DB::table('products')->select('nombre')->where('id','=',$orden->product_id)->first();
+
         $user=\App\User::find(\Auth::user()->id);
         $saldo=$user->saldo-$request->total;
         $user->saldo=$saldo;
         $user->update($request->all());
         
+        $estatus=DB::table('orden__estatuses')->select('estatus')->where('id','=',$orden->orden_estatus_id)->first();
+        // dd($estatus->estatus);
+        
+        $data= array(
+            'cafeteria'=> 'Cafetería UPVE',
+            'cliente'=>\Auth::user()->name,
+            'orden'=>$orden->id,
+            'producto'=>$producto->nombre,
+            'total'=>$orden->total,
+            'saldo'=>$saldo,
+            'fecha_solicitada'=> $orden->fecha_entregar,
+            'hora_solicitada'=> $orden->hora_entregar,
+            'estatus_orden'=> $estatus->estatus,
+        );
+        Mail::send('emails.orden_create',$data,function($message){
+                $message->from('greygarcia14.gg@gmail.com', 'Notificación de cafetería UPVE');
+                $message->to(\Auth::user()->email)->subject('Detalles de su orden');
+        });
+
         Alert::success('Se le notificará cuando su orden esté lista','¡Orden creada satisfactoriamente!')->persistent("Cerrar");
 
         return redirect()->route('products.index');
-       
     }
 
     /**
@@ -94,11 +118,34 @@ class OrdersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    private $cliente;
     public function update(Request $request, $id)
     {
         $orden=Order::find($id);
         $orden->update($request->all());
         
+        $this->cliente=DB::table('users')->select('email','name')->where('id','=',$orden->user_id)->first();
+        // dd($orden); 
+
+        $producto=DB::table('products')->select('nombre')->where('id','=',$orden->product_id)->first();
+        // dd($producto);
+        $estatus=DB::table('orden__estatuses')->select('estatus')->where('id','=',$orden->orden_estatus_id)->first();
+        // dd($estatus);
+
+        $data= array(
+            'cafeteria'=> 'Cafetería UPVE',
+            'cliente'=> $this->cliente->name,
+            'orden'=>$orden->id,
+            'fecha_solicitada'=> $orden->fecha_entregar,
+            'hora_solicitada'=> $orden->hora_entregar,
+            'producto'=>$producto->nombre,
+            'estatus_orden'=> $estatus->estatus,
+        );
+        Mail::send('emails.orden_update',$data,function($message){
+                $message->from('greygarcia14.gg@gmail.com', 'Cambio en tu orden');
+                $message->to($this->cliente->email)->subject('Revisa los cambios');
+        });
+
         Alert::success('Orden: '.$orden->id,'¡Orden actualizada con éxito!');
         return redirect()->route('orders.show',$id);
     }

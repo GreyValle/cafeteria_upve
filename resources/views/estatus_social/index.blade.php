@@ -4,7 +4,7 @@
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-md-10 ">
-      <div class="card">
+      <div class="card box-shadow">
         <div class="card-header">
           <STRONG>Estatus social</STRONG>
           @can('estatus_social.create')

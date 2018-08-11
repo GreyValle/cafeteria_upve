@@ -3,13 +3,11 @@
 <div class="container">
   <div class="row justify-content-center">
   <div class="col-md-10">
-    <div class="card">
+    <div class="card box-shadow">
           <div class="card-header">
             <h2>Editando producto <a href="{{ route('products.index') }}" class="btn btn-primary float-right" data-toggle="tooltip" title="¡Desde aquí puedes volver a la lista de escolaridad!" data-placement="right">Atrás</a>
             </h2>
           </div>
-        {{-- @include('Cliente.frangment.error') --}}
-          {{-- @include('Cliente.frangment.info') --}}
           <div class="card-body">         
           <form method="POST" action="{{ route('productos.update', $producto->id) }}" accept-charset="UTF-8" enctype="multipart/form-data" role="form">
             
@@ -19,10 +17,7 @@
           
           <div class="form-group">
             <label for="image">Imagen:</label>
-            <div class="img-thumbnail ">
-              <img src="" id="profile-img-tag" width="100px" class="img-fluid ">
-              <input type="file" name="image" id="image">
-            </div>
+            <input type="file" name="image" class="form-control input-sm" style="padding:3px">
           </div>
 
           <div class="form-group">

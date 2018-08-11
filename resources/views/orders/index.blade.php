@@ -4,11 +4,11 @@
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-md-10">
-      <div class="card">
+      <div class="card box-shadow">
         <div class="card-header">
           <STRONG>Ordenes</STRONG>
           @can('orders.index')
-            <a href="{{ route('orders.index') }}" class="btn btn-sm btn-outline-secondary float-right">Refrescar</a>
+            <a href="{{ route('orders.index') }}" class="btn btn-sm btn-outline-secondary float-right box-shadow-btn">Refrescar</a>
           @endcan
         </div>
         <div class="card-body ">

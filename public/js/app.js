@@ -48136,11 +48136,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 	props: {
@@ -48159,8 +48154,8 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "col-xs-12 col-sm-12 col-md-6 col-lg-4 " }, [
-    _c("div", { staticClass: "card card-default" }, [
-      _c("div", { staticClass: "card-header" }, [
+    _c("div", { staticClass: "card card-default box-shadow" }, [
+      _c("div", { staticClass: "card-header text-center" }, [
         _c("h2", { staticClass: "card-title" }, [
           _c("a", { attrs: { href: "/products/" + _vm.product.id } }, [
             _vm._v(_vm._s(_vm.product.title))
@@ -48168,28 +48163,23 @@ var render = function() {
         ])
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "card-body" }, [
-        _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "col-6" }, [
-            _c("img", {
-              staticClass: "card-img-rigth img-fluid",
-              attrs: {
-                src: "/productos/imagenes/" + _vm.product.imagen,
-                alt: "Imagen"
-              }
-            })
+      _c("img", {
+        staticClass: "img-fluid",
+        attrs: {
+          src: "/productos/imagenes/" + _vm.product.imagen,
+          alt: "Imagen"
+        }
+      }),
+      _vm._v(" "),
+      _c("div", { staticClass: "card-footer" }, [
+        _c("div", { staticClass: "form-group" }, [
+          _c("p", { staticClass: "card-subtitle" }, [
+            _c("strong", [_vm._v("Precio: " + _vm._s(_vm.product.price))])
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "col-6" }, [
-            _c("h4", { staticClass: "card-subtitle" }, [
-              _c("strong", [_vm._v("Precio: ")]),
-              _vm._v(_vm._s(_vm.product.price))
-            ]),
-            _vm._v(" "),
-            _c("p", { staticClass: "card-text" }, [
-              _c("strong", [_vm._v(" Descripción: ")]),
-              _vm._v(_vm._s(_vm.product.description))
-            ])
+          _c("p", { staticClass: "card-text" }, [
+            _c("strong", [_vm._v("Descripción: ")]),
+            _vm._v(_vm._s(_vm.product.description))
           ])
         ])
       ])
