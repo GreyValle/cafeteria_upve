@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8 col-lg-10">
             <div class="card box-shadow">
-                <div class="card-header">
+                <div class="card-header" style="font-size: large;">
                   <STRONG>Usuarios</STRONG>
                   <a href="{{ route('users.index') }}" class="btn btn-sm btn-outline-secondary float-right">Refrescar</a>
                 </div>

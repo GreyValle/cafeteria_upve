@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card box-shadow">
-                <div class="card-header"><strong>Editando estatus</strong>
+                <div class="card-header" style="font-size: large;"><strong>Editando estatus</strong>
                     <div class="btn-toolbar float-right">
                       <div class="btn-group">
                         @can('orden_estatus.show')

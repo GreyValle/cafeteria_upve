@@ -19,7 +19,7 @@ class ProductsController extends Controller
         // $request->user()->authorizeRoles(['admin','user']);
 
         // $escolaridades=Escolaridad::all();
-        $products=Product::paginate(12);
+        $products=Product::paginate(6);
 
         if ($request->wantsJson()) {
             # code...

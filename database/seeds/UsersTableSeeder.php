@@ -209,18 +209,20 @@ class UsersTableSeeder extends Seeder
 
 //users
         $user = [
-          'admin' =>    User::create(['name'  => 'Grey Valle', 'password' => bcrypt('secret'), 'email' => 'grey@admin.com','escolaridad_id'=>4,'estatus_social_id'=>2,'ocupacion_id'=>1,'tipo_sangre_id'=>3]),
-          'observador' =>     User::create(['name'  => 'Carolina Salazar', 'password' => bcrypt('secret'), 'email' => 'salazar@gmail.com','escolaridad_id'=>4,'estatus_social_id'=>2,'ocupacion_id'=>1,'tipo_sangre_id'=>3]),
-          'usuarios' =>    User::create(['name'  => 'Javier Beltrán', 'password' => bcrypt('secret'), 'email' => 'javier@gmail.com','escolaridad_id'=>4,'estatus_social_id'=>2,'ocupacion_id'=>1,'tipo_sangre_id'=>3]),
-          'supervisor' =>     User::create(['name'  => 'José Verdugo', 'password' => bcrypt('secret'), 'email' => 'jose@gmail.com','escolaridad_id'=>4,'estatus_social_id'=>2,'ocupacion_id'=>1,'tipo_sangre_id'=>3]),
-          'desabilitado' => User::create([ 'name'  => 'Carolina Bueno', 'password' => bcrypt('secret'), 'email' => 'bueno@gmail.com','escolaridad_id'=>4,'estatus_social_id'=>2,'ocupacion_id'=>1,'tipo_sangre_id'=>3]),
+          '1' =>    User::create(['name'  => 'Grey Valle', 'password' => bcrypt('secret'), 'email' => 'greygarcia14.gg@gmail.com','escolaridad_id'=>4,'estatus_social_id'=>2,'ocupacion_id'=>1,'tipo_sangre_id'=>3]),
+          '2' =>     User::create(['name'  => 'Aldo Sánchez', 'password' => bcrypt('secret'), 'email' => '150050112@upve.edu.mx','escolaridad_id'=>4,'estatus_social_id'=>2,'ocupacion_id'=>1,'tipo_sangre_id'=>3]),
+          '3' =>    User::create(['name'  => 'Francisco Mascorro', 'password' => bcrypt('secret'), 'email' => '150050037@upve.edu.mx','escolaridad_id'=>4,'estatus_social_id'=>2,'ocupacion_id'=>1,'tipo_sangre_id'=>3]),
+          '4' =>     User::create(['name'  => 'José Verdugo', 'password' => bcrypt('secret'), 'email' => 'jose@gmail.com','escolaridad_id'=>4,'estatus_social_id'=>2,'ocupacion_id'=>1,'tipo_sangre_id'=>3]),
+          '5' => User::create([ 'name'  => 'Carolina Bueno', 'password' => bcrypt('secret'), 'email' => 'bueno@gmail.com','escolaridad_id'=>4,'estatus_social_id'=>2,'ocupacion_id'=>1,'tipo_sangre_id'=>3]),
+          '6' => User::create([ 'name'  => 'Geneby Magdela García', 'password' => bcrypt('secret'), 'email' => '150050120@upve.edu.mx','escolaridad_id'=>4,'estatus_social_id'=>2,'ocupacion_id'=>1,'tipo_sangre_id'=>3]),
         ];
 //roles a users
-        $user['admin']->roles()->attach($acceso);
-        $user['observador']->roles()->attach($sinAcceso);
-        $user['usuarios']->roles()->attach($sinAcceso);
-        $user['supervisor']->roles()->attach($sinAcceso);
-        $user['desabilitado']->roles()->attach($sinAcceso);
+        $user['1']->roles()->attach($acceso);
+        $user['2']->roles()->attach($sinAcceso);
+        $user['3']->roles()->attach($sinAcceso);
+        $user['4']->roles()->attach($sinAcceso);
+        $user['5']->roles()->attach($sinAcceso);
+        $user['6']->roles()->attach($sinAcceso);
 
     	factory(App\User::class,20)->create();
 

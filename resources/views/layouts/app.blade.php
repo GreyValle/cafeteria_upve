@@ -53,11 +53,24 @@
                                 <a class="nav-link" href="{{ route('products.index') }}">Menú</a>
                             </li>
                         @endcan
-                        @can('orders.index')
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('orders.index') }}">Ordenes</a>
-                            </li>
-                        @endcan     
+                        @can('ordenes')
+                        <li class="nav-item dropdown">
+                          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Ordenes</a>
+                          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            @can('orders.index_cliente')
+                                <a class="dropdown-item" href="{{ route('orders.index_cliente') }}">Mis ordenes</a>
+                            @endcan
+                            @can('orders.index')
+                                <a class="dropdown-item" href="{{ route('orders.index') }}">Pendientes</a>
+                            @endcan
+                            
+                            @can('orders.index_todas')
+                                <a class="dropdown-item" href="{{ route('orders.index_todas') }}">Todas</a>
+                            @endcan
+                          </div>
+                        </li>
+                        @endcan
+    
                         @can('users.index')
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('users.index') }}">Usuarios</a>
@@ -68,6 +81,7 @@
                                  <a class="nav-link" href="{{ route('roles.index') }}">Roles</a>
                             </li>
                         @endcan
+                        @can('catalagos')
                         <li class="nav-item dropdown">
                           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Catálagos</a>
                           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -94,6 +108,7 @@
 
                           </div>
                         </li>
+                        @endcan
                     </ul>
 
                     <!-- Right Side Of Navbar -->

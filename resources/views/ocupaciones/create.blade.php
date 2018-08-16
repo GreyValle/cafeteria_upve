@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card box-shadow">
-                <div class="card-header"><strong>Creando ocupación</strong>
+                <div class="card-header" style="font-size: large;"><strong>Creando ocupación</strong>
                     @can('ocupacion.index')
                         <a href="{{ route('ocupacion.index') }}" class="btn btn-sm btn-outline-secondary float-right">Volver</a>
                     @endcan

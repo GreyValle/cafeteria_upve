@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card box-shadow">
-                <div class="card-header"><strong>Creando estatus social</strong>
+                <div class="card-header" style="font-size: large;"><strong>Creando estatus social</strong>
                     @can('estatus_social.index')
                         <a href="{{ route('estatus_social.index') }}" class="btn btn-sm btn-outline-secondary float-right">Volver</a>
                     @endcan

@@ -5,16 +5,22 @@
     <div class="row justify-content-center">
         <div class="col-md-10">
             <div class="card box-shadow">
-                <div class="card-header"><strong>{{ $producto->nombre }}</strong>
-                    @can('products.index')
-                        <a href="{{ route('products.index') }}" class="btn btn-sm btn-primary float-right">Volver</a>
-                    @endcan
-                    
+                <div class="card-header" ><strong>{{ $producto->nombre }}</strong>
+                    <div class="btn-toolbar float-right">
+                      <div class="btn-group">
+                        @can('products.edit')
+                            <a href="{{ route('products.edit',$producto->id) }}" class="btn btn-sm btn-outline-secondary">Editar</a>
+                        @endcan
+                        @can('products.index')
+                            <a href="{{ route('products.index') }}" class="btn btn-sm btn-outline-secondary">Menú</a>
+                        @endcan
+                      </div>
+                    </div>
                 </div>
                 <div class="card-body" style="font-size: large;">
                 	<div class="row">
 	                    <div class="col-md-6">
-	                        <img  class="card-img-left img-fluid" src="{{ url("/productos/imagenes/$producto->imagen") }}" alt="Imagen">
+	                        <img width="100%" class="img-fluid" src="{{ url("/productos/imagenes/$producto->imagen") }}" alt="Imagen">
 	                    <hr>
 	                    </div>  
 	                    <div class="col-md-6">

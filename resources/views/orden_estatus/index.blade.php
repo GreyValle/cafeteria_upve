@@ -5,7 +5,7 @@
   <div class="row justify-content-center">
     <div class="col-md-10">
       <div class="card box-shadow">
-        <div class="card-header">
+        <div class="card-header" style="font-size: large;">
           <STRONG>Estatus de Ordenes</STRONG>
           @can('orden_estatus.create')
             <a href="{{ route('orden_estatus.create') }}" class="btn btn-sm btn-outline-secondary float-right">Crear</a>

@@ -5,7 +5,7 @@
     <div class="row justify-content-center" style="font-size: large;">
         <div class="col-md-8">
             <div class="card box-shadow">
-                <div class="card-header"><strong>Ocupación</strong>
+                <div class="card-header" style="font-size: large;"><strong>Ocupación</strong>
                     <div class="btn-toolbar float-right">
                       <div class="btn-group">
                         @can('ocupacion.edit')

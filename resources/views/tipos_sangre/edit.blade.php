@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card box-shadow">
-                <div class="card-header"><strong>Editando tipo sangre</strong>
+                <div class="card-header" style="font-size: large;"><strong>Editando tipo sangre</strong>
                     <div class="btn-toolbar float-right">
                       <div class="btn-group">
                         @can('tipo_sangre.show')

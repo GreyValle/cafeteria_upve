@@ -189,6 +189,12 @@ Route::middleware(['auth'])->group(function(){
 	Route::get('orders', 'OrdersController@index')->name('orders.index')
 			->middleware('permission:orders.index');
 
+	Route::get('todas-orders', 'OrdersController@index_todas')->name('orders.index_todas')
+			->middleware('permission:orders.index_todas');
+
+	Route::get('orders-cliente', 'OrdersController@index_cliente')->name('orders.index_cliente')
+			->middleware('permission:orders.index_cliente');
+
 	Route::put('orders/{user}', 'OrdersController@update')->name('orders.update')
 			->middleware('permission:orders.edit');
 
@@ -225,10 +231,6 @@ Route::middleware(['auth'])->group(function(){
 
 	Route::get('tipo_sangre/{user}/edit', 'TiposSangreController@edit')->name('tipo_sangre.edit')
 			->middleware('permission:tipo_sangre.edit');
-
-
-
-
 });
 
 // Route::resource('/clientes', 'ClientesController');

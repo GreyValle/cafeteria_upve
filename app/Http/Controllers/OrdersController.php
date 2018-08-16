@@ -7,6 +7,7 @@ use App\Order;
 use Alert;
 use Mail;
 use DB;
+use Carbon\Carbon;
 class OrdersController extends Controller
 {
     /**
@@ -15,12 +16,35 @@ class OrdersController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        $orders=Order::paginate(7);
-    
+    {      
+        $carbon=new Carbon();
+        $date=Carbon::now();
+        $date=$date->format('Y-m-d');
+
+        // dd($date);
+        $orders=Order::where('fecha_entregar','=',$date)->orderBy('orden_estatus_id','ASC')->orderBy('hora_entregar','ASC')->paginate(10);
+
         $estatus=\App\Orden_estatus::orderBy('estatus','ASC')->pluck('estatus','id');
 
         return view('orders.index',compact('orders','estatus'));
+    }
+
+    public function index_todas()
+    {
+        $orders=Order::paginate(10);
+
+        $estatus=\App\Orden_estatus::orderBy('estatus','ASC')->pluck('estatus','id');
+
+        return view('orders.index_todas',compact('orders','estatus'));
+    }
+
+      public function index_cliente()
+    {
+        $orders=Order::where('user_id','=',\Auth::user()->id)->orderBy('id','ASC')->paginate(5);
+
+        $estatus=\App\Orden_estatus::orderBy('estatus','ASC')->pluck('estatus','id');
+
+        return view('orders.index_cliente',compact('orders','estatus'));
     }
 
     /**

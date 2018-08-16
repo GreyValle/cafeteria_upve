@@ -2,13 +2,21 @@
 @section('content')
 <div class="container">
   <div class="row justify-content-center">
-  <div class="col-md-10">
-    <div class="card box-shadow">
-          <div class="card-header">
-            <h2>Editando producto <a href="{{ route('products.index') }}" class="btn btn-primary float-right" data-toggle="tooltip" title="¡Desde aquí puedes volver a la lista de escolaridad!" data-placement="right">Atrás</a>
-            </h2>
+    <div class="col-md-10">
+      <div class="card box-shadow">
+        <div class="card-header" style="font-size: large;"><strong>Editando Producto</strong>
+          <div class="btn-toolbar float-right">
+          <div class="btn-group">
+            @can('products.show')
+              <a href="{{ route('products.show',$producto->id) }}" class="btn btn-sm btn-outline-secondary">Ver</a>
+            @endcan
+            @can('products.index')
+              <a href="{{ route('products.index') }}" class="btn btn-sm btn-outline-secondary">Menú</a>
+            @endcan
+            </div>
           </div>
-          <div class="card-body">         
+        </div>
+        <div class="card-body">         
           <form method="POST" action="{{ route('productos.update', $producto->id) }}" accept-charset="UTF-8" enctype="multipart/form-data" role="form">
             
           {{ csrf_field() }}
@@ -22,22 +30,22 @@
 
           <div class="form-group">
             <label for="nombre">Platillo:</label>
-            <input type="text" name="nombre" id="nombre" class="form-control input-sm" placeholder="Ingresa nombre" required="" value="{{ $producto->nombre }}">  
+            <input type="text" name="nombre" id="nombre" class="form-control input-sm" placeholder="Ingresa nombre" required="" value="{{ $producto->nombre }}" maxlength="40">  
           </div>
   
           <div class="form-group">
             <label for="descripcion">Descripción:</label>
-            <textarea name="descripcion" id="descripcion" class="form-control input-sm" placeholder="Describe la escolaridad" required="" >{{ $producto->descripcion }}</textarea>
+            <textarea name="descripcion" id="descripcion" class="form-control input-sm" placeholder="Describe la escolaridad" maxlength="70" required="" >{{ $producto->descripcion }}</textarea>
           </div>
 
           <div class="form-group">
             <label for="ingredientes">Ingredientes:</label>
-            <textarea name="ingredientes" id="ingredientes" class="form-control input-sm" placeholder="Ingresa los ingredientes" required="">{{ $producto->ingredientes }}</textarea>
+            <textarea name="ingredientes" id="ingredientes" class="form-control input-sm" placeholder="Ingresa los ingredientes" maxlength="70" required="">{{ $producto->ingredientes }}</textarea>
           </div>
 
           <div class="form-group">
             <label for="precio">Precio:</label>
-            <input type="number" name="precio" id="precio" class="form-control input-sm" placeholder="Ingresa precio" required="" step="0.01" min="0" value="{{ $producto->precio }}">
+            <input type="number" name="precio" id="precio" class="form-control input-sm" placeholder="Ingresa precio" required="" step="0.01" min="0" value="{{ $producto->precio }}" max="1000">
           </div>
           
           <div class="form-group">
@@ -48,8 +56,8 @@
             </select>
           </div>
           
-          
-          <input type="submit"  value="Actualizar" class="btn btn-success float-right" data-toggle="tooltip" title="¡Este boton en para actualizar el producto!" data-placement="left">
+          <hr>
+          <input type="submit"  value="Actualizar" class="btn btn-outline-secondary btn-sm float-right" >
                     
         </form>
       </div>

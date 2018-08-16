@@ -41,7 +41,7 @@
                     <div class="row">
 
                         <div class="card-body">
-                            <img class="card-img-center img-fluid" src="/productos/imagenes/{{ $orden->product->imagen}}" >
+                            <img width="100%" class="img-fluid" src="/productos/imagenes/{{ $orden->product->imagen}}" >
                         </div>
                     </div>
                 </div>

@@ -6,9 +6,9 @@
     <div class="col-md-10">
       <div class="card box-shadow">
         <div class="card-header" style="font-size: large;">
-          <STRONG>Ordenes</STRONG>
-          @can('orders.index')
-            <a href="{{ route('orders.index') }}" class="btn btn-sm btn-outline-secondary float-right">Refrescar</a>
+          <STRONG>Todas Ordenes</STRONG>
+          @can('orders.index_todas')
+            <a href="{{ route('orders.index_todas') }}" class="btn btn-sm btn-outline-secondary float-right">Refrescar</a>
           @endcan
         </div>
         <div class="card-body ">
@@ -19,7 +19,7 @@
                   <th>ID</th>
                   <th>Cliente</th>
                   <th>Menú</th>
-                  {{-- <th>Total</th> --}}
+                  <th>Total</th>
                   <th>Entregar</th>
                   <th>Hora</th>
                   <th>Estatus</th>
@@ -37,7 +37,7 @@
                       <td>
                         <a href="/products/{{ $orden->product->id}}">{{$orden->product->nombre}}</a>
                       </td>   
-                      {{-- <td>$ {{$orden->total}}</td>                       --}}
+                      <td>$ {{$orden->total}}</td>                      
                       <td>{{$orden->fecha_entregar}}</td>               
                       <td>{{$orden->hora_entregar}}</td>                    
                       <td>

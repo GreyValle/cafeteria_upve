@@ -5,7 +5,7 @@
   <div class="row justify-content-center">
     <div class="col-md-8">
       <div class="card box-shadow">
-        <div class="card-header">
+        <div class="card-header" style="font-size: large;">
           <STRONG>Roles</STRONG>
           @can('roles.create')
             <a href="{{ route('roles.create') }}" class="btn btn-sm btn-outline-secondary float-right">Crear</a>

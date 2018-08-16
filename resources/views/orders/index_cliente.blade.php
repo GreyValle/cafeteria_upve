@@ -6,9 +6,9 @@
     <div class="col-md-10">
       <div class="card box-shadow">
         <div class="card-header" style="font-size: large;">
-          <STRONG>Ordenes</STRONG>
-          @can('orders.index')
-            <a href="{{ route('orders.index') }}" class="btn btn-sm btn-outline-secondary float-right">Refrescar</a>
+          <STRONG>Mis Ordenes</STRONG>
+          @can('orders.index_cliente')
+            <a href="{{ route('orders.index_cliente') }}" class="btn btn-sm btn-outline-secondary float-right">Refrescar</a>
           @endcan
         </div>
         <div class="card-body ">
@@ -17,9 +17,8 @@
               <thead class="thead-light">
                 <tr>
                   <th>ID</th>
-                  <th>Cliente</th>
                   <th>Menú</th>
-                  {{-- <th>Total</th> --}}
+                  <th>Total</th>
                   <th>Entregar</th>
                   <th>Hora</th>
                   <th>Estatus</th>
@@ -32,20 +31,14 @@
                     <tr>
                       <td>{{$orden->id}}</td>
                       <td>
-                        <a href="/users/{{ $orden->user->id}}">{{$orden->user->name}}</a>
-                      </td>
-                      <td>
                         <a href="/products/{{ $orden->product->id}}">{{$orden->product->nombre}}</a>
                       </td>   
-                      {{-- <td>$ {{$orden->total}}</td>                       --}}
+                      <td>$ {{$orden->total}}</td>                      
                       <td>{{$orden->fecha_entregar}}</td>               
                       <td>{{$orden->hora_entregar}}</td>                    
                       <td>
-                        {{-- <a href="/orden_estatus/{{ $orden->orden_estatus->id}}">{{$orden->orden_estatus->estatus}}</a> --}}
-   
                         <div class="form-group">
                          <a href="/orden_estatus/{{ $orden->orden_estatus->id}}">{{$orden->orden_estatus->estatus}}</a>
-
                         </div>
                       </td>
 

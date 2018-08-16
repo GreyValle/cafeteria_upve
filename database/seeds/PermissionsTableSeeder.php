@@ -34,7 +34,7 @@ class PermissionsTableSeeder extends Seeder
         	'description' => 'Ver en detalle cada ususario del sistema',
         ]);
         Permission::create([
-        	'name' => 'Edicion de usuario',
+        	'name' => 'Edición de usuario',
         	'slug' => 'users.edit',
         	'description' => 'Editar cualquier dato de un usuario del sistema',
         ]);
@@ -56,12 +56,12 @@ class PermissionsTableSeeder extends Seeder
         	'description' => 'Ver en detalle cada rol del sistema',
         ]);
         Permission::create([
-        	'name' => 'Creacion de roles',
+        	'name' => 'Creación de roles',
         	'slug' => 'roles.create',
         	'description' => 'Editar cualquier dato de un rol del sistema',
         ]);
         Permission::create([
-        	'name' => 'Edicion de roles',
+        	'name' => 'Edición de roles',
         	'slug' => 'roles.edit',
         	'description' => 'Editar cualquier dato de un rol del sistema',
         ]);
@@ -83,12 +83,12 @@ class PermissionsTableSeeder extends Seeder
         	'description' => 'Ver en detalle cada producto del sistema',
         ]);
         Permission::create([
-        	'name' => 'Creacion de productos',
+        	'name' => 'Creación de productos',
         	'slug' => 'products.create',
         	'description' => 'Editar cualquier dato de un producto del sistema',
         ]);
         Permission::create([
-        	'name' => 'Edicion de productos',
+        	'name' => 'Edición de productos',
         	'slug' => 'products.edit',
         	'description' => 'Editar cualquier dato de un producto del sistema',
         ]);
@@ -98,29 +98,39 @@ class PermissionsTableSeeder extends Seeder
         	'description' => 'Eliminar cualquier producto del sistema',
         ]);
         
-        //orders
+        //orders orders.index_todas
         Permission::create([
-        	'name' => 'Navegar ordenes',
-        	'slug' => 'orders.index',
-        	'description' => 'Lista y Navega todos los ordenes del sistema',
+            'name' => 'Navegar ordenes pendientes',
+            'slug' => 'orders.index',
+            'description' => 'Lista y Navega las ordenes del sistema pendientes',
+        ]);
+        Permission::create([
+            'name' => 'Navegar todas las ordenes',
+            'slug' => 'orders.index_todas',
+            'description' => 'Lista y Navega todos los ordenes del sistema',
+        ]);
+        Permission::create([
+            'name' => 'Navegar ordenes propias',
+            'slug' => 'orders.index_cliente',
+            'description' => 'Lista y Navega sus propias ordenes',
         ]);
         Permission::create([
             'name' => 'Ver detalle de orden',
             'slug' => 'orders.show',
             'description' => 'Ver en detalle cada orden del sistema',
         ]);
-        Permission::create([//aljskalllllllaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+        Permission::create([
             'name' => 'Guardar orden',
             'slug' => 'orders.store',
             'description' => 'Almacenar en bases de datos la orden',
         ]);
         Permission::create([
-        	'name' => 'Creacion de ordenes',
+        	'name' => 'Creación de ordenes',
         	'slug' => 'orders.create',
-        	'description' => 'Editar cualquier dato de una orden del sistema',
+        	'description' => 'Crear orden',
         ]);
         Permission::create([
-        	'name' => 'Edicion de ordenes',
+        	'name' => 'Edición de ordenes',
         	'slug' => 'orders.edit',
         	'description' => 'Editar cualquier dato de una orden del sistema',
         ]);
@@ -147,7 +157,7 @@ class PermissionsTableSeeder extends Seeder
         	'description' => 'Editar cualquier dato de una escolaridad del sistema',
         ]);
         Permission::create([
-        	'name' => 'Edicion de escolaridades',
+        	'name' => 'Edición de escolaridades',
         	'slug' => 'escolaridad.edit',
         	'description' => 'Editar cualquier dato de una escolaridad del sistema',
         ]);
@@ -169,12 +179,12 @@ class PermissionsTableSeeder extends Seeder
         	'description' => 'Ver en detalle cada Orden_estatus del sistema',
         ]);
         Permission::create([
-        	'name' => 'Creacion de Orden_estatus',
+        	'name' => 'Creación de Orden_estatus',
         	'slug' => 'orden_estatus.create',
         	'description' => 'Editar cualquier dato de una Orden_estatus del sistema',
         ]);
         Permission::create([
-        	'name' => 'Edicion de Orden_estatus',
+        	'name' => 'Edición de Orden_estatus',
         	'slug' => 'orden_estatus.edit',
         	'description' => 'Editar cualquier dato de una Orden_estatus del sistema',
         ]);
@@ -196,12 +206,12 @@ class PermissionsTableSeeder extends Seeder
             'description' => 'Ver en detalle cada ocupación del sistema',
         ]);
         Permission::create([
-            'name' => 'Creacion de ocupaciones',
+            'name' => 'Creación de ocupaciones',
             'slug' => 'ocupaciones.create',
             'description' => 'Editar cualquier dato de una ocupación del sistema',
         ]);
         Permission::create([
-            'name' => 'Edicion de ocupaciones',
+            'name' => 'Edición de ocupaciones',
             'slug' => 'ocupaciones.edit',
             'description' => 'Editar cualquier dato de una ocupación del sistema',
         ]);
@@ -223,12 +233,12 @@ class PermissionsTableSeeder extends Seeder
             'description' => 'Ver en detalle cada estatus social del sistema',
         ]);
         Permission::create([
-            'name' => 'Creacion de estatus social',
+            'name' => 'Creación de estatus social',
             'slug' => 'estatus_social.create',
             'description' => 'Editar cualquier dato de un estatus social del sistema',
         ]);
         Permission::create([
-            'name' => 'Edicion de estatus social',
+            'name' => 'Edición de estatus social',
             'slug' => 'estatus_social.edit',
             'description' => 'Editar cualquier dato de un estatus social del sistema',
         ]);
@@ -250,19 +260,29 @@ class PermissionsTableSeeder extends Seeder
         	'description' => 'Ver en detalle cada tipo de sangre del sistema',
         ]);
         Permission::create([
-        	'name' => 'Creacion de tipo de sangre',
+        	'name' => 'Creación de tipo de sangre',
         	'slug' => 'tipo_sangre.create',
         	'description' => 'Editar cualquier dato de un tipo de sangre del sistema',
         ]);
         Permission::create([
-        	'name' => 'Edicion de tipo de sangre',
+        	'name' => 'Edición de tipo de sangre',
         	'slug' => 'tipo_sangre.edit',
         	'description' => 'Editar cualquier dato de un tipo de sangre del sistema',
         ]);
         Permission::create([
-        	'name' => 'Eliminar tipo de sangre',
-        	'slug' => 'tipo_sangre.destroy',
-        	'description' => 'Eliminar cualquier tipo de sangre del sistema',
+            'name' => 'Eliminar tipo de sangre',
+            'slug' => 'tipo_sangre.destroy',
+            'description' => 'Eliminar cualquier tipo de sangre del sistema',
+        ]); 
+        Permission::create([
+        	'name' => 'Ver enlace de catálagos',
+        	'slug' => 'catalagos',
+        	'description' => 'Puede ver el menú de enlaces catálagos',
+        ]);
+        Permission::create([
+            'name' => 'Ver enlace de ordenes',
+            'slug' => 'ordenes',
+            'description' => 'Puede ver el menú de enlaces ordenes',
         ]);
 
 

@@ -14,9 +14,9 @@
                 @endcan
             </div>
             <div class="col-md-6 ">
-              <img  class="card-img-right img-fluid" src="{{ url("/productos/imagenes/upve.jpg") }}" alt="Imagen">
+              <img class="card-img-right img-fluid" src="{{ url("/productos/imagenes/upve.jpg") }}" alt="Imagen">
             </div>
-          </div> 
+          </div>
         </div>
         <div class="card-body">
           <products-component></products-component>

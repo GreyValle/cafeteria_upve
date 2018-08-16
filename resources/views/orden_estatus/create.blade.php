@@ -5,9 +5,9 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card box-shadow">
-                <div class="card-header"><strong>Creando estatus orden</strong>
+                <div class="card-header" style="font-size: large;"><strong>Creando estatus orden</strong>
                     @can('orden_estatus.index')
-                        <a href="{{ route('orden_estatus.index') }}" class="btn btn-sm btn-primary float-right">Volver</a>
+                        <a href="{{ route('orden_estatus.index') }}" class="btn btn-sm btn-outline-secondary float-right">Volver</a>
                     @endcan
                 </div>
 
