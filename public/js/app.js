@@ -47350,31 +47350,33 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
-            roles: []
+            comentarios: []
         };
     },
     mounted: function mounted() {
         var _this = this;
 
-        axios.get('/roles-vue').then(function (response) {
-            _this.roles = response.data;
+        axios.get('/comentarios-usuario').then(function (response) {
+            _this.comentarios = response.data;
         });
     },
 
     methods: {
-        addRol: function addRol(rol) {
-            this.roles.push(rol);
+        addRol: function addRol(comentario) {
+            this.comentarios.push(comentario);
         },
-        updateRol: function updateRol(index, rol) {
-            this.roles[index] = rol;
-            // console.log(this.roles[index]=rol);
+        updateRol: function updateRol(index, comentario) {
+            this.comentarios[index] = comentario;
+            // console.log(this.comentarios[index]=comentario);
         },
         deleteRol: function deleteRol(index) {
-            this.roles.splice(index, 1);
+            this.comentarios.splice(index, 1);
         }
     }
 });
@@ -47390,14 +47392,14 @@ var render = function() {
   return _c("div", { staticClass: "row justify-content-center" }, [
     _c(
       "div",
-      { staticClass: "col-md-10" },
+      { staticClass: "col-xm-12 col-sm-12 col-md-10" },
       [
         _c("form-roles-component", { on: { new: _vm.addRol } }),
         _vm._v(" "),
-        _vm._l(_vm.roles, function(rol, index) {
+        _vm._l(_vm.comentarios, function(comentario, index) {
           return _c("rol-component", {
-            key: rol.id,
-            attrs: { rol: rol },
+            key: comentario.id,
+            attrs: { comentario: comentario },
             on: {
               update: function($event) {
                 _vm.updateRol.apply(void 0, [index].concat(arguments.data))
@@ -47407,7 +47409,9 @@ var render = function() {
               }
             }
           })
-        })
+        }),
+        _vm._v(" "),
+        _c("br")
       ],
       2
     )
@@ -47501,11 +47505,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
-            rol: '',
+            comentario: '',
             descripcion: ''
         };
     },
@@ -47519,17 +47524,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this = this;
 
             var params = {
-                rol: this.rol,
+                comentario: this.comentario,
                 descripcion: this.descripcion
             };
 
-            this.rol = '';
+            this.comentario = '';
             this.descripcion = '';
 
-            axios.post('/roles-vue', params).then(function (response) {
-                var rol = response.data;
+            axios.post('/comentarios-usuario', params).then(function (response) {
+                var comentario = response.data;
                 // console.log(response.data);
-                _this.$emit('new', rol);
+                _this.$emit('new', comentario);
             });
         }
     }
@@ -47543,105 +47548,118 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container" }, [
-    _c("div", { staticClass: "row justify-content-center" }, [
-      _c("div", { staticClass: "col-md-10" }, [
-        _c("div", { staticClass: "card card-default" }, [
-          _c("div", { staticClass: "card-header" }, [
-            _vm._v("Registra nuevo rol")
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "card-body" }, [
-            _c(
-              "form",
-              {
-                attrs: { action: "" },
-                on: {
-                  submit: function($event) {
-                    $event.preventDefault()
-                    _vm.newRol()
-                  }
+  return _c("div", { staticClass: "row justify-content-center" }, [
+    _c("div", { staticClass: "col-12" }, [
+      _c("div", { staticClass: "card card-default padding box-shadow" }, [
+        _vm._m(0),
+        _vm._v(" "),
+        _c("div", { staticClass: "card-body" }, [
+          _c(
+            "form",
+            {
+              attrs: { action: "" },
+              on: {
+                submit: function($event) {
+                  $event.preventDefault()
+                  _vm.newRol()
                 }
-              },
-              [
-                _c("div", { staticClass: "form-group" }, [
-                  _c("label", { attrs: { for: "rol" } }, [_vm._v("Rol:")]),
-                  _vm._v(" "),
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.rol,
-                        expression: "rol"
-                      }
-                    ],
-                    staticClass: "form-control",
-                    attrs: {
-                      type: "text",
-                      name: "rol",
-                      placeholder: "Ingresa un rol",
-                      required: ""
-                    },
-                    domProps: { value: _vm.rol },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.rol = $event.target.value
-                      }
-                    }
-                  })
+              }
+            },
+            [
+              _c("div", { staticClass: "form-group" }, [
+                _c("label", { attrs: { for: "comentario" } }, [
+                  _vm._v("Título:")
                 ]),
                 _vm._v(" "),
-                _c("div", { staticClass: "form-group" }, [
-                  _c("label", { attrs: { for: "descripcion" } }, [
-                    _vm._v("Descripción:")
-                  ]),
-                  _vm._v(" "),
-                  _c("textarea", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.descripcion,
-                        expression: "descripcion"
-                      }
-                    ],
-                    staticClass: "form-control",
-                    attrs: {
-                      name: "descripcion",
-                      placeholder: "Describe el rol del usuario",
-                      required: ""
-                    },
-                    domProps: { value: _vm.descripcion },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.descripcion = $event.target.value
-                      }
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.comentario,
+                      expression: "comentario"
                     }
-                  }),
-                  _vm._v("            \n                       ")
+                  ],
+                  staticClass: "form-control input-sm",
+                  attrs: {
+                    type: "text",
+                    name: "comentario",
+                    placeholder: "Ingresa título del comentario",
+                    required: ""
+                  },
+                  domProps: { value: _vm.comentario },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.comentario = $event.target.value
+                    }
+                  }
+                })
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-group" }, [
+                _c("label", { attrs: { for: "descripcion" } }, [
+                  _vm._v("Descripción:")
                 ]),
                 _vm._v(" "),
-                _c(
-                  "button",
-                  { staticClass: "btn btn-success", attrs: { type: "submit" } },
-                  [_vm._v("Guardar")]
-                )
-              ]
-            )
-          ])
+                _c("textarea", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.descripcion,
+                      expression: "descripcion"
+                    }
+                  ],
+                  staticClass: "form-control input-sm",
+                  attrs: {
+                    name: "descripcion",
+                    placeholder: "Describe el comentario",
+                    required: ""
+                  },
+                  domProps: { value: _vm.descripcion },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.descripcion = $event.target.value
+                    }
+                  }
+                })
+              ]),
+              _vm._v(" "),
+              _c("hr"),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-sm btn-outline-secondary float-right",
+                  attrs: { type: "submit" }
+                },
+                [_vm._v("Guardar")]
+              )
+            ]
+          )
         ])
       ])
     ])
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "card-header", staticStyle: { "font-size": "large" } },
+      [_c("strong", [_vm._v("Registrar comentario")])]
+    )
+  }
+]
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
@@ -47746,7 +47764,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['rol'],
+    props: ['comentario'],
     data: function data() {
         return {
             editMode: false
@@ -47760,7 +47778,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         onClickDelete: function onClickDelete() {
             var _this = this;
 
-            axios.delete('/roles-vue/' + this.rol.id).then(function () {
+            axios.delete('/comentarios-usuario/' + this.comentario.id).then(function () {
                 _this.$emit('delete');
             });
         },
@@ -47771,14 +47789,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this2 = this;
 
             var params = {
-                rol: this.rol.rol,
-                descripcion: this.rol.descripcion
+                comentario: this.comentario.comentario,
+                descripcion: this.comentario.descripcion
             };
-            axios.put('/roles-vue/' + this.rol.id, params).then(function (response) {
+            axios.put('/comentarios-usuario/' + this.comentario.id, params).then(function (response) {
                 _this2.editMode = false;
-                var rol = response.data;
-                // console.log(rol);
-                _this2.$emit('update', rol);
+                var comentario = response.data;
+                // console.log(comentario);
+                _this2.$emit('update', comentario);
             });
         }
     }
@@ -47792,120 +47810,124 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container" }, [
-    _c("div", { staticClass: "row justify-content-center" }, [
-      _c("div", { staticClass: "col-md-10" }, [
-        _c("div", { staticClass: "card card-default" }, [
-          _c("div", { staticClass: "card-header" }, [
-            _c("div", { staticClass: "row" }, [
-              _c("div", { staticClass: "col-6" }, [
-                _vm.editMode
-                  ? _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.rol.rol,
-                          expression: "rol.rol"
-                        }
-                      ],
-                      staticClass: "form-control",
-                      attrs: { type: "text" },
-                      domProps: { value: _vm.rol.rol },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(_vm.rol, "rol", $event.target.value)
-                        }
+  return _c("div", { staticClass: "row justify-content-center" }, [
+    _c("div", { staticClass: "col-12" }, [
+      _c("div", { staticClass: "card card-default padding box-shadow" }, [
+        _c("div", { staticClass: "card-header" }, [
+          _c("div", { staticClass: "row" }, [
+            _c("div", { staticClass: "col-6" }, [
+              _vm.editMode
+                ? _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.comentario.comentario,
+                        expression: "comentario.comentario"
                       }
-                    })
-                  : _c("p", [_c("strong", [_vm._v(_vm._s(_vm.rol.rol))])])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-6" }, [
-                _c("span", { staticClass: "text-muted float-right" }, [
-                  _vm._v("Creado " + _vm._s(_vm.rol.created_at))
-                ])
+                    ],
+                    staticClass: "form-control input-sm",
+                    attrs: { type: "text" },
+                    domProps: { value: _vm.comentario.comentario },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(
+                          _vm.comentario,
+                          "comentario",
+                          $event.target.value
+                        )
+                      }
+                    }
+                  })
+                : _c("p", [
+                    _c("strong", [_vm._v(_vm._s(_vm.comentario.comentario))])
+                  ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-6" }, [
+              _c("span", { staticClass: "text-muted float-right" }, [
+                _vm._v("Creado " + _vm._s(_vm.comentario.created_at))
               ])
             ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "card-body" }, [
-            _vm.editMode
-              ? _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.rol.descripcion,
-                      expression: "rol.descripcion"
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "card-body" }, [
+          _vm.editMode
+            ? _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.comentario.descripcion,
+                    expression: "comentario.descripcion"
+                  }
+                ],
+                staticClass: "form-control input-sm",
+                attrs: { type: "text" },
+                domProps: { value: _vm.comentario.descripcion },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
                     }
-                  ],
-                  staticClass: "form-control",
-                  attrs: { type: "text" },
-                  domProps: { value: _vm.rol.descripcion },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
+                    _vm.$set(_vm.comentario, "descripcion", $event.target.value)
+                  }
+                }
+              })
+            : _c("p", [_vm._v(_vm._s(_vm.comentario.descripcion))])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "card-footer" }, [
+          _c("div", { staticClass: "row" }, [
+            _c("div", { staticClass: "col-6" }, [
+              _vm.editMode
+                ? _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-sm btn-outline-success",
+                      on: {
+                        click: function($event) {
+                          _vm.onClickUpdate()
+                        }
                       }
-                      _vm.$set(_vm.rol, "descripcion", $event.target.value)
+                    },
+                    [_vm._v("Guardar cambios")]
+                  )
+                : _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-sm btn-outline-secondary",
+                      on: {
+                        click: function($event) {
+                          _vm.onClickEdit()
+                        }
+                      }
+                    },
+                    [_vm._v("Editar")]
+                  ),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-sm btn-outline-danger",
+                  on: {
+                    click: function($event) {
+                      _vm.onClickDelete()
                     }
                   }
-                })
-              : _c("p", [_vm._v(_vm._s(_vm.rol.descripcion))])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "card-footer" }, [
-            _c("div", { staticClass: "row" }, [
-              _c("div", { staticClass: "col-6" }, [
-                _vm.editMode
-                  ? _c(
-                      "button",
-                      {
-                        staticClass: "btn btn-success",
-                        on: {
-                          click: function($event) {
-                            _vm.onClickUpdate()
-                          }
-                        }
-                      },
-                      [_vm._v("Guardar cambios")]
-                    )
-                  : _c(
-                      "button",
-                      {
-                        staticClass: "btn btn-primary",
-                        on: {
-                          click: function($event) {
-                            _vm.onClickEdit()
-                          }
-                        }
-                      },
-                      [_vm._v("Editar")]
-                    ),
-                _vm._v(" "),
-                _c(
-                  "button",
-                  {
-                    staticClass: "btn btn-danger",
-                    on: {
-                      click: function($event) {
-                        _vm.onClickDelete()
-                      }
-                    }
-                  },
-                  [_vm._v("Eliminar")]
-                )
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-6" }, [
-                _c("div", [
-                  _c("p", { staticClass: "float-right" }, [
-                    _vm._v(_vm._s(_vm.rol.updated_at))
-                  ])
+                },
+                [_vm._v("Eliminar")]
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-6" }, [
+              _c("div", [
+                _c("p", { staticClass: "float-right" }, [
+                  _vm._v(_vm._s(_vm.comentario.updated_at))
                 ])
               ])
             ])

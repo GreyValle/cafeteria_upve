@@ -3,17 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Comentarios;
-class RolesvueController extends Controller
+use App\Comentario;
+class ComentarioController extends Controller
 {
-    /**
+   /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        return Comentarios::all();
+        return Comentario::all();
     }
 
     /**
@@ -24,9 +24,13 @@ class RolesvueController extends Controller
      */
     public function store(Request $request)
     {
-        $comentario=new Comentarios();
+        $comentario=new Comentario();
         // dd($request);
-        $comentario=Comentarios::create($request->all());
+        // $comentario=Comentario::create($request->all());
+        $comentario->comentario=$request->comentario;
+        $comentario->descripcion=$request->descripcion;
+        $comentario->user_id=\Auth::user()->id;
+        $comentario->save();
             
         return $comentario;
     }
@@ -40,11 +44,11 @@ class RolesvueController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $comentario= Comentarios::find($id);
+        $comentario= Comentario::find($id);
         $comentario->comentario=$request->comentario;
         $comentario->descripcion=$request->descripcion;
         if ($comentario->save()) {
-            return Comentarios::find($id);
+            return Comentario::find($id);
         }
         
         // return $comentario;
@@ -58,7 +62,8 @@ class RolesvueController extends Controller
      */
     public function destroy($id)
     {
-        $comentario= validarRespuesta_9::find($id); 
+
+        $comentario= Comentario::find($id); 
         $comentario->delete();
     }
 }

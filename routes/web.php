@@ -260,6 +260,9 @@ Route::apiResource('/roles-vue','RolesvueController', [
 "only"=>["index","store","update","destroy"]
 ]);
 
+Route::apiResource('/comentarios-usuario','ComentarioController');
+
+
 Route::get('productos/imagenes/{filename}', function($filename){
 	$path=storage_path("app/images/$filename");
 	if (!\File::exists($path)) abort(404);

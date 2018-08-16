@@ -27,16 +27,25 @@
         .box-shadow { 
             box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .1);
         }
+        .padding{
+            margin:10px; 
+        }
 
    /*     .bg-nav { background-color: #A285F4; }
         .bg-tablas { background-color: #DFF; }*/
         /*B49DF6*/
+    body{
+        margin-top: 50px;
+        /*margin-bottom: 55px;*/
+    }
+    @include('frangment/estilos')
+@include('frangment/modales')
     </style>
 </head>
 <body>
     <div id="app">
 
-        <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
+        <nav class="navbar navbar-expand-md navbar-light navbar-laravel fixed-top">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}

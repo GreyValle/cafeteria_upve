@@ -1,33 +1,34 @@
 <template>
-    <div class="container">
+    <!-- <div class="container"> -->
         <div class="row justify-content-center">
-            <div class="col-md-10"> 
-            <div class="card card-default">
-                <div class="card-header">Registra nuevo rol</div>
+            <div class="col-12"> 
+            <div class="card card-default padding box-shadow">
+                <div class="card-header" style="font-size: large;"><strong>Registrar comentario</strong></div>
                 <div class="card-body">
                     <form action="" v-on:submit.prevent="newRol()" >
                         <div class="form-group">
-                            <label for="rol">Rol:</label>    
-                            <input type="text" name="rol" class="form-control" placeholder="Ingresa un rol" required="" v-model="rol">
+                            <label for="comentario">Título:</label>    
+                            <input type="text" name="comentario" class="form-control input-sm" placeholder="Ingresa título del comentario" required="" v-model="comentario">
                         </div>
                         <div class="form-group">
                             <label for="descripcion">Descripción:</label>
-                            <textarea name="descripcion" class="form-control" placeholder="Describe el rol del usuario" required=""  v-model="descripcion"></textarea>            
-                       </div>
-                        <button type="submit" class="btn btn-success">Guardar</button>
+                            <textarea name="descripcion" class="form-control input-sm" placeholder="Describe el comentario" required=""  v-model="descripcion"></textarea>            
+                        </div>
+                        <hr>
+                        <button type="submit" class="btn btn-sm btn-outline-secondary float-right">Guardar</button>
                     </form>
                 </div>         
             </div>       
             </div>
         </div>
-    </div>
+    <!-- </div> -->
 </template>
 
 <script>
     export default {
         data(){
             return{
-                rol:'',
+                comentario:'',
                 descripcion:''
             }
         },
@@ -39,18 +40,18 @@
         methods:{
             newRol(){
                 const params={
-                    rol:this.rol,
+                    comentario:this.comentario,
                     descripcion:this.descripcion
                 };
 
-                this.rol='';
+                this.comentario='';
                 this.descripcion='';
 
-                axios.post('/roles-vue', params).
+                axios.post('/comentarios-usuario', params).
                     then((response)=>{
-                        const rol=response.data;
+                        const comentario=response.data;
                         // console.log(response.data);
-                        this.$emit('new',rol);
+                        this.$emit('new',comentario);
                 });
             
             }
