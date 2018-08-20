@@ -14,5 +14,9 @@ class Product extends Model
         'id','nombre', 'descripcion','ingredientes',
         'precio','user_id', 'estatus', 'imagen'
     ];
+
+        public function user(){
+    	return $this->belongsTo('App\User');
+    }
     
 }

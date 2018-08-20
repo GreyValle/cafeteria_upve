@@ -6,9 +6,9 @@
     <div class="col-md-10">
       <div class="card box-shadow">
         <div class="card-header" style="font-size: large;">
-          <STRONG>Ordenes</STRONG>
-          @can('orders.index')
-            <a href="{{ route('orders.index') }}" class="btn btn-sm btn-outline-secondary float-right">Refrescar</a>
+          <STRONG>Todos Productos</STRONG>
+          @can('products.index_todos_tabla')
+            <a href="{{ route('products.index_todos_tabla') }}" class="btn btn-sm btn-outline-secondary float-right">Refrescar</a>
           @endcan
         </div>
         <div class="card-body ">
@@ -17,41 +17,41 @@
               <thead class="thead-light">
                 <tr>
                   <th>ID</th>
-                  <th>Cliente</th>
-                  <th>Menú</th>
-                  <th>Entregar</th>
-                  <th>Hora</th>
+                  <th>Nombre</th>
+                  <th>Precio</th>
+                  <th>Autor</th>
                   <th>Estatus</th>
                   <th colspan="3">&nbsp;</th>   
                 </tr>
               </thead>
               <tbody>
-                @if($orders->count())  
-                  @foreach($orders as $orden)  
+                @if($products->count())  
+                  @foreach($products as $product)  
                     <tr>
-                      <td>{{$orden->id}}</td>
+                      <td>{{$product->id}}</td>
+                      <td>{{ $product->nombre }}</td>
+                      <td>{{ $product->precio }}</td>
                       <td>
-                        <a href="/users/{{ $orden->user->id}}">{{$orden->user->name}}</a>
+                        <a href="/users/{{ $product->user->id}}">{{$product->user->name}}</a>
                       </td>
-                      <td>
-                        <a href="/products/{{ $orden->product->id}}">{{$orden->product->nombre}}</a>
-                      </td>   
-
-                      <td>{{$orden->fecha_entregar}}</td>               
-                      <td>{{$orden->hora_entregar}}</td>                    
-                      <td>
-                        <a href="/orden_estatus/{{ $orden->orden_estatus->id}}">{{$orden->orden_estatus->estatus}}</a>
-                      </td>
-
-                      @can('orders.show')
-                        <td width="10px"><a class="btn btn-outline-secondary btn-sm" href="{{action('OrdersController@show', $orden->id)}}" >Ver</a></td>
+                      @php
+                          if ($product->estatus==1) {
+                            $estatus="Activado";
+                          }
+                          else{
+                            $estatus="Desactivado";
+                          }
+                      @endphp   
+                      <td>{{ $estatus }}</td>
+                      @can('products.show')
+                        <td width="10px"><a class="btn btn-outline-secondary btn-sm" href="{{action('ProductsController@show', $product->id)}}" >Ver</a></td>
                       @endcan
-                      @can('orders.edit')
-                        <td width="10px"><a class="btn btn-sm btn-outline-secondary" href="{{action('OrdersController@edit', $orden->id)}}">Editar</a></td>
+                      @can('products.edit')
+                        <td width="10px"><a class="btn btn-sm btn-outline-secondary" href="{{action('ProductsController@edit', $product->id)}}">Editar</a></td>
                       @endcan
-                      @can('orders.destroy')
+                      @can('products.destroy')
                         <td width="10px">
-                          <form action="{{action('OrdersController@destroy', $orden->id)}}" method="POST">
+                          <form action="{{action('ProductsController@destroy', $product->id)}}" method="POST">
                             {{csrf_field()}}
                             <input name="_method" type="hidden" value="DELETE">
                      
@@ -71,7 +71,7 @@
             <hr>            
           </div>
           <div class="row justify-content-center">
-            {{ $orders->render() }}
+            {{ $products->render() }}
           </div>      
         </div> 
       </div>

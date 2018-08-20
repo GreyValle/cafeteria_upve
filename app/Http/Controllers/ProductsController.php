@@ -19,13 +19,22 @@ class ProductsController extends Controller
         // $request->user()->authorizeRoles(['admin','user']);
 
         // $escolaridades=Escolaridad::all();
-        $products=Product::paginate(6);
-
+        $products=Product::where('estatus','=','1')->paginate(6);
+        // dd($products);
         if ($request->wantsJson()) {
             # code...
             return new ProductsCollection($products);
         }
         return view('products.index',compact('products')); 
+    }
+
+
+    public function index_todos(Request $request)
+    {
+
+        $products=Product::paginate(10);
+        
+        return view('products.index_todos_tabla',compact('products')); 
     }
     
     /**

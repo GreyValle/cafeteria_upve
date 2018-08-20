@@ -4,7 +4,7 @@
 		render:function(createElement, context){
 			var data={
 				...context.data,
-				css:false,
+				// css:false,
 				on:{
 					beforeEnter: function(el){
 						el.style.opacity=0;

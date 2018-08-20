@@ -1,0 +1,18 @@
+p > a{
+  	color: #4E1D4E;
+  	font-weight: bold;
+}
+p a:hover{
+	color: #A13EA1;
+}
+td>a{
+	color: #4E1D4E;
+  	font-weight: bold;
+}
+td>a:hover{
+	color: #A13EA1;
+}
+
+li>input > .colores{
+	color: red;
+}

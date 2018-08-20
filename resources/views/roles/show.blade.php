@@ -5,7 +5,7 @@
     <div class="row justify-content-center" style="font-size: large;">
         <div class="col-md-8">
             <div class="card box-shadow">
-                <div class="card-header" style="font-size: large;"><strong>Role</strong>
+                <div class="card-header" style="font-size: large;"><strong>Rol</strong>
                     <div class="btn-toolbar float-right">
                       <div class="btn-group">
                         @can('roles.edit')
@@ -26,7 +26,7 @@
                         </div>
                         <div class="col-md-6">
                             @if ($role->id_user)
-                                <p><strong>Autor: </strong><a href="/users/{{$role->id_user}}">{{ $role->id_user}}</a></p>
+                                <p><strong>ID Autor: </strong><a href="/users/{{$role->id_user}}">{{ $role->id_user}}</a></p>
                             @else
                                 <p><strong>Autor:</strong> Desconocido</p>
                             @endif

@@ -8,9 +8,8 @@
 }
 /* Carousel base class */
 .carousel {
- /* margin-bottom: 4rem;*/
-margin-top: -20px;
-margin-bottom: 1em;
+  margin-top: -20px;
+  margin-bottom: 1em;
 }
 /* Since positioning the image, we need to help out the caption */
 .carousel-caption {
@@ -21,7 +20,7 @@ margin-bottom: 1em;
 /* Declare heights because of positioning of img element */
 .carousel-item {
   height: 32rem;
-  background-color: #777;
+  background-color: black;
 }
 .carousel-item > img {
   position: absolute;
@@ -29,8 +28,9 @@ margin-bottom: 1em;
   left: 0;
   min-width: 100%;
   height: 32rem;
+  opacity: 0.5;
+  z-index: 9;
 }
-
 
 /* MARKETING CONTENT
 -------------------------------------------------- */
@@ -46,14 +46,8 @@ margin-bottom: 1em;
 .marketing .col-lg-4 p {
   margin-right: .75rem;
   margin-left: .75rem;
+  text-align: center;
 }
-
-
-/* Featurettes
-------------------------- */
-
-.box-shadow { box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05); }
-
 
 /* RESPONSIVE CSS
 -------------------------------------------------- */
@@ -65,7 +59,6 @@ margin-bottom: 1em;
     font-size: 1.25rem;
     line-height: 1.4;
   }
-
 }
 
 </style>

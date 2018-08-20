@@ -2,7 +2,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title" id="favoritesModalLabel">Acerca de Walmart</h4>
+        <h4 class="modal-title" id="favoritesModalLabel">Acerca de Cafetería</h4>
         <button type="button" class="close" 
           data-dismiss="modal" 
           aria-label="Close">
@@ -10,7 +10,8 @@
       </div>
       <div class="modal-body">
         <p>
-          Walmart (oficialmente, Wal-Mart Stores, Inc.) es una corporación multinacional de tiendas de origen estadounidense, que opera cadenas de grandes almacenes de descuento y clubes de almacenes. Fue fundada por Sam Walton en 1962, incorporada el 31 de octubre de 1969, y ha cotizado en la Bolsa de Nueva York desde 1972. Su sede principal está ubicada en Bentonville, Arkansas.
+          Cafeteria UPVE (oficialmente, Comidas y desayunos de S.A. de C.V.). Es una pequeña empresa familiar....Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor ut et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+          consequat.
         </p>
 
       </div>

@@ -22,7 +22,7 @@ class OrdersController extends Controller
         $date=$date->format('Y-m-d');
 
         // dd($date);
-        $orders=Order::where('fecha_entregar','=',$date)->orderBy('orden_estatus_id','ASC')->orderBy('hora_entregar','ASC')->paginate(10);
+        $orders=Order::where('fecha_entregar','=',$date)->where('orden_estatus_id','=',1)->orderBy('orden_estatus_id','ASC')->orderBy('hora_entregar','ASC')->paginate(10);
 
         $estatus=\App\Orden_estatus::orderBy('estatus','ASC')->pluck('estatus','id');
 

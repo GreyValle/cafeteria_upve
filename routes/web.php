@@ -1,30 +1,7 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
 Route::get('/', function () {
     return view('welcome');
-});
-
-Route::get('/mail', function () {
-    $data= array(
-    	'name'=> 'Cafeteria UPVE',
-    );
-    Mail::send('emails.prueba',$data,function($message){
-    		$message->from('greygarcia14.gg@gmail.com', 'Aplicacion de cafeteria');
-    		$message->to('150050120@upve.edu.mx')->subject('pRUEBA DE EMAIL DESDE LARAVEL');
-    });
-
-    return "Tu mensaje se envio correctamente ajajjaa";
 });
 
 Auth::routes();
@@ -32,6 +9,12 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::middleware(['auth'])->group(function(){
+	
+	//comentarios
+	Route::get('comentarios', 'ComentarioController@index_2')->name('comentarios.index_2')->middleware('permission:comentarios.index_2');
+
+	Route::delete('comentarios/{comentario}', 'ComentarioController@destroy_2')->name('comentarios.destroy_2');
+
 	//roles
 	Route::post('roles/store', 'RoleController@store')->name('roles.store')
 			->middleware('permission:roles.create');
@@ -48,8 +31,7 @@ Route::middleware(['auth'])->group(function(){
 	Route::get('roles/{role}', 'RoleController@show')->name('roles.show')
 			->middleware('permission:roles.show');
 
-	Route::delete('roles/{role}', 'RoleController@destroy')->name('roles.destroy')
-			->middleware('permission:roles.destroy');
+	Route::delete('roles/{role}', 'RoleController@destroy')->name('roles.destroy')->middleware('permission:roles.destroy');
 
 	Route::get('roles/{role}/edit', 'RoleController@edit')->name('roles.edit')
 			->middleware('permission:roles.edit');
@@ -60,6 +42,9 @@ Route::middleware(['auth'])->group(function(){
 
 	Route::get('products', 'ProductsController@index')->name('products.index')
 			->middleware('permission:products.index');
+	
+	Route::get('products-todos-tabla', 'ProductsController@index_todos')->name('products.index_todos_tabla')
+			->middleware('permission:products.index_todos_tabla');
 
 	Route::get('products/create', 'ProductsController@create')->name('products.create')
 			->middleware('permission:products.create');
@@ -186,13 +171,13 @@ Route::middleware(['auth'])->group(function(){
 	Route::post('orders/store', 'OrdersController@store')->name('orders.store')
 			->middleware('permission:orders.create');
 
-	Route::get('orders', 'OrdersController@index')->name('orders.index')
+	Route::get('orders-solicitadas', 'OrdersController@index')->name('orders.index')
 			->middleware('permission:orders.index');
 
-	Route::get('todas-orders', 'OrdersController@index_todas')->name('orders.index_todas')
+	Route::get('orders-todas', 'OrdersController@index_todas')->name('orders.index_todas')
 			->middleware('permission:orders.index_todas');
 
-	Route::get('orders-cliente', 'OrdersController@index_cliente')->name('orders.index_cliente')
+	Route::get('orders-propias', 'OrdersController@index_cliente')->name('orders.index_cliente')
 			->middleware('permission:orders.index_cliente');
 
 	Route::put('orders/{user}', 'OrdersController@update')->name('orders.update')

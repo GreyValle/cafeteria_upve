@@ -11,6 +11,7 @@
         <div>
             Los datos de tu orden son los siguientes:
         </div>
+        <hr>
         <div>
           <ul>
             <li>Código de orden:  {!! $orden !!}</li>

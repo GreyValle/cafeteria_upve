@@ -12,10 +12,7 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
-
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+    <script src="{{ asset('js/sweetalert.min.js') }}"></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
@@ -23,6 +20,8 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/estilos.css') }}" rel="stylesheet">
+    
     <style>
         .box-shadow { 
             box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .1);
@@ -30,22 +29,20 @@
         .padding{
             margin:10px; 
         }
-
-   /*     .bg-nav { background-color: #A285F4; }
-        .bg-tablas { background-color: #DFF; }*/
-        /*B49DF6*/
     body{
         margin-top: 50px;
         /*margin-bottom: 55px;*/
     }
+    
     @include('frangment/estilos')
-@include('frangment/modales')
+    @include('frangment/modales')
+
     </style>
 </head>
 <body>
     <div id="app">
 
-        <nav class="navbar navbar-expand-md navbar-light navbar-laravel fixed-top">
+        <nav class="navbar navbar-expand-md navbar-dark navbar-laravel fixed-top">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
@@ -57,9 +54,17 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ "/home" }}">Home</a>
+                        </li>
                         @can('products.index')
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('products.index') }}">Menú</a>
+                            </li>
+                        @endcan
+                        @can('products.index_todos_tabla')
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('products.index_todos_tabla') }}">Productos</a>
                             </li>
                         @endcan
                         @can('ordenes')
@@ -88,6 +93,11 @@
                         @can('roles.index')
                             <li class="nav-item">
                                  <a class="nav-link" href="{{ route('roles.index') }}">Roles</a>
+                            </li>
+                        @endcan
+                        @can('comentarios.index_2')
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('comentarios.index_2') }}">Comentarios</a>
                             </li>
                         @endcan
                         @can('catalagos')
@@ -128,7 +138,7 @@
                                 <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                <a class="nav-link" href="{{ route('register') }}">{{ __('Registro') }}</a>
                             </li>
                         @else
                             <li class="nav-item dropdown">
@@ -142,9 +152,6 @@
 
                                 </div>
                             </li>
-                     {{--    <div class="form-group">                                
-                            <p class="card-subtitle"><strong>Saldo Actual: </strong>${{ \Auth::user()->saldo }}</p> 
-                        </div> --}}
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>

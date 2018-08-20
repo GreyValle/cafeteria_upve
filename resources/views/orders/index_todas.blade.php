@@ -41,12 +41,7 @@
                       <td>{{$orden->fecha_entregar}}</td>               
                       <td>{{$orden->hora_entregar}}</td>                    
                       <td>
-                        {{-- <a href="/orden_estatus/{{ $orden->orden_estatus->id}}">{{$orden->orden_estatus->estatus}}</a> --}}
-   
-                        <div class="form-group">
-                         <a href="/orden_estatus/{{ $orden->orden_estatus->id}}">{{$orden->orden_estatus->estatus}}</a>
-
-                        </div>
+                        <a href="/orden_estatus/{{ $orden->orden_estatus->id}}">{{$orden->orden_estatus->estatus}}</a>
                       </td>
 
                       @can('orders.show')

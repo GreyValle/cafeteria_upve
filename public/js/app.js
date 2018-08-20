@@ -48007,7 +48007,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 	data: function data() {
@@ -48179,9 +48178,14 @@ var render = function() {
     _c("div", { staticClass: "card card-default box-shadow" }, [
       _c("div", { staticClass: "card-header text-center" }, [
         _c("h2", { staticClass: "card-title" }, [
-          _c("a", { attrs: { href: "/products/" + _vm.product.id } }, [
-            _vm._v(_vm._s(_vm.product.title))
-          ])
+          _c(
+            "a",
+            {
+              staticStyle: { color: "#4E1D4E" },
+              attrs: { href: "/products/" + _vm.product.id }
+            },
+            [_vm._v(_vm._s(_vm.product.title))]
+          )
         ])
       ]),
       _vm._v(" "),
@@ -48279,7 +48283,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 	functional: true,
 	render: function render(createElement, context) {
 		var data = _extends({}, context.data, {
-			css: false,
+			// css:false,
 			on: {
 				beforeEnter: function beforeEnter(el) {
 					el.style.opacity = 0;

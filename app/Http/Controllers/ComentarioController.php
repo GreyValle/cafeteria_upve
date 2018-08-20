@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Comentario;
+use Alert;
 class ComentarioController extends Controller
 {
    /**
@@ -15,6 +16,15 @@ class ComentarioController extends Controller
     {
         return Comentario::all();
     }
+     
+      public function index_2()
+    {
+        $comentarios=Comentario::paginate(10);
+        $users=\App\User::all();
+
+        return view('comentarios.index',compact('comentarios','users')); 
+    }
+
 
     /**
      * Store a newly created resource in storage.
@@ -65,5 +75,14 @@ class ComentarioController extends Controller
 
         $comentario= Comentario::find($id); 
         $comentario->delete();
+    }
+    
+    public function destroy_2($id)
+    {
+
+        Comentario::find($id)->delete();
+        Alert::success('¡Eliminado satisfactoriamente!');
+        return redirect()->route('comentarios.index_2');
+
     }
 }

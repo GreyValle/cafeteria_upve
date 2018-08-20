@@ -9,7 +9,6 @@
                   <STRONG>Usuarios</STRONG>
                   <a href="{{ route('users.index') }}" class="btn btn-sm btn-outline-secondary float-right">Refrescar</a>
                 </div>
-
                 <div class="card-body">
                   <div class="table-responsive">
                     <table id="mytable" class="table table-hover table-sm">
@@ -18,7 +17,6 @@
                           <th>ID</th>
                           <th>Nombre</th>
                           <th>Email</th>
-                          {{-- <th>Password</th> --}}
                           <th colspan="3">&nbsp;</th>   
                         </tr>
                       </thead>
@@ -29,7 +27,6 @@
                               <td>{{$user->id}}</td>
                               <td>{{$user->name}}</td>
                               <td>{{$user->email}}</td>                     
-                              {{-- <td>{{$user->password}}</td>                      --}}
                               @can('users.show')
                                 <td width="10px">
                                   <a class="btn btn-sm btn-outline-secondary" href="{{ route('users.show', $user->id) }}">Ver</a>
@@ -64,11 +61,9 @@
                     </table>
                     <hr>
                   </div> 
-                    
                     <div class="row justify-content-center">
                       {{ $users->render() }}
                     </div>
-
                 </div>
             </div>
         </div>

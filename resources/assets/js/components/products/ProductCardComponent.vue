@@ -3,7 +3,7 @@
 	<div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 ">
 		<div class="card card-default box-shadow">
 			<div class="card-header text-center">
-				<h2 class="card-title"><a :href="'/products/'+product.id">{{ product.title }}</a></h2>
+				<h2 class="card-title"><a style="color: #4E1D4E" :href="'/products/'+product.id">{{ product.title }}</a></h2>
 			</div>
 			<img class="img-fluid" :src="'/productos/imagenes/'+product.imagen" alt="Imagen">
 			<div class="card-footer">

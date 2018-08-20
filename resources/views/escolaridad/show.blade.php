@@ -25,7 +25,7 @@
                         	@php
                                 if ($escolaridad->user_id!=null):
                             @endphp
-                                @can('escolaridad.show')
+                                @can('users.show')
                                     <p><strong>Autor: </strong><a href="/users/{{ $escolaridad->user->id}}">{{ $escolaridad->user->name }}</a></p>
                                 @endcan
                             @php

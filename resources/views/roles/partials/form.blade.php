@@ -24,7 +24,7 @@
 		@foreach ($permissions as $permission)
 			<li>
 				<label>
-					{{ Form::checkbox('permissions[]', $permission->id, null) }}					
+					{{ Form::checkbox('permissions[]', $permission->id, null,['class'=>'colores']) }}					
 					{{ $permission->name ?: 'Desconocido' }}
 					<em>({{ $permission->description ?: 'Sin descripción' }})</em>
 				</label>

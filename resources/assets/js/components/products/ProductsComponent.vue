@@ -5,7 +5,6 @@
 		</material-transition-group>	
 	</section>	
 </template>
-
 <script>
 	export default{
 		data(){

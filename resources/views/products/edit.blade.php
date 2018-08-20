@@ -50,10 +50,7 @@
           
           <div class="form-group">
             <label for="precio">Estatus:</label>
-            <select name="estatus" id="estatus" class="form-control input-sm" required="">
-              <option value=1>Activo</option>
-              <option value=0>Inactivo</option> 
-            </select>
+          {!! Form::select('estatus',['0'=>'Desactivado','1'=>'Activado'],$producto->estatus,['class'=>'form-control','required']) !!}
           </div>
           
           <hr>

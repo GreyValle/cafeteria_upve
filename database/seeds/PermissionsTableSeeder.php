@@ -12,6 +12,12 @@ class PermissionsTableSeeder extends Seeder
      */
     public function run()
     {
+        
+        Permission::create([
+            'name' => 'Ver enlace de catálagos',
+            'slug' => 'catalagos',
+            'description' => 'Puede ver el menú de enlaces catálagos',
+        ]);
         //users users.update_asignar_roles
         Permission::create([
             'name' => 'Actualizar saldo',
@@ -73,9 +79,14 @@ class PermissionsTableSeeder extends Seeder
         
         //products
         Permission::create([
-        	'name' => 'Navegar productos',
+        	'name' => 'Navegar productos activos',
         	'slug' => 'products.index',
-        	'description' => 'Lista y Navega todos los productos del sistema',
+        	'description' => 'Lista y Navega solo los productos activos',
+        ]);
+        Permission::create([
+            'name' => 'Listar y Navegar todos productos',
+            'slug' => 'products.index_todos_tabla',
+            'description' => 'Lista y Navega todos los productos del sistema',
         ]);
         Permission::create([
         	'name' => 'Ver detalle de producto',
@@ -99,6 +110,11 @@ class PermissionsTableSeeder extends Seeder
         ]);
         
         //orders orders.index_todas
+        Permission::create([
+            'name' => 'Ver enlace de ordenes',
+            'slug' => 'ordenes',
+            'description' => 'Puede ver el menú de enlaces ordenes',
+        ]);
         Permission::create([
             'name' => 'Navegar ordenes pendientes',
             'slug' => 'orders.index',
@@ -274,17 +290,12 @@ class PermissionsTableSeeder extends Seeder
             'slug' => 'tipo_sangre.destroy',
             'description' => 'Eliminar cualquier tipo de sangre del sistema',
         ]); 
+    //comentarios
         Permission::create([
-        	'name' => 'Ver enlace de catálagos',
-        	'slug' => 'catalagos',
-        	'description' => 'Puede ver el menú de enlaces catálagos',
-        ]);
-        Permission::create([
-            'name' => 'Ver enlace de ordenes',
-            'slug' => 'ordenes',
-            'description' => 'Puede ver el menú de enlaces ordenes',
-        ]);
-
+            'name' => 'Listar comentarios con autor',
+            'slug' => 'comentarios.index_2',
+            'description' => 'Puede ver el autor de los comentarios',
+        ]); 
 
     }
 }
